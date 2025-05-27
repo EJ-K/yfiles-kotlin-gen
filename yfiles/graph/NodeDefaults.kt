@@ -22,35 +22,39 @@ import yfiles.styles.INodeStyle
  * @constructor Initializes a new instance of the [NodeDefaults] class using default properties.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23NodeDefaults-constructor-NodeDefaults">Online Documentation</a>
  */
-external open class NodeDefaults  () : INodeDefaults {
-
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23labels">Online Documentation</a>
- */
-final override var labels: ILabelDefaults
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23ports">Online Documentation</a>
- */
-final override var ports: IPortDefaults
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23shareStyleInstance">Online Documentation</a>
- */
-final override var shareStyleInstance: Boolean
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23size">Online Documentation</a>
- */
-final override var size: Size
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23style">Online Documentation</a>
- */
-final override var style: INodeStyle
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23NodeDefaults-method-getStyleInstance">Online Documentation</a>
- */
- override   fun getStyleInstance():INodeStyle
-
-companion object : ClassMetadata<NodeDefaults> {
-}
+open external class NodeDefaults () : INodeDefaults {
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23labels">Online Documentation</a>
+   */
+  final override var labels: ILabelDefaults
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23ports">Online Documentation</a>
+   */
+  final override var ports: IPortDefaults
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23shareStyleInstance">Online Documentation</a>
+   */
+  final override var shareStyleInstance: Boolean
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23size">Online Documentation</a>
+   */
+  final override var size: Size
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23style">Online Documentation</a>
+   */
+  final override var style: INodeStyle
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeDefaults%23NodeDefaults-method-getStyleInstance">Online Documentation</a>
+   */
+  override fun getStyleInstance(): INodeStyle
+  
+  companion object : ClassMetadata<NodeDefaults> {
+  }
 }
 
 inline fun NodeDefaults(

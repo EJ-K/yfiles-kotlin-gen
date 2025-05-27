@@ -12,7 +12,6 @@
 package yfiles.graphml
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents an XML name consisting of a local (unqualified) name for an element or attribute and the URI of the namespace for that element or attribute.
@@ -31,17 +30,19 @@ import yfiles.lang.YObject
  * Gets the namespace.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/XmlName%23namespace">Online Documentation</a>
  */
-external open class XmlName  (
+open external class XmlName (
 final var localName: String,
-final val namespace: String?) : YObject {
-
-companion object : ClassMetadata<XmlName> {
-/**
- * Performs a conversion from [String] to [XmlName].
- * @param [expandedName] Name of the expanded.
- * @return The result of the conversion.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/XmlName%23XmlName-method-convertFrom">Online Documentation</a>
- */
-   fun convertFrom( expandedName: String ):XmlName
-}
+final val namespace: String?)  {
+  
+  companion object : ClassMetadata<XmlName> {
+    /**
+     * Performs a conversion from [String] to [XmlName].
+     * @param [expandedName] Name of the expanded.
+     * @return The result of the conversion.
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/XmlName%23XmlName-method-convertFrom">Online Documentation</a>
+     */
+    fun convertFrom(
+      expandedName: String,
+    ): XmlName
+  }
 }

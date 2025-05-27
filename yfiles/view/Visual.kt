@@ -12,18 +12,20 @@
 package yfiles.view
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Base class for all objects that support drawing in the context of a [CanvasComponent].
  * @see [SvgVisual]
+ * @see [HtmlVisual]
  * @see [HtmlCanvasVisual]
+ * @see [WebGLVisual]
+ * @see [WebGL2Visual]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Visual">Online Documentation</a>
  */
-external abstract class Visual  : YObject {
-
-companion object : ClassMetadata<Visual> {
-}
+abstract external class Visual   {
+  
+  companion object : ClassMetadata<Visual> {
+  }
 }
 
 inline operator fun <T : Visual> T.invoke(

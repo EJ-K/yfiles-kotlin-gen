@@ -12,7 +12,6 @@
 package yfiles.graphml
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * A data holder for use in the [IOutputHandler] interface that encapsulates an XML attribute.
@@ -31,10 +30,10 @@ import yfiles.lang.YObject
  * Gets the value of the attribute.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLXmlAttribute%23value">Online Documentation</a>
  */
-external open class GraphMLXmlAttribute  (
+external class GraphMLXmlAttribute (
 final val name: XmlName,
-final val value: String) : YObject {
-
-companion object : ClassMetadata<GraphMLXmlAttribute> {
-}
+final val value: String)  {
+  
+  companion object : ClassMetadata<GraphMLXmlAttribute> {
+  }
 }

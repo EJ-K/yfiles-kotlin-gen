@@ -20,17 +20,19 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IRow">Online Documentation</a>
  */
 external interface IRow : IStripe {
-/**
- * Gets the child rows.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IRow%23childRows">Online Documentation</a>
- */
-val childRows: IEnumerable<IRow>
-/**
- * Gets the parent of this row.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IRow%23parentRow">Online Documentation</a>
- */
-val parentRow: IRow?
+  /**
+   * Gets the child rows.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IRow%23childRows">Online Documentation</a>
+   */
+  val childRows: IEnumerable<IRow>
+  
+  /**
+   * Gets the parent of this row.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IRow%23parentRow">Online Documentation</a>
+   */
+  val parentRow: IRow?
 
-companion object : InterfaceMetadata<IRow> {
-}
+  
+  companion object : InterfaceMetadata<IRow> {
+  }
 }

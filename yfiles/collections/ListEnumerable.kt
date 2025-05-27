@@ -14,7 +14,7 @@ package yfiles.collections
 import yfiles.lang.ClassMetadata
 
 /**
- * Wraps a simple [IEnumerable] into a [IListEnumerable].
+ * Wraps a simple [IEnumerable] into an [IListEnumerable].
  * @param [T] The type of the enumerable.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ListEnumerable">Online Documentation</a>
  * 
@@ -26,18 +26,20 @@ import yfiles.lang.ClassMetadata
  * Gets the backing enumerable.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ListEnumerable%23backingEnumerable">Online Documentation</a>
  */
-external  class ListEnumerable<T>  (
+external class ListEnumerable<T> (
 final val backingEnumerable: IEnumerable<T> = definedExternally) : IListEnumerable<T> {
-
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ListEnumerable%23ListEnumerable-method-get">Online Documentation</a>
- */
- override  operator fun get( index: Int ):T
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ListEnumerable%23ListEnumerable-method-getEnumerator">Online Documentation</a>
- */
- final override   fun getEnumerator():IEnumerator<T>
-
-companion object : ClassMetadata<ListEnumerable<*>> {
-}
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ListEnumerable%23ListEnumerable-method-get">Online Documentation</a>
+   */
+  override operator fun get(
+    index: Int,
+  ): T
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ListEnumerable%23ListEnumerable-method-getEnumerator">Online Documentation</a>
+   */
+  override fun getEnumerator(): IEnumerator<T>
+  
+  companion object : ClassMetadata<ListEnumerable<*>> {
+  }
 }

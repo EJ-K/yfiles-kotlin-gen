@@ -20,52 +20,67 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection">Online Documentation</a>
  */
 external interface ICollection<T> : IEnumerable<T> {
-/**
- * Whether this collection is read-only.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23isReadOnly">Online Documentation</a>
- */
-val isReadOnly: Boolean
-/**
- * Adds the given `item` to the collection.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-add">Online Documentation</a>
- */
-   fun add( item: T )
+  /**
+   * Whether this collection is read-only.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23isReadOnly">Online Documentation</a>
+   */
+  val isReadOnly: Boolean
+  
+  /**
+   * Adds the given `item` to the collection.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-add">Online Documentation</a>
+   */
+  fun add(
+    item: T,
+  )
+  
+  /**
+   * Adds the given `item` to the collection.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-add">Online Documentation</a>
+   */
+  @JsName("add")
+  final operator fun plusAssign(
+    item: T,
+  ): Unit = definedExternally
+  
+  /**
+   * Removes all items from this collection.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-clear">Online Documentation</a>
+   */
+  fun clear()
+  
+  /**
+   * Copies all elements of this collection into the given array.
+   * @param [array] The array to copy the elements to.
+   * @param [arrayIndex] The index in the given array where the first element should be copied to.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-copyTo">Online Documentation</a>
+   */
+  fun copyTo(
+    array: Array<in T>,
+    arrayIndex: Int,
+  )
+  
+  /**
+   * Removes the given `item` from this collection.
+   * @param [item] The item to remove.
+   * @return Whether the item was removed from the collection.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-remove">Online Documentation</a>
+   */
+  fun remove(
+    item: T,
+  ): Boolean
+  
+  /**
+   * Removes the given `item` from this collection.
+   * @param [item] The item to remove.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-remove">Online Documentation</a>
+   */
+  @JsName("remove")
+  final operator fun minusAssign(
+    item: T,
+  ): Unit = definedExternally
 
-/**
- * Adds the given `item` to the collection.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-add">Online Documentation</a>
- */
-@JsName("add")
-  final operator fun plusAssign( item: T ):Unit = definedExternally
-/**
- * Removes all items from this collection.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-clear">Online Documentation</a>
- */
-   fun clear()
-/**
- * Copies all elements of this collection into the given array.
- * @param [array] The array to copy the elements to.
- * @param [arrayIndex] The index in the given array where the first element should be copied to.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-copyTo">Online Documentation</a>
- */
-   fun copyTo( array: Array<in T> ,
- arrayIndex: Int )
-/**
- * Removes the given `item` from this collection.
- * @param [item] The item to remove.
- * @return Whether the item was removed from the collection.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-remove">Online Documentation</a>
- */
-   fun remove( item: T ):Boolean
-
-/**
- * Removes the given `item` from this collection.
- * @param [item] The item to remove.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICollection%23ICollection-method-remove">Online Documentation</a>
- */
-@JsName("remove")
-  final operator fun minusAssign( item: T ):Unit = definedExternally
-
-companion object : InterfaceMetadata<ICollection<*>> {
-}
+  
+  companion object : InterfaceMetadata<ICollection<*>> {
+  }
 }

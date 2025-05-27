@@ -12,27 +12,28 @@
 package yfiles.layout
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
- * Abstract base class for classes that specify custom data for a layout calculation on [IGraph][yfiles.graph.IGraph] instances.
+ * Abstract base class for classes that specify custom data for a layout calculation on [IGraph][yfiles.graph.IGraph] or [LayoutGraph] instances.
  * @see [LayoutExecutor.layoutData]
- * @see [GraphComponent.morphLayout][yfiles.view.GraphComponent.morphLayout]
+ * @see [IGraph.applyLayout][yfiles.graph.IGraph.applyLayout]
+ * @see [GraphComponent.applyLayoutAnimated][yfiles.view.GraphComponent.applyLayoutAnimated]
  * @see [GenericLayoutData]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LayoutData">Online Documentation</a>
  */
-external abstract class LayoutData  : YObject {
-
-/**
- * Combines this instance with the given layout data.
- * @param [data] The [LayoutData] to combine this instance with.
- * @return The combined layout data.
- * @see [CompositeLayoutData]
- * @see [GenericLayoutData]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LayoutData%23LayoutData-method-combineWith">Online Documentation</a>
- */
- final   fun combineWith(vararg  data: LayoutData ):LayoutData
-
-companion object : ClassMetadata<LayoutData> {
-}
+abstract external class LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel>   {
+  /**
+   * Combines this instance with the given layout data.
+   * @param [data] The [LayoutData] to combine this instance with.
+   * @return The combined layout data.
+   * @see [CompositeLayoutData]
+   * @see [GenericLayoutData]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LayoutData%23LayoutData-method-combineWith">Online Documentation</a>
+   */
+  fun combineWith(
+    vararg data: LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel>,
+  ): LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel>
+  
+  companion object : ClassMetadata<LayoutData<*, *, *, *>> {
+  }
 }

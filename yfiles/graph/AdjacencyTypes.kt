@@ -18,37 +18,39 @@ import yfiles.lang.YFlags
  * @see [IGraph.edgesAt]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes">Online Documentation</a>
  */
-external class AdjacencyTypes 
-    private constructor(): YFlags<AdjacencyTypes> {
-    companion object {
-    /**
- * Neither [INCOMING] nor [OUTGOING]
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes%23NONE">Online Documentation</a>
- */
-val NONE: AdjacencyTypes
-/**
- * The constant for incoming edges.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes%23INCOMING">Online Documentation</a>
- */
-val INCOMING: AdjacencyTypes
-/**
- * The constant for outgoing edges.
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes%23OUTGOING">Online Documentation</a>
- */
-val OUTGOING: AdjacencyTypes
-/**
- * Both [INCOMING] and [OUTGOING]
- * 
- * Value - `3`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes%23ALL">Online Documentation</a>
- */
-val ALL: AdjacencyTypes
 
-    }
+external class AdjacencyTypes private constructor(): YFlags<AdjacencyTypes> {
+  companion object {
+    /**
+     * Neither [INCOMING][AdjacencyTypes] nor [OUTGOING][AdjacencyTypes]
+     * 
+     * Value - `0`
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes%23NONE">Online Documentation</a>
+     */
+    val NONE: AdjacencyTypes
+    
+    /**
+     * The constant for incoming edges.
+     * 
+     * Value - `1`
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes%23INCOMING">Online Documentation</a>
+     */
+    val INCOMING: AdjacencyTypes
+    
+    /**
+     * The constant for outgoing edges.
+     * 
+     * Value - `2`
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes%23OUTGOING">Online Documentation</a>
+     */
+    val OUTGOING: AdjacencyTypes
+    
+    /**
+     * Both [INCOMING][AdjacencyTypes] and [OUTGOING][AdjacencyTypes]
+     * 
+     * Value - `3`
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyTypes%23ALL">Online Documentation</a>
+     */
+    val ALL: AdjacencyTypes
+  }
 }

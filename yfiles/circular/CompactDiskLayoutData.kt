@@ -11,42 +11,40 @@
 
 package yfiles.circular
 
-import yfiles.graph.INode
+import yfiles.collections.ItemMapping
+import yfiles.geometry.Insets
 import yfiles.lang.ClassMetadata
-import yfiles.layout.INodeType
-import yfiles.layout.ItemMapping
+import yfiles.layout.BasicPortData
 import yfiles.layout.LayoutData
-import yfiles.layout.NodeHalo
 
 /**
  * Specifies custom data for the [CompactDiskLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CompactDiskLayoutData">Online Documentation</a>
  * 
- * @constructor Creates a new instance of this class.
+ * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CompactDiskLayoutData%23CompactDiskLayoutData-constructor-CompactDiskLayoutData">Online Documentation</a>
  */
-external open class CompactDiskLayoutData  () : LayoutData {
-
-/**
- * Gets or sets the mapping from nodes to their [NodeHalo].
- * @see [NodeHalo.NODE_HALO_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CompactDiskLayoutData%23nodeHalos">Online Documentation</a>
- */
-final var nodeHalos: ItemMapping<INode, NodeHalo>
-/**
- * Gets or sets the mapping from nodes to an object defining the node type, which influences the ordering of child nodes such that those with same type are preferably placed next to each other.
- * @see [LayoutKeys.NODE_TYPE_DP_KEY][yfiles.layout.LayoutKeys.NODE_TYPE_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CompactDiskLayoutData%23nodeTypes">Online Documentation</a>
- */
-final var nodeTypes: ItemMapping<INode, INodeType>
-
-companion object : ClassMetadata<CompactDiskLayoutData> {
-}
-}
-
-inline fun CompactDiskLayoutData(
-    block: CompactDiskLayoutData.() -> Unit
-): CompactDiskLayoutData {
-    return CompactDiskLayoutData()
-        .apply(block)
+external class CompactDiskLayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> () : LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> {
+  /**
+   * Gets or sets the mapping from nodes to their margins.
+   * @see [LayoutKeys.NODE_MARGIN_DATA_KEY][yfiles.layout.LayoutKeys.NODE_MARGIN_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CompactDiskLayoutData%23nodeMargins">Online Documentation</a>
+   */
+  final var nodeMargins: ItemMapping<TNode, Insets>
+  
+  /**
+   * Gets or sets the mapping from nodes to an object defining the node type, which influences the ordering of child nodes such that those with the same type are preferably placed next to each other.
+   * @see [LayoutKeys.NODE_TYPE_DATA_KEY][yfiles.layout.LayoutKeys.NODE_TYPE_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CompactDiskLayoutData%23nodeTypes">Online Documentation</a>
+   */
+  final var nodeTypes: ItemMapping<TNode, Any>
+  
+  /**
+   * Gets or sets the sub-data that provides a way of influencing the placement of the ports.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CompactDiskLayoutData%23ports">Online Documentation</a>
+   */
+  final var ports: BasicPortData<TNode, TEdge, TNodeLabel, TEdgeLabel>
+  
+  companion object : ClassMetadata<CompactDiskLayoutData<*, *, *, *>> {
+  }
 }

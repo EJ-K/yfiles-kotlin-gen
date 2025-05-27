@@ -11,37 +11,33 @@
 
 package yfiles.input
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * Describe what policy to use when the [TextEditorInputMode.editorContainer] would be located outside of the current [CanvasComponent.viewport][yfiles.view.CanvasComponent.viewport]
+ * Describe what policy to use when the [editorContainer][TextEditorInputMode] would be located outside of the current [viewport][yfiles.view.CanvasComponent]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TextBoxPlacementPolicy">Online Documentation</a>
  */
-external sealed class TextBoxPlacementPolicy: YEnum<TextBoxPlacementPolicy> {
-   companion object: EnumMetadata<TextBoxPlacementPolicy> {
-       /**
- * Do nothing
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TextBoxPlacementPolicy%23NONE">Online Documentation</a>
- */
-val NONE: TextBoxPlacementPolicy
 
-/**
- * Move the [CanvasComponent][yfiles.view.CanvasComponent] so that the [TextEditorInputMode.editorContainer] is visible
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TextBoxPlacementPolicy%23SCROLL_CANVAS">Online Documentation</a>
- */
-val SCROLL_CANVAS: TextBoxPlacementPolicy
-
-/**
- * Move the [TextEditorInputMode.editorContainer] so that it is visible in the current [CanvasComponent.viewport][yfiles.view.CanvasComponent.viewport]
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TextBoxPlacementPolicy%23MOVE_TEXT_BOX">Online Documentation</a>
- */
-val MOVE_TEXT_BOX: TextBoxPlacementPolicy
-   }
+sealed external class TextBoxPlacementPolicy {
+  /**
+   * Do nothing
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TextBoxPlacementPolicy%23NONE">Online Documentation</a>
+   */
+  object NONE: TextBoxPlacementPolicy
+  
+  /**
+   * Move the [yfiles.view.CanvasComponent] so that the [editorContainer][TextEditorInputMode] is visible
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TextBoxPlacementPolicy%23SCROLL_CANVAS">Online Documentation</a>
+   */
+  object SCROLL_CANVAS: TextBoxPlacementPolicy
+  
+  /**
+   * Move the [editorContainer][TextEditorInputMode] so that it is visible in the current [viewport][yfiles.view.CanvasComponent]
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TextBoxPlacementPolicy%23MOVE_TEXT_BOX">Online Documentation</a>
+   */
+  object MOVE_TEXT_BOX: TextBoxPlacementPolicy
 }

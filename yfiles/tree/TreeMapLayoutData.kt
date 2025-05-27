@@ -11,42 +11,32 @@
 
 package yfiles.tree
 
-import yfiles.algorithms.AbortHandler
-import yfiles.graph.INode
+import yfiles.collections.ItemMapping
 import yfiles.lang.ClassMetadata
-import yfiles.layout.ItemMapping
+import yfiles.lang.Comparison1
 import yfiles.layout.LayoutData
 
 /**
  * Specifies custom data for the [TreeMapLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeMapLayoutData">Online Documentation</a>
  * 
- * @constructor Creates a new instance of [TreeMapLayoutData] which helps configuring [TreeMapLayout].
+ * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeMapLayoutData%23TreeMapLayoutData-constructor-TreeMapLayoutData">Online Documentation</a>
  */
-external open class TreeMapLayoutData  () : LayoutData {
-
-/**
- * Gets or sets the [AbortHandler] used during the layout.
- * @see [LayoutExecutor.abortHandler][yfiles.layout.LayoutExecutor.abortHandler]
- * @see [AbortHandler.ABORT_HANDLER_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeMapLayoutData%23abortHandler">Online Documentation</a>
- */
-final var abortHandler: AbortHandler?
-/**
- * Gets or sets the mapping from nodes to the weight value used for the tree map layout.
- * @see [TreeMapLayout.NODE_WEIGHT_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeMapLayoutData%23nodeWeights">Online Documentation</a>
- */
-final var nodeWeights: ItemMapping<INode, Double>
-
-companion object : ClassMetadata<TreeMapLayoutData> {
-}
-}
-
-inline fun TreeMapLayoutData(
-    block: TreeMapLayoutData.() -> Unit
-): TreeMapLayoutData {
-    return TreeMapLayoutData()
-        .apply(block)
+external class TreeMapLayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> () : LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> {
+  /**
+   * Gets or sets the comparison function that defines the order in which child nodes are placed inside their parent node.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeMapLayoutData%23childNodeComparator">Online Documentation</a>
+   */
+  final var childNodeComparator: Comparison1<TNode>?
+  
+  /**
+   * Gets or sets the mapping from nodes to the weight value used for the tree map layout.
+   * @see [TreeMapLayout.NODE_WEIGHT_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeMapLayoutData%23nodeWeights">Online Documentation</a>
+   */
+  final var nodeWeights: ItemMapping<TNode, Double>
+  
+  companion object : ClassMetadata<TreeMapLayoutData<*, *, *, *>> {
+  }
 }

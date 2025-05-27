@@ -18,14 +18,20 @@ import yfiles.lang.ClassMetadata
  * Event arguments used by [LassoSelectionInputMode].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LassoSelectionEventArgs">Online Documentation</a>
  */
-external open class LassoSelectionEventArgs  : InputModeEventArgs {
-
-/**
- * Gets the current [lasso selection path][LassoSelectionInputMode.selectionPath] of the [LassoSelectionInputMode].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LassoSelectionEventArgs%23selectionPath">Online Documentation</a>
- */
-final val selectionPath: GeneralPath
-
-companion object : ClassMetadata<LassoSelectionEventArgs> {
-}
+external class LassoSelectionEventArgs  : InputModeEventArgs {
+  /**
+   * Gets the current [lasso selection path][LassoSelectionInputMode] of the [LassoSelectionInputMode].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LassoSelectionEventArgs%23path">Online Documentation</a>
+   */
+  final val path: GeneralPath
+  
+  /**
+   * Gets a value determining the [SelectionPolicy] that is currently set by the user.
+   * @see [LassoSelectionInputMode.selectionPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LassoSelectionEventArgs%23policy">Online Documentation</a>
+   */
+  final val policy: SelectionPolicy
+  
+  companion object : ClassMetadata<LassoSelectionEventArgs> {
+  }
 }

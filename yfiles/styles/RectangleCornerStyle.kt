@@ -11,29 +11,25 @@
 
 package yfiles.styles
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * Provides constants for the corner visualization style of the [RectangleNodeStyle].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleCornerStyle">Online Documentation</a>
  */
-external sealed class RectangleCornerStyle: YEnum<RectangleCornerStyle> {
-   companion object: EnumMetadata<RectangleCornerStyle> {
-       /**
- * Rounded corner style.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleCornerStyle%23ROUND">Online Documentation</a>
- */
-val ROUND: RectangleCornerStyle
 
-/**
- * Diagonally cut corner style.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleCornerStyle%23CUT">Online Documentation</a>
- */
-val CUT: RectangleCornerStyle
-   }
+sealed external class RectangleCornerStyle {
+  /**
+   * Rounded corner style.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleCornerStyle%23ROUND">Online Documentation</a>
+   */
+  object ROUND: RectangleCornerStyle
+  
+  /**
+   * Diagonally cut corner style.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleCornerStyle%23CUT">Online Documentation</a>
+   */
+  object CUT: RectangleCornerStyle
 }

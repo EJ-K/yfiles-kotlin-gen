@@ -25,18 +25,18 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeEventArgs%23NodeEventArgs-constructor-NodeEventArgs">Online Documentation</a>
  * 
  * @property parent
- * Gets the parent of the [node][ItemEventArgs.item] before this event.
+ * Gets the parent of the [node][ItemEventArgs] before this event.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeEventArgs%23parent">Online Documentation</a>
  * 
  * @property isGroupNode
- * Gets whether the [node][ItemEventArgs.item] was a group node before this event.
+ * Gets whether the [node][ItemEventArgs] was a group node before this event.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeEventArgs%23isGroupNode">Online Documentation</a>
  */
-external  class NodeEventArgs  (
- item: INode ,
+external class NodeEventArgs (
+item: INode,
 final val parent: INode?,
 final val isGroupNode: Boolean) : ItemEventArgs<INode> {
-
-companion object : ClassMetadata<NodeEventArgs> {
-}
+  
+  companion object : ClassMetadata<NodeEventArgs> {
+  }
 }

@@ -12,21 +12,18 @@
 package yfiles.analysis
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents the stars found by [StarSubstructures].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StarSubstructuresResult">Online Documentation</a>
  */
-external  class StarSubstructuresResult 
-private constructor () : YObject {
-
-/**
- * Gets the stars found by [StarSubstructures].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StarSubstructuresResult%23stars">Online Documentation</a>
- */
-final val stars: ResultItemCollection<SubstructureItems>
-
-companion object : ClassMetadata<StarSubstructuresResult> {
-}
+external class StarSubstructuresResult private constructor()  {
+  /**
+   * Gets the stars found by [StarSubstructures].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StarSubstructuresResult%23stars">Online Documentation</a>
+   */
+  final val stars: ResultItemCollection<SubstructureItems>
+  
+  companion object : ClassMetadata<StarSubstructuresResult> {
+  }
 }

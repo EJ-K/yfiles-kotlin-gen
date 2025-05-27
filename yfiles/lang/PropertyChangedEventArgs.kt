@@ -12,7 +12,7 @@
 package yfiles.lang
 
 /**
- * Event arguments which contain information for a [IPropertyObservable.PropertyChanged] event.
+ * Event arguments which contain information for a [property-changed][IPropertyObservable] event.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PropertyChangedEventArgs">Online Documentation</a>
  * 
  * @constructor Creates a new instance.
@@ -23,9 +23,9 @@ package yfiles.lang
  * The name of the changed property.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PropertyChangedEventArgs%23propertyName">Online Documentation</a>
  */
-external open class PropertyChangedEventArgs  (
+external class PropertyChangedEventArgs (
 final val propertyName: String) : EventArgs {
-
-companion object : ClassMetadata<PropertyChangedEventArgs> {
-}
+  
+  companion object : ClassMetadata<PropertyChangedEventArgs> {
+  }
 }

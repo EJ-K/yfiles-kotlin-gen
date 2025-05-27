@@ -17,10 +17,11 @@ import js.objects.ReadonlyRecord
  * This object is a container for the license information.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/License">Online Documentation</a>
  */
+
 external object License {
-/**
- * Sets the license information.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/License%23value">Online Documentation</a>
- */
-final var value: ReadonlyRecord<String, *>?
+  /**
+   * Sets the license information.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/License%23value">Online Documentation</a>
+   */
+  final var value: ReadonlyRecord<String, *>?
 }

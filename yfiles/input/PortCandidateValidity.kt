@@ -11,37 +11,33 @@
 
 package yfiles.input
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * Enumeration for the different possible [IPortCandidate.validity] states.
+ * Enumeration for the different possible [validity][IPortCandidate] states.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortCandidateValidity">Online Documentation</a>
  */
-external sealed class PortCandidateValidity: YEnum<PortCandidateValidity> {
-   companion object: EnumMetadata<PortCandidateValidity> {
-       /**
- * The candidate is valid and can be used to connect an edge to.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortCandidateValidity%23VALID">Online Documentation</a>
- */
-val VALID: PortCandidateValidity
 
-/**
- * The candidate should not be used to connect an edge to.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortCandidateValidity%23INVALID">Online Documentation</a>
- */
-val INVALID: PortCandidateValidity
-
-/**
- * The candidate cannot be used to create a port, instead [IPortCandidate.getPortCandidateAt] needs to be called to obtain a [IPortCandidate] that is either [VALID] or [INVALID].
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortCandidateValidity%23DYNAMIC">Online Documentation</a>
- */
-val DYNAMIC: PortCandidateValidity
-   }
+sealed external class PortCandidateValidity {
+  /**
+   * The candidate is valid and can be used to connect an edge to.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortCandidateValidity%23VALID">Online Documentation</a>
+   */
+  object VALID: PortCandidateValidity
+  
+  /**
+   * The candidate should not be used to connect an edge to.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortCandidateValidity%23INVALID">Online Documentation</a>
+   */
+  object INVALID: PortCandidateValidity
+  
+  /**
+   * The candidate cannot be used to create a port, instead [getPortCandidateAt][IPortCandidate] needs to be called to obtain a [IPortCandidate] that is either [VALID][PortCandidateValidity] or [INVALID][PortCandidateValidity].
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortCandidateValidity%23DYNAMIC">Online Documentation</a>
+   */
+  object DYNAMIC: PortCandidateValidity
 }

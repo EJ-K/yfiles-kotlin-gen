@@ -13,18 +13,17 @@ import js.promise.Promise
 
 /**
  * Implements the actual work in the context of a [LayoutExecutorAsync].
- * @param [graph] The graph to perform the calculations on. If you need a custom graph implementation, consider overwriting [LayoutExecutorAsyncWorker.createLayoutGraph].
- * @param [descriptor] The descriptor that was set on the [LayoutExecutorAsync.layoutDescriptor] and send to this context.
+ * @param [graph] The graph to perform the calculations on. If you need a custom graph implementation, consider overwriting [createLayoutGraph][LayoutExecutorAsyncWorker].
+ * @param [descriptor] The descriptor that was set on the [layoutDescriptor][LayoutExecutorAsync] and send to this context.
  * @return An optional `Promise` that will resolve to the data received from the worker context. This allows for asynchronously loading additional code and data that is required to complete the calculation.
  * @see [LayoutExecutorAsyncWorker.process]
  * @see [LayoutExecutorAsyncWorker]
  */
-typealias WorkerHandler = (graph: LayoutGraph,
-descriptor: LayoutDescriptor) -> Promise<Any>
+typealias WorkerHandler = (graph: LayoutGraph, descriptor: LayoutDescriptor) -> Any
 
 /**
  * Implements message passing between two contexts.
- * @param [data] The data to send to the [LayoutExecutorAsyncWorker.process] method in the worker context.
+ * @param [data] The data to send to the [process][LayoutExecutorAsyncWorker] method in the worker context.
  * @return A `Promise` that will resolve to the data received from the worker context.
  * @see [LayoutExecutorAsyncWorker.process]
  */

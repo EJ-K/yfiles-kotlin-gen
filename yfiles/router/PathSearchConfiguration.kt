@@ -12,43 +12,45 @@
 package yfiles.router
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
-import yfiles.layout.GroupingSupport
+import yfiles.lang.TimeSpan
 import yfiles.layout.LayoutGraph
+import yfiles.layout.LayoutGraphGrouping
 
 /**
  * This class contains the basic configuration used by path search algorithms.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration">Online Documentation</a>
- * 
- * @constructor Creates a new instance of [PathSearchConfiguration] used for a path search.
- * @param [graph] the graph containing the edges whose path will be searched
- * @param [grouping] the grouping information of the graph
- * @param [edgeRouter] the edge routing algorithm using this configuration
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23PathSearchConfiguration-constructor-PathSearchConfiguration">Online Documentation</a>
- * 
- * @property graph
- * Gets the graph containing the edges whose path is searched.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23graph">Online Documentation</a>
- * 
- * @property grouping
- * Gets the grouping information of the graph.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23grouping">Online Documentation</a>
- * 
- * @property edgeRouter
- * Gets the edge routing algorithm using this configuration.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23edgeRouter">Online Documentation</a>
  */
-external open class PathSearchConfiguration  (
-open val graph: LayoutGraph,
-open val grouping: GroupingSupport,
-open val edgeRouter: EdgeRouter) : YObject {
-
-/**
- * Gets the remaining time (in milliseconds) within which the algorithm should complete its calculation.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23remainingTime">Online Documentation</a>
- */
-open val remainingTime: Int
-
-companion object : ClassMetadata<PathSearchConfiguration> {
-}
+external class PathSearchConfiguration private constructor()  {
+  /**
+   * Gets the edge routing algorithm using this configuration.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23edgeRouter">Online Documentation</a>
+   */
+  final val edgeRouter: EdgeRouter
+  
+  /**
+   * Gets the graph containing the edges whose path is searched.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23graph">Online Documentation</a>
+   */
+  final val graph: LayoutGraph
+  
+  /**
+   * Gets the grouping information of the graph.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23grouping">Online Documentation</a>
+   */
+  final val grouping: LayoutGraphGrouping
+  
+  /**
+   * Gets the [IRouterPartition] that is currently in use.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23partition">Online Documentation</a>
+   */
+  final val partition: IRouterPartition
+  
+  /**
+   * Gets the remaining time within which the algorithm should complete its calculation.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchConfiguration%23remainingTime">Online Documentation</a>
+   */
+  final val remainingTime: TimeSpan
+  
+  companion object : ClassMetadata<PathSearchConfiguration> {
+  }
 }

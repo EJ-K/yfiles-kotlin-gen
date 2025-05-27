@@ -15,9 +15,8 @@ import yfiles.lang.ClassMetadata
 import yfiles.lang.EventArgs
 
 /**
- * Event arguments for calls to the [GraphMLIOHandler.QueryReferenceId] or [GraphMLWriter.QueryReferenceId] events.
- * @see [GraphMLIOHandler.addQueryReferenceIdListener]
- * @see [GraphMLWriter.addQueryReferenceIdListener]
+ * Event arguments for the [query-reference-id][GraphMLIOHandler] event.
+ * @see [GraphMLIOHandler.query-reference-id]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryReferenceIdEventArgs">Online Documentation</a>
  * 
  * @constructor Creates a new instance.
@@ -33,30 +32,31 @@ import yfiles.lang.EventArgs
  * Gets the reference value that is encapsulated by this instance.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryReferenceIdEventArgs%23value">Online Documentation</a>
  */
-external open class QueryReferenceIdEventArgs  (
+external class QueryReferenceIdEventArgs (
 final val context: IWriteContext,
 final val value: Any) : EventArgs {
-
-/**
- * Gets whether the last event handler invocation has actually handled the event.
- * @see [referenceId]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryReferenceIdEventArgs%23handled">Online Documentation</a>
- */
-final val handled: Boolean
-/**
- * Gets or sets the reference id that should be evaluated by the event handler.
- * @see [handled]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryReferenceIdEventArgs%23referenceId">Online Documentation</a>
- */
-final var referenceId: ElementId?
-/**
- * Gets or sets the type of the reference being queried.
- * @see [referenceId]
- * @see [handled]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryReferenceIdEventArgs%23referenceType">Online Documentation</a>
- */
-final var referenceType: GraphMLReferenceType
-
-companion object : ClassMetadata<QueryReferenceIdEventArgs> {
-}
+  /**
+   * Gets whether the last event handler invocation has actually handled the event.
+   * @see [referenceId]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryReferenceIdEventArgs%23handled">Online Documentation</a>
+   */
+  final val handled: Boolean
+  
+  /**
+   * Gets or sets the reference id that should be evaluated by the event handler.
+   * @see [handled]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryReferenceIdEventArgs%23referenceId">Online Documentation</a>
+   */
+  final var referenceId: ElementId?
+  
+  /**
+   * Gets or sets the type of the reference being queried.
+   * @see [referenceId]
+   * @see [handled]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryReferenceIdEventArgs%23referenceType">Online Documentation</a>
+   */
+  final var referenceType: GraphMLReferenceType
+  
+  companion object : ClassMetadata<QueryReferenceIdEventArgs> {
+  }
 }

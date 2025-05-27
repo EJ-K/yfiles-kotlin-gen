@@ -11,44 +11,64 @@
 
 package yfiles.router
 
-import yfiles.algorithms.Edge
+import yfiles.collections.IList
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
- * This class manages the best [Path]s found for each edge and provides according [EdgeInfo]s.
+ * A [PathSearchResult] represents the result of a path search as a list of consecutive [CellEntrance]s.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult">Online Documentation</a>
  * 
- * @constructor Creates a new instance of [PathSearchResult].
- * @param [configuration] the configuration used for the path search
+ * @constructor Creates a new instance of [PathSearchResult] for the given edge, [CellEntrance]s, and cost.
+ * @param [entrances] the list of [CellEntrance] objects describing the edge path from source node to target node
+ * @param [cost] the overall cost of this path
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23PathSearchResult-constructor-PathSearchResult">Online Documentation</a>
+ * 
+ * @property cost
+ * Gets the overall cost of this path.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23cost">Online Documentation</a>
  */
-external open class PathSearchResult  ( configuration: PathSearchConfiguration ) : YObject {
-
-/**
- * Returns an [EdgeInfo] for the given edge.
- * @param [edge] the edge for which the [EdgeInfo] will be returned
- * @return an [EdgeInfo] describing the path of the edge
- * @see [setPath]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23PathSearchResult-method-getEdgeInfo">Online Documentation</a>
- */
- open   fun getEdgeInfo( edge: Edge ):EdgeInfo
-/**
- * Returns the previously registered path found for the edge.
- * @param [edge] the edge for which the path is provided
- * @return the previously registered path found for the edge or `null` if no path has been registered, yet
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23PathSearchResult-method-getPath">Online Documentation</a>
- */
- open   fun getPath( edge: Edge ):Path
-/**
- * Specifies a found path for an edge.
- * @param [edge] the edge for which the path is set
- * @param [path] the found path
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23PathSearchResult-method-setPath">Online Documentation</a>
- */
- open   fun setPath( edge: Edge ,
- path: Path )
-
-companion object : ClassMetadata<PathSearchResult> {
-}
+external class PathSearchResult (
+entrances: IList<out CellEntrance>,
+final val cost: Double)  {
+  /**
+   * Returns the number of [CellEntrance] objects in this path.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23cellEntranceCount">Online Documentation</a>
+   */
+  final val cellEntranceCount: Int
+  
+  /**
+   * Returns the [CellEntrance] at the given position of this path.
+   * @param [position] the position of the [CellEntrance] to return
+   * @return the [CellEntrance] at the given position of this path
+   * @see [setEntrance]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23PathSearchResult-method-getEntrance">Online Documentation</a>
+   */
+  fun getEntrance(
+    position: Int,
+  ): CellEntrance
+  
+  /**
+   * Returns the position of the first occurrence of the given [CellEntrance] in this path, or `-1` if this path does not contain this [CellEntrance].
+   * @param [entrance] the [CellEntrance] for which the position is retrieved
+   * @return the position of the first occurrence of the given [CellEntrance] in this path, or `-1` if this path does not contain this [CellEntrance]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23PathSearchResult-method-positionOf">Online Documentation</a>
+   */
+  fun positionOf(
+    entrance: CellEntrance,
+  ): Int
+  
+  /**
+   * Replaces the [CellEntrance] at the given position of this path with the given [CellEntrance].
+   * @param [position] the position of the [CellEntrance] to replace
+   * @param [entrance] the [CellEntrance] to be stored at the given position
+   * @see [getEntrance]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PathSearchResult%23PathSearchResult-method-setEntrance">Online Documentation</a>
+   */
+  fun setEntrance(
+    position: Int,
+    entrance: CellEntrance,
+  )
+  
+  companion object : ClassMetadata<PathSearchResult> {
+  }
 }

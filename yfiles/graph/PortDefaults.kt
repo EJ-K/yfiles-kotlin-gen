@@ -21,43 +21,53 @@ import yfiles.styles.IPortStyle
  * @constructor Initializes a new instance of the [PortDefaults] class using a trivial location model parameter.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23PortDefaults-constructor-PortDefaults">Online Documentation</a>
  */
-external open class PortDefaults  () : IPortDefaults {
-
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23autoCleanUp">Online Documentation</a>
- */
-final override var autoCleanUp: Boolean
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23labels">Online Documentation</a>
- */
-final override var labels: ILabelDefaults
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23locationParameter">Online Documentation</a>
- */
-final override var locationParameter: IPortLocationModelParameter
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23shareLocationParameterInstance">Online Documentation</a>
- */
-final override var shareLocationParameterInstance: Boolean
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23shareStyleInstance">Online Documentation</a>
- */
-final override var shareStyleInstance: Boolean
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23style">Online Documentation</a>
- */
-final override var style: IPortStyle
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23PortDefaults-method-getLocationParameterInstance">Online Documentation</a>
- */
- override   fun getLocationParameterInstance( owner: IPortOwner ):IPortLocationModelParameter
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23PortDefaults-method-getStyleInstance">Online Documentation</a>
- */
- override   fun getStyleInstance( owner: IPortOwner ):IPortStyle
-
-companion object : ClassMetadata<PortDefaults> {
-}
+open external class PortDefaults () : IPortDefaults {
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23autoCleanUp">Online Documentation</a>
+   */
+  final override var autoCleanUp: Boolean
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23labels">Online Documentation</a>
+   */
+  final override var labels: ILabelDefaults
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23locationParameter">Online Documentation</a>
+   */
+  final override var locationParameter: IPortLocationModelParameter
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23shareLocationParameterInstance">Online Documentation</a>
+   */
+  final override var shareLocationParameterInstance: Boolean
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23shareStyleInstance">Online Documentation</a>
+   */
+  final override var shareStyleInstance: Boolean
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23style">Online Documentation</a>
+   */
+  final override var style: IPortStyle
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23PortDefaults-method-getLocationParameterInstance">Online Documentation</a>
+   */
+  override fun getLocationParameterInstance(
+    owner: IPortOwner,
+  ): IPortLocationModelParameter
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortDefaults%23PortDefaults-method-getStyleInstance">Online Documentation</a>
+   */
+  override fun getStyleInstance(
+    owner: IPortOwner,
+  ): IPortStyle
+  
+  companion object : ClassMetadata<PortDefaults> {
+  }
 }
 
 inline fun PortDefaults(

@@ -12,29 +12,28 @@
 package yfiles.input
 
 import yfiles.geometry.Point
-import yfiles.graph.IModelItem
 import yfiles.lang.ClassMetadata
 
 /**
- * A specialized subclass of [ToolTipQueryEventArgs] that carries the [item] for which the tool tip is queried.
- * @param [TModelItem] The type of the [model item][item].
+ * A specialized subclass of [QueryToolTipEventArgs] that carries the [item][QueryItemToolTipEventArgs] for which the tool tip is queried.
+ * @param [TModelItem] The type of the model [item][QueryItemToolTipEventArgs].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryItemToolTipEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [QueryItemToolTipEventArgs] class.
  * @param [context] The context to yield the tool tip for.
  * @param [queryLocation] The query location.
- * @param [item] The item for which the tool tip is queried..
+ * @param [item] The item for which the tool tip is queried.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryItemToolTipEventArgs%23QueryItemToolTipEventArgs-constructor-QueryItemToolTipEventArgs">Online Documentation</a>
  * 
  * @property item
  * Gets the item for which the tool tip is queried.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryItemToolTipEventArgs%23item">Online Documentation</a>
  */
-external open class QueryItemToolTipEventArgs<TModelItem : IModelItem>  (
- context: IInputModeContext ,
- queryLocation: Point ,
-final val item: TModelItem?) : ToolTipQueryEventArgs {
-
-companion object : ClassMetadata<QueryItemToolTipEventArgs<*>> {
-}
+external class QueryItemToolTipEventArgs<TModelItem> (
+context: IInputModeContext,
+queryLocation: Point,
+final val item: TModelItem?) : QueryToolTipEventArgs {
+  
+  companion object : ClassMetadata<QueryItemToolTipEventArgs<*>> {
+  }
 }

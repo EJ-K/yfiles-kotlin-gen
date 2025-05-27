@@ -19,16 +19,16 @@ import yfiles.lang.EventArgs
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/InputModeEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [InputModeEventArgs] class.
- * @param [context] The context to initialize the [context] property with.
+ * @param [context] The context to initialize the [context][InputModeEventArgs] property with.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/InputModeEventArgs%23InputModeEventArgs-constructor-InputModeEventArgs">Online Documentation</a>
  * 
  * @property context
  * Gets the context for the current event.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/InputModeEventArgs%23context">Online Documentation</a>
  */
-external open class InputModeEventArgs  (
+open external class InputModeEventArgs (
 final val context: IInputModeContext) : EventArgs {
-
-companion object : ClassMetadata<InputModeEventArgs> {
-}
+  
+  companion object : ClassMetadata<InputModeEventArgs> {
+  }
 }

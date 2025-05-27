@@ -11,31 +11,26 @@
 
 package yfiles.view
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * Determines the policy whether and how [Visual]s are cached when they are removed temporarily from the [CanvasComponent]'s visual tree.
- * @see [CanvasComponent.visualCaching]
+ * Determines the policy whether and how [Visual]s are cached when they are removed temporarily from the [CanvasComponent]'s render tree.
  * @see [IRenderContext.setDisposeCallback]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/VisualCachingPolicy">Online Documentation</a>
  */
-external sealed class VisualCachingPolicy: YEnum<VisualCachingPolicy> {
-   companion object: EnumMetadata<VisualCachingPolicy> {
-       /**
- * Disables caching of [Visual]s completely.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/VisualCachingPolicy%23NEVER">Online Documentation</a>
- */
-val NEVER: VisualCachingPolicy
 
-/**
- * [Visual]s will always be cached.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/VisualCachingPolicy%23ALWAYS">Online Documentation</a>
- */
-val ALWAYS: VisualCachingPolicy
-   }
+sealed external class VisualCachingPolicy {
+  /**
+   * Disables caching of [Visual]s completely.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/VisualCachingPolicy%23NEVER">Online Documentation</a>
+   */
+  object NEVER: VisualCachingPolicy
+  
+  /**
+   * [Visual]s will always be cached.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/VisualCachingPolicy%23ALWAYS">Online Documentation</a>
+   */
+  object ALWAYS: VisualCachingPolicy
 }

@@ -11,31 +11,36 @@
 
 package yfiles.tree
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * @see [BalloonLayout.childOrderingPolicy]
+ * Specifies the ordering policies for child nodes under the same parent in a [TreeLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChildOrderingPolicy">Online Documentation</a>
  */
-external sealed class ChildOrderingPolicy: YEnum<ChildOrderingPolicy> {
-   companion object: EnumMetadata<ChildOrderingPolicy> {
-       /**
- * Child ordering policy which orders child nodes depending on their subtree size such that large subtrees are placed next to small ones in order to save space.
- * 
- * Value - `0`
- * @see [BalloonLayout.childOrderingPolicy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChildOrderingPolicy%23COMPACT">Online Documentation</a>
- */
-val COMPACT: ChildOrderingPolicy
 
-/**
- * Child ordering policy which sorts the child nodes according to their wedge angles.
- * 
- * Value - `1`
- * @see [BalloonLayout.childOrderingPolicy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChildOrderingPolicy%23SYMMETRIC">Online Documentation</a>
- */
-val SYMMETRIC: ChildOrderingPolicy
-   }
+sealed external class ChildOrderingPolicy {
+  /**
+   * Child ordering policy which orders child nodes depending on their subtree size such that large subtrees are placed next to small ones in order to save space.
+   * 
+   * Value - `0`
+   * @see [RadialTreeLayout.childOrderingPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChildOrderingPolicy%23COMPACT">Online Documentation</a>
+   */
+  object COMPACT: ChildOrderingPolicy
+  
+  /**
+   * Child ordering policy which sorts the child nodes according to their wedge angles.
+   * 
+   * Value - `1`
+   * @see [RadialTreeLayout.childOrderingPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChildOrderingPolicy%23SYMMETRIC">Online Documentation</a>
+   */
+  object SYMMETRIC: ChildOrderingPolicy
+  
+  /**
+   * Child ordering policy which preserves the initial order of child nodes around their parent.
+   * 
+   * Value - `2`
+   * @see [RadialTreeLayout.childOrderingPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChildOrderingPolicy%23FROM_SKETCH">Online Documentation</a>
+   */
+  object FROM_SKETCH: ChildOrderingPolicy
 }

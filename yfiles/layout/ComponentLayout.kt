@@ -12,170 +12,219 @@
 package yfiles.layout
 
 import js.array.ReadonlyArray
-import yfiles.algorithms.EdgeList
-import yfiles.algorithms.INodeMap
-import yfiles.algorithms.NodeDpKey
-import yfiles.algorithms.NodeList
-import yfiles.algorithms.Rectangle2D
-import yfiles.algorithms.YDimension
-import yfiles.algorithms.YPoint
-import yfiles.algorithms.YRectangle
+import yfiles.collections.IEnumerable
+import yfiles.collections.IMapper
+import yfiles.geometry.Point
+import yfiles.geometry.Rect
+import yfiles.geometry.Size
+import yfiles.graph.IEdge
+import yfiles.graph.IGraph
+import yfiles.graph.ILabel
+import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
 import yfiles.lang.IComparable
 
 /**
- * A [ComponentLayout] arranges the connected components of a graph.
- * @see [MultiStageLayout]
+ * Represents a layout algorithm that arranges the connected components of a graph, allowing for the use of different layout styles and customization for component and edge arrangement.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout">Online Documentation</a>
  * 
- * @constructor Creates a new [ComponentLayout] instance with an optional [core layout algorithm][LayoutStageBase.coreLayout].
- * @param [coreLayout] The core layout algorithm.
+ * @constructor Initializes a new instance of the [ComponentLayout] class with an optional [coreLayout][LayoutStageBase].
+ * @param [coreLayout] The core layout algorithm to be used for arranging the layout. If `null`, the default behavior is to keep the component subgraphs' locations unchanged unless specified otherwise by the [componentLayouts][ComponentLayoutData].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-constructor-ComponentLayout">Online Documentation</a>
  */
-external open class ComponentLayout  ( coreLayout: ILayoutAlgorithm?  = definedExternally) : LayoutStageBase {
-
-/**
- * Gets or sets whether or not the separately arranged components of the input graph should be arranged relative to each other.
- * 
- * Default value - `true`. The components are arranged relative to each other.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23componentArrangement">Online Documentation</a>
- */
-open var componentArrangement: Boolean
-/**
- * Gets or sets the distance between the bounding boxes of the components.
- * 
- * Default value - `45`
- * @throws ArgumentError if the spacing is negative
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23componentSpacing">Online Documentation</a>
- */
-open var componentSpacing: Double
-/**
- * Gets or sets whether or not grouping information bound to the graph should be considered when determining the graph components.
- * 
- * Default value - `true`. Grouping information is considered for determining the components.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23considerGrouping">Online Documentation</a>
- */
-open var considerGrouping: Boolean
-/**
- * Gets or sets whether or not to take node and edge labels into account when calculating the bounding box of the graph components.
- * 
- * Default value - `true`. Node and edge labels are included in the bounds of the components.
- * @see [calculateBounds]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23considerLabels">Online Documentation</a>
- */
-open var considerLabels: Boolean
-/**
- * Gets or sets the current grid spacing.
- * 
- * Default value - `0`. No grid is considered.
- * @throws ArgumentError if the given spacing is negative
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23gridSpacing">Online Documentation</a>
- */
-open var gridSpacing: Double
-/**
- * Gets or sets the preferred size of the layout.
- * 
- * Default value - [YDimension]. Both preferred width and height are `400`.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23preferredSize">Online Documentation</a>
- */
-open var preferredSize: YDimension
-/**
- * Gets or sets how the components are arranged.
- * 
- * Default value - [ComponentArrangementStyles.ROWS]
- * @throws ArgumentError if the specified style is unknown
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23style">Online Documentation</a>
- */
-open var style: ComponentArrangementStyles
-/**
- * Delegates the layout calculation for each component separately to the [core layout algorithm][LayoutStageBase.coreLayout] and optionally arranges the components.
- * @param [graph] the input graph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-applyLayout">Online Documentation</a>
- */
- override   fun applyLayout( graph: LayoutGraph )
-/**
- * Produces a component graph layout.
- * @param [graph] the input graph
- * @param [nodes] the nodes of the components; the i-th list contains the nodes of the i-th component
- * @param [edges] the edges of the components; the i-th list contains the edges of the i-th component
- * @param [bbox] the bounds of the components; the i-th rectangle describes the bounding box of the i-th component
- * @param [boxes] the extended bounds of the components; the i-th rectangle describes the bounding box of the i-th component extended by the spacing between components. The method arranges these boxes in such a way that they do not overlap. Then, the i-th graph component must be placed inside the i-th box
- * @see [arrangeFields]
- * @see [LayoutGraphUtilities.arrangeRectangleRows]
- * @see [LayoutGraphUtilities.arrangeRectangleMultiRows]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-arrangeComponents">Online Documentation</a>
- */
- open protected   fun arrangeComponents( graph: LayoutGraph ,
- nodes: ReadonlyArray<NodeList> ,
- edges: ReadonlyArray<EdgeList> ,
- bbox: ReadonlyArray<YRectangle> ,
- boxes: ReadonlyArray<Rectangle2D> )
-/**
- * Arranges the bounding boxes of the components.
- * @param [graph] the input graph
- * @param [nodes] the nodes of the components; the i-th list contains the nodes of the i-th component
- * @param [edges] the edges of the components; the i-th list contains the edges of the i-th component
- * @param [bbox] the bounds of the components; the i-th rectangle describes the bounding box of the i-th component
- * @param [boxes] the extended bounds of the components; the i-th rectangle describes the bounding box of the i-th component
- * @param [circular] `true` if the arrangement should be circular, `false` if it should be rectangular
- * @param [fill] `true` if it is allowed to place components in empty spaces *inside other
- *    components*, `false` otherwise
- * @param [fromSketch] `true` if the initial coordinates should be considered, `false` otherwise
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-arrangeFields">Online Documentation</a>
- */
- open protected   fun arrangeFields( graph: LayoutGraph ,
- nodes: ReadonlyArray<NodeList> ,
- edges: ReadonlyArray<EdgeList> ,
- bbox: ReadonlyArray<YRectangle> ,
- boxes: ReadonlyArray<Rectangle2D> ,
- circular: Boolean ,
- fill: Boolean ,
- fromSketch: Boolean )
-/**
- * Calculates the bounding box of a graph component including [NodeHalo]s.
- * @param [graph] the subgraph containing the nodes and edges of a component
- * @return the bounding box of the component
- * @see [considerLabels]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-calculateBounds">Online Documentation</a>
- */
- open protected   fun calculateBounds( graph: LayoutGraph ):Rectangle2D
-/**
- * Determines which nodes belong to the same graph component.
- * @param [graph] the input graph
- * @param [compNumber] a map that will be filled with the zero-based index of the component to which the node belongs
- * @return the number of connected components of this graph
- * @see [GraphConnectivity.connectedComponents][yfiles.algorithms.GraphConnectivity.connectedComponents]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-findGraphComponents">Online Documentation</a>
- */
- open protected   fun findGraphComponents( graph: LayoutGraph ,
- compNumber: INodeMap<Int> ):Int
-/**
- * Moves the subgraph containing the given nodes and edges to the specified origin.
- * @param [graph] the input graph
- * @param [nodes] the nodes in the moving subgraph
- * @param [edges] the edges in the moving subgraph
- * @param [origin] the new origin of the graph
- * @param [rectangle] the current bounds of the subgraph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-setOrigin">Online Documentation</a>
- */
- open protected   fun setOrigin( graph: LayoutGraph ,
- nodes: NodeList ,
- edges: EdgeList ,
- origin: YPoint ,
- rectangle: YRectangle )
-
-companion object : ClassMetadata<ComponentLayout> {
-/**
- * A data provider key for specifying which nodes should be arranged.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23AFFECTED_COMPONENTS_DP_KEY">Online Documentation</a>
- */
- val AFFECTED_COMPONENTS_DP_KEY: NodeDpKey<Boolean>
-/**
- * A data provider key for specifying custom graph components.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23COMPONENT_ID_DP_KEY">Online Documentation</a>
- */
- val COMPONENT_ID_DP_KEY: NodeDpKey<IComparable<*>>
-}
+open external class ComponentLayout (
+  coreLayout: ILayoutAlgorithm?  = definedExternally,
+) : LayoutStageBase {
+  /**
+   * Gets or sets the distance between the bounds of the components.
+   * 
+   * Default value - `45`
+   * @throws ArgumentError if the spacing is negative
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23componentSpacing">Online Documentation</a>
+   */
+  final var componentSpacing: Double
+  
+  /**
+   * Gets or sets whether or not grouping information bound to the graph should be considered when determining the graph components.
+   * 
+   * Default value - `true`. Grouping information is considered for determining the components.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23considerGrouping">Online Documentation</a>
+   */
+  final var considerGrouping: Boolean
+  
+  /**
+   * Gets or sets whether to take node and edge labels into account when calculating the bounds of the graph components.
+   * 
+   * Default value - [BasicEdgeLabelPlacement.CONSIDER]. Edge labels are considered
+   * @see [EdgeLabelPreferredPlacement]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23edgeLabelPlacement">Online Documentation</a>
+   */
+  final var edgeLabelPlacement: BasicEdgeLabelPlacement
+  
+  /**
+   * Gets or sets a value indicating whether the components should be arranged based on the current sketch.
+   * 
+   * Default value - `false`. From sketch mode is disabled.
+   * @see [style]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23fromSketchMode">Online Documentation</a>
+   */
+  final var fromSketchMode: Boolean
+  
+  /**
+   * Gets or sets the current grid spacing.
+   * 
+   * Default value - `0`. No grid is considered.
+   * @throws ArgumentError if the given spacing is negative
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23gridSpacing">Online Documentation</a>
+   */
+  final var gridSpacing: Double
+  
+  /**
+   * Gets or sets the current edge routing algorithm for handling inter-edges between different components, which may exist when customizing the component assignment using custom [componentIds][ComponentLayoutData]
+   * 
+   * Default value - `null`. Edges are routed as straight lines from source to target.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23interEdgeRouter">Online Documentation</a>
+   */
+  final var interEdgeRouter: ILayoutAlgorithm?
+  
+  /**
+   * Gets or sets whether to take node labels into account when calculating the bounds of the graph components.
+   * 
+   * Default value - [BasicNodeLabelPlacement.CONSIDER]. Node labels are considered
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23nodeLabelPlacement">Online Documentation</a>
+   */
+  final var nodeLabelPlacement: BasicNodeLabelPlacement
+  
+  /**
+   * Gets or sets the preferred size of the layout.
+   * 
+   * Default value - [Size]. Both preferred width and height are `400`.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23preferredSize">Online Documentation</a>
+   */
+  final var preferredSize: Size
+  
+  /**
+   * Gets or sets how the components are arranged.
+   * 
+   * Default value - [ComponentArrangementStyle.ROWS]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23style">Online Documentation</a>
+   */
+  final var style: ComponentArrangementStyle
+  
+  /**
+   * Delegates the layout calculation for each component separately to the [coreLayout][LayoutStageBase] and optionally arranges the components.
+   * @param [graph] The input graph
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-applyLayoutImpl">Online Documentation</a>
+   */
+  override fun applyLayoutImpl(
+    graph: LayoutGraph,
+  )
+  
+  /**
+   * Produces a component graph layout.
+   * @param [graph] the input graph
+   * @param [components] the components (subgraphs) of the input graph
+   * @see [findGraphComponents]
+   * @see [setComponentLocation]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-arrangeComponents">Online Documentation</a>
+   */
+  protected open fun arrangeComponents(
+    graph: LayoutGraph,
+    components: ReadonlyArray<SubgraphComponent>,
+  )
+  
+  /**
+   * Calculates the bounds of a graph component including node margins.
+   * @param [graph] the subgraph containing the nodes and edges of a component
+   * @return the bounds of the component
+   * @see [BasicNodeLabelPlacement]
+   * @see [BasicEdgeLabelPlacement]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-calculateComponentBounds">Online Documentation</a>
+   */
+  protected open fun calculateComponentBounds(
+    graph: LayoutGraph,
+  ): Rect
+  
+  /**
+   * Returns an instance of [LayoutData] that can be used to perform item-specific configurations for the [ComponentLayout].
+   * @param [graph] the graph that determines the generic type arguments of the created layout data
+   * @return an instance of [layout data][LayoutData] that can be used to perform item-specific configurations for the given [ComponentLayout].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-defaultmethod-createLayoutData(LayoutGraph)">Online Documentation</a>
+   */
+  fun createLayoutData(
+    graph: LayoutGraph,
+  ): ComponentLayoutData<LayoutNode, LayoutEdge, LayoutNodeLabel, LayoutEdgeLabel>
+  
+  /**
+   * Returns an instance of [LayoutData] that can be used to perform item-specific configurations for the [ComponentLayout].
+   * @param [graph] the graph that determines the generic type arguments of the created layout data
+   * @return an instance of [layout data][LayoutData] that can be used to perform item-specific configurations for the given [ComponentLayout].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-defaultmethod-createLayoutData(IGraph)">Online Documentation</a>
+   */
+  fun createLayoutData(
+    graph: IGraph?  = definedExternally,
+  ): ComponentLayoutData<INode, IEdge, ILabel, ILabel>
+  
+  /**
+   * Determines which nodes belong to the same graph component.
+   * @param [graph] the input graph
+   * @param [compNumber] an [IMapper] that will be filled with the zero-based index of the component to which the node belongs
+   * @return the number of connected components of this graph
+   * @see [LayoutGraphAlgorithms.connectedComponents][yfiles.analysis.LayoutGraphAlgorithms.connectedComponents]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-findGraphComponents">Online Documentation</a>
+   */
+  protected open fun findGraphComponents(
+    graph: LayoutGraph,
+    compNumber: IMapper<LayoutNode, Number>,
+  ): Int
+  
+  /**
+   * Reroutes the given inter-edges using the current [edge routing algorithm][ComponentLayout].
+   * @param [graph] the input graph
+   * @param [interEdges] the edges that connect nodes of different components
+   * @see [interEdgeRouter]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-routeInterEdges">Online Documentation</a>
+   */
+  protected open fun routeInterEdges(
+    graph: LayoutGraph,
+    interEdges: IEnumerable<LayoutEdge>,
+  )
+  
+  /**
+   * Moves the top-left corner of the subgraph containing the specified nodes and edges to the given location.
+   * @param [graph] The graph containing the component to be moved.
+   * @param [component] The component (subgraph) consisting of the nodes and edges that should be repositioned.
+   * @param [location] The new top-left location to which the subgraph should be moved.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23ComponentLayout-method-setComponentLocation">Online Documentation</a>
+   */
+  protected open fun setComponentLocation(
+    graph: LayoutGraph,
+    component: SubgraphComponent,
+    location: Point,
+  )
+  
+  companion object : ClassMetadata<ComponentLayout> {
+    /**
+     * A [data key][NodeDataKey] for specifying which components should be arranged.
+     * @see [ComponentLayoutData.affectedComponents]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23AFFECTED_COMPONENTS_DATA_KEY">Online Documentation</a>
+     */
+     val AFFECTED_COMPONENTS_DATA_KEY: NodeDataKey<Boolean>
+    
+    /**
+     * A [data key][NodeDataKey] for specifying custom graph components.
+     * @see [ComponentLayoutData.componentIds]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23COMPONENT_ID_DATA_KEY">Online Documentation</a>
+     */
+     val COMPONENT_ID_DATA_KEY: NodeDataKey<IComparable<*>>
+    
+    /**
+     * A [data key][NodeDataKey] for arranging the nodes of each component with an individual layout algorithm.
+     * @see [ComponentLayoutData.componentLayouts]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentLayout%23COMPONENT_LAYOUT_DATA_KEY">Online Documentation</a>
+     */
+     val COMPONENT_LAYOUT_DATA_KEY: NodeDataKey<ILayoutAlgorithm>
+  }
 }
 
 inline fun ComponentLayout(

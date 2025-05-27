@@ -23,9 +23,10 @@ import yfiles.lang.ClassMetadata
  * @param [wrappedHandler] The handler to wrap.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ConstrainedPositionHandler%23ConstrainedPositionHandler-constructor-ConstrainedPositionHandler">Online Documentation</a>
  */
-external abstract class ConstrainedPositionHandler 
-protected constructor ( wrappedHandler: IPositionHandler ) : ConstrainedDragHandler<IPositionHandler>, IPositionHandler {
-
-companion object : ClassMetadata<ConstrainedPositionHandler> {
-}
+abstract external class ConstrainedPositionHandler protected constructor(
+  wrappedHandler: IPositionHandler,
+) : ConstrainedDragHandler<IPositionHandler>, IPositionHandler {
+  
+  companion object : ClassMetadata<ConstrainedPositionHandler> {
+  }
 }

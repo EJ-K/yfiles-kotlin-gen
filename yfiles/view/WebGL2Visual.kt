@@ -15,24 +15,26 @@ import web.gl.WebGL2RenderingContext
 import yfiles.lang.ClassMetadata
 
 /**
- * Base class for [Visual]s that use WebGL2 for the visualization.
+ * Base class for [Visual]s that use WebGL2 for rendering the visualization onto a [WebGL2RenderingContext].
+ * @see [WebGLVisual]
  * @see [render]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/WebGL2Visual">Online Documentation</a>
  * 
  * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/WebGL2Visual%23WebGL2Visual-constructor-WebGL2Visual">Online Documentation</a>
  */
-external abstract class WebGL2Visual  () : Visual {
-
-/**
- * Renders into the context using WebGL2 operations.
- * @param [ctx] The render context of the [CanvasComponent]
- * @param [gl] The WebGL2 Rendering context to use for rendering.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/WebGL2Visual%23WebGL2Visual-method-render">Online Documentation</a>
- */
- abstract   fun render( ctx: IRenderContext ,
- gl: WebGL2RenderingContext )
-
-companion object : ClassMetadata<WebGL2Visual> {
-}
+abstract external class WebGL2Visual () : Visual {
+  /**
+   * Renders into the context using WebGL2 operations.
+   * @param [ctx] The render context of the [CanvasComponent]
+   * @param [gl] The WebGL2 Rendering context to use for rendering.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/WebGL2Visual%23WebGL2Visual-method-render">Online Documentation</a>
+   */
+  abstract fun render(
+    ctx: IRenderContext,
+    gl: WebGL2RenderingContext,
+  )
+  
+  companion object : ClassMetadata<WebGL2Visual> {
+  }
 }

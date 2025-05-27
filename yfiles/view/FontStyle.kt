@@ -11,45 +11,41 @@
 
 package yfiles.view
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * Enumeration values for font styles for use in [Font]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle">Online Documentation</a>
  */
-external sealed class FontStyle: YEnum<FontStyle> {
-   companion object: EnumMetadata<FontStyle> {
-       /**
- * The Normal font style.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle%23NORMAL">Online Documentation</a>
- */
-val NORMAL: FontStyle
 
-/**
- * The Italic font style.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle%23ITALIC">Online Documentation</a>
- */
-val ITALIC: FontStyle
-
-/**
- * The Oblique font style.
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle%23OBLIQUE">Online Documentation</a>
- */
-val OBLIQUE: FontStyle
-
-/**
- * The Inherit font style.
- * 
- * Value - `3`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle%23INHERIT">Online Documentation</a>
- */
-val INHERIT: FontStyle
-   }
+sealed external class FontStyle {
+  /**
+   * The Normal font style.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle%23NORMAL">Online Documentation</a>
+   */
+  object NORMAL: FontStyle
+  
+  /**
+   * The Italic font style.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle%23ITALIC">Online Documentation</a>
+   */
+  object ITALIC: FontStyle
+  
+  /**
+   * The Oblique font style.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle%23OBLIQUE">Online Documentation</a>
+   */
+  object OBLIQUE: FontStyle
+  
+  /**
+   * The Inherit font style.
+   * 
+   * Value - `3`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FontStyle%23INHERIT">Online Documentation</a>
+   */
+  object INHERIT: FontStyle
 }

@@ -17,7 +17,7 @@ import yfiles.lang.ClassMetadata
 /**
  * Event argument that is used to query the [IPositionHandler] that is used to move the items while dragging via [MoveInputMode].
  * @see [MoveInputMode]
- * @see [MoveInputMode.addQueryPositionHandlerListener]
+ * @see [MoveInputMode.query-position-handler]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryPositionHandlerEventArgs">Online Documentation</a>
  * 
  * @constructor Instantiates a new [QueryPositionHandlerEventArgs]
@@ -29,21 +29,21 @@ import yfiles.lang.ClassMetadata
  * Gets the location of the movement (where the drag has started).
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryPositionHandlerEventArgs%23queryLocation">Online Documentation</a>
  */
-external open class QueryPositionHandlerEventArgs  (
- context: IInputModeContext ,
+external class QueryPositionHandlerEventArgs (
+context: IInputModeContext,
 final val queryLocation: Point) : InputModeEventArgs {
-
-/**
- * Gets or sets a value indicating whether this [QueryPositionHandlerEventArgs] has been handled.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryPositionHandlerEventArgs%23handled">Online Documentation</a>
- */
-final var handled: Boolean
-/**
- * Gets or sets the [IPositionHandler] to use for the movement of the items that are affected by the [MoveInputMode].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryPositionHandlerEventArgs%23positionHandler">Online Documentation</a>
- */
-final var positionHandler: IPositionHandler?
-
-companion object : ClassMetadata<QueryPositionHandlerEventArgs> {
-}
+  /**
+   * Gets or sets a value indicating whether this [QueryPositionHandlerEventArgs] has been handled.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryPositionHandlerEventArgs%23handled">Online Documentation</a>
+   */
+  final var handled: Boolean
+  
+  /**
+   * Gets or sets the [IPositionHandler] to use for the movement of the items that are affected by the [MoveInputMode].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryPositionHandlerEventArgs%23positionHandler">Online Documentation</a>
+   */
+  final var positionHandler: IPositionHandler?
+  
+  companion object : ClassMetadata<QueryPositionHandlerEventArgs> {
+  }
 }

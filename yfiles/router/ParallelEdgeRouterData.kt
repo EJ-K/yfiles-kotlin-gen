@@ -11,55 +11,40 @@
 
 package yfiles.router
 
-import yfiles.algorithms.AbortHandler
 import yfiles.collections.ICollection
-import yfiles.graph.IEdge
+import yfiles.collections.ItemCollection
 import yfiles.lang.ClassMetadata
-import yfiles.layout.ItemCollection
 import yfiles.layout.LayoutData
 
 /**
  * Specifies custom data for the [ParallelEdgeRouter].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData">Online Documentation</a>
  * 
- * @constructor Creates a new instance of [ParallelEdgeRouterData] which helps configuring [ParallelEdgeRouter].
+ * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData%23ParallelEdgeRouterData-constructor-ParallelEdgeRouterData">Online Documentation</a>
  */
-external open class ParallelEdgeRouterData  () : LayoutData {
-
-/**
- * Gets or sets the [AbortHandler] used during the layout.
- * @see [LayoutExecutor.abortHandler][yfiles.layout.LayoutExecutor.abortHandler]
- * @see [AbortHandler.ABORT_HANDLER_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData%23abortHandler">Online Documentation</a>
- */
-final var abortHandler: AbortHandler?
-/**
- * Gets or sets the collection of edges affected by this router.
- * @see [ParallelEdgeRouter.AFFECTED_EDGES_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData%23affectedEdges">Online Documentation</a>
- */
-final var affectedEdges: ItemCollection<IEdge>
-/**
- * Gets or sets the collection of leading edges.
- * @see [ParallelEdgeRouter.LEADING_EDGE_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData%23leadingEdges">Online Documentation</a>
- */
-final var leadingEdges: ItemCollection<IEdge>
-/**
- * Gets or sets the edge collection that after the layout run will contain all parallel edges that were routed and not treated as leading edges.
- * @see [ParallelEdgeRouter.ROUTED_PARALLEL_EDGES_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData%23routedParallelEdges">Online Documentation</a>
- */
-final var routedParallelEdges: ICollection<out IEdge>?
-
-companion object : ClassMetadata<ParallelEdgeRouterData> {
-}
-}
-
-inline fun ParallelEdgeRouterData(
-    block: ParallelEdgeRouterData.() -> Unit
-): ParallelEdgeRouterData {
-    return ParallelEdgeRouterData()
-        .apply(block)
+external class ParallelEdgeRouterData<TNode, TEdge, TNodeLabel, TEdgeLabel> () : LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> {
+  /**
+   * Gets or sets the collection of edges affected by this router.
+   * @see [ParallelEdgeRouter.AFFECTED_EDGES_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData%23affectedEdges">Online Documentation</a>
+   */
+  final var affectedEdges: ItemCollection<TEdge>
+  
+  /**
+   * Gets or sets the collection of leading edges.
+   * @see [ParallelEdgeRouter.LEADING_EDGE_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData%23leadingEdges">Online Documentation</a>
+   */
+  final var leadingEdges: ItemCollection<TEdge>
+  
+  /**
+   * Gets the edge collection that, after the layout run, will contain all multi-edges that were routed and not treated as leading edges.
+   * @see [ParallelEdgeRouter.ROUTED_MULTI_EDGES_RESULT_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParallelEdgeRouterData%23routedMultiEdgesResult">Online Documentation</a>
+   */
+  final val routedMultiEdgesResult: ICollection<out TEdge>
+  
+  companion object : ClassMetadata<ParallelEdgeRouterData<*, *, *, *>> {
+  }
 }

@@ -19,9 +19,9 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BendEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [BendEventArgs] class.
- * @param [bend] The bend to assign to the [ItemEventArgs.item] property.
+ * @param [bend] The bend to assign to the [item][ItemEventArgs] property.
  * @param [owner] The previous owner of the bend.
- * @param [index] The previous index of the bend in the [IEdge.bends] list.
+ * @param [index] The previous index of the bend in the [bends][IEdge] list.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BendEventArgs%23BendEventArgs-constructor-BendEventArgs">Online Documentation</a>
  * 
  * @property owner
@@ -29,14 +29,14 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BendEventArgs%23owner">Online Documentation</a>
  * 
  * @property index
- * Gets the former index of the bend in the [IEdge.bends] list.
+ * Gets the former index of the bend in the [bends][IEdge] list.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BendEventArgs%23index">Online Documentation</a>
  */
-external  class BendEventArgs  (
- bend: IBend ,
+external class BendEventArgs (
+bend: IBend,
 final val owner: IEdge,
 final val index: Int) : ItemEventArgs<IBend> {
-
-companion object : ClassMetadata<BendEventArgs> {
-}
+  
+  companion object : ClassMetadata<BendEventArgs> {
+  }
 }

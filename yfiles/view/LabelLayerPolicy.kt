@@ -11,29 +11,25 @@
 
 package yfiles.view
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * Policy to determines at which visual layer node, edge or port labels shall be inserted by the [GraphModelManager].
+ * Policy to determine at which visual layer node, edge, or port labels shall be inserted by the [GraphModelManager].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelLayerPolicy">Online Documentation</a>
  */
-external sealed class LabelLayerPolicy: YEnum<LabelLayerPolicy> {
-   companion object: EnumMetadata<LabelLayerPolicy> {
-       /**
- * The labels will be visualized directly on top of their owner.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelLayerPolicy%23AT_OWNER">Online Documentation</a>
- */
-val AT_OWNER: LabelLayerPolicy
 
-/**
- * All labels will be visualized in one of three separate label layers.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelLayerPolicy%23SEPARATE_LAYER">Online Documentation</a>
- */
-val SEPARATE_LAYER: LabelLayerPolicy
-   }
+sealed external class LabelLayerPolicy {
+  /**
+   * The labels will be visualized directly on top of their owner.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelLayerPolicy%23AT_OWNER">Online Documentation</a>
+   */
+  object AT_OWNER: LabelLayerPolicy
+  
+  /**
+   * All labels will be visualized in one of three separate label layers.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelLayerPolicy%23SEPARATE_LAYER">Online Documentation</a>
+   */
+  object SEPARATE_LAYER: LabelLayerPolicy
 }

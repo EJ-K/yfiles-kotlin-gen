@@ -12,7 +12,6 @@
 package yfiles.collections
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * The key/value pair of a [IMap].
@@ -33,10 +32,10 @@ import yfiles.lang.YObject
  * The value for this key/value pair.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MapEntry%23value">Online Documentation</a>
  */
-external  class MapEntry<TKey : Any, TValue>  (
+external class MapEntry<TKey, TValue> (
 final val key: TKey,
-final val value: TValue) : YObject {
-
-companion object : ClassMetadata<MapEntry<*, *>> {
-}
+final val value: TValue)  {
+  
+  companion object : ClassMetadata<MapEntry<*, *>> {
+  }
 }

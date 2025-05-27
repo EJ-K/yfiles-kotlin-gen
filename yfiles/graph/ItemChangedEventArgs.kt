@@ -29,10 +29,10 @@ import yfiles.lang.ClassMetadata
  * Gets the value of the property before the change.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemChangedEventArgs%23oldValue">Online Documentation</a>
  */
-external open class ItemChangedEventArgs<TItem : ITagOwner, TValue : Any>  (
- item: TItem ,
+external class ItemChangedEventArgs<TItem, TValue : Any> (
+item: TItem,
 final val oldValue: TValue?) : ItemEventArgs<TItem> {
-
-companion object : ClassMetadata<ItemChangedEventArgs<*, *>> {
-}
+  
+  companion object : ClassMetadata<ItemChangedEventArgs<*, *>> {
+  }
 }

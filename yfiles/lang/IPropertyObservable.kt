@@ -12,29 +12,24 @@
 package yfiles.lang
 
 /**
- * Defines an event which is dispatched when a property changes.
+ * Defines an event which is dispatched when a property changes its value.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPropertyObservable">Online Documentation</a>
  */
-external interface IPropertyObservable : YObject, IEventDispatcher {
-/**
- * Occurs when a property changes.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPropertyObservable%23PropertyChanged">Online Documentation</a>
- */
-fun addPropertyChangedListener(listener: PropertyChangedEventHandler)
-fun removePropertyChangedListener(listener: PropertyChangedEventHandler)
+external interface IPropertyObservable : IEventDispatcher {
 
-companion object : InterfaceMetadata<IPropertyObservable> {
-}
+  
+  companion object : InterfaceMetadata<IPropertyObservable> {
+  }
 }
 
 /**
- * Occurs when a property changes.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPropertyObservable%23PropertyChanged">Online Documentation</a>
+ * `property-changed`: Occurs when a property changes of this instance changed its value.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPropertyObservable%23property-changed">Online Documentation</a>
  */
 inline fun  IPropertyObservable.addPropertyChangedHandler(
-    crossinline handler: (propertyName:String) -> Unit
+  crossinline handler: (propertyName:String) -> Unit
 ): () -> Unit {
-    val listener: PropertyChangedEventHandler = { _, event -> handler(event.propertyName) }
-    addPropertyChangedListener(listener)
-    return { removePropertyChangedListener(listener) }
+  val listener: PropertyChangedEventHandler = { event, _ -> handler(event.propertyName) }
+  addEventListener("property-changed", listener)
+  return { removeEventListener("property-changed", listener) }
 }

@@ -22,60 +22,70 @@ import yfiles.lang.ClassMetadata
  * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23ReshapeHandleProviderBase-constructor-ReshapeHandleProviderBase">Online Documentation</a>
  */
-external abstract class ReshapeHandleProviderBase  () : IReshapeHandleProvider {
-
-/**
- * Gets or sets the bitwise combination of all handle positions this instance provides a handle for.
- * @see [getAvailableHandles]
- * @see [RectangleReshapeHandleProvider.getHandle]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23handlePositions">Online Documentation</a>
- */
-final var handlePositions: HandlePositions
-/**
- * Gets or sets the maximal bounds this reshapeable may fill.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23maximumBoundingArea">Online Documentation</a>
- */
-final var maximumBoundingArea: IRectangle
-/**
- * Gets or sets the maximum size allowed for the reshapeable.
- * 
- * The default value is [Size.INFINITE][yfiles.geometry.Size.INFINITE].
- * @see [RectangleHandle.maximumSize]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23maximumSize">Online Documentation</a>
- */
-open var maximumSize: ISize
-/**
- * Gets or sets the minimum rectangular area that needs to be contained in the reshapeable.
- * 
- * The default value is [Rect.EMPTY][yfiles.geometry.Rect.EMPTY].
- * @see [RectangleHandle.minimumEnclosedArea]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23minimumEnclosedArea">Online Documentation</a>
- */
-open var minimumEnclosedArea: IRectangle
-/**
- * Gets or sets the minimum size allowed for the reshapeable.
- * 
- * The default value is [Size.ZERO][yfiles.geometry.Size.ZERO].
- * @see [RectangleHandle.minimumSize]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23minimumSize">Online Documentation</a>
- */
-open var minimumSize: ISize
-/**
- * Returns the [handlePositions] property.
- * @return A bitwise combination of all handle positions this instance provides a handle for if queried in [RectangleReshapeHandleProvider.getHandle].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23ReshapeHandleProviderBase-method-getAvailableHandles">Online Documentation</a>
- */
- override   fun getAvailableHandles( context: IInputModeContext ):HandlePositions
-/**
- * Provides a [IHandle] that uses the rectangle and reshapeable instance bound to this instance to perform the actual reshaping.
- * @param [context] The context for which the handles are queried.
- * @param [position] The position to provide an instance for.
- * @return A handle implementation.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23ReshapeHandleProviderBase-method-getHandle">Online Documentation</a>
- */
- abstract override   fun getHandle( context: IInputModeContext ,
- position: HandlePositions ):IHandle
-
-companion object : ClassMetadata<ReshapeHandleProviderBase> {
-}
+abstract external class ReshapeHandleProviderBase () : IReshapeHandleProvider {
+  /**
+   * Gets or sets the bitwise combination of all handle positions this instance provides a handle for.
+   * @see [getAvailableHandles]
+   * @see [RectangleReshapeHandleProvider.getHandle]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23handlePositions">Online Documentation</a>
+   */
+  final var handlePositions: HandlePositions
+  
+  /**
+   * Gets or sets the maximal bounds this reshapeable may fill.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23maximumBoundingArea">Online Documentation</a>
+   */
+  final var maximumBoundingArea: IRectangle
+  
+  /**
+   * Gets or sets the maximum size allowed for the reshapeable.
+   * 
+   * The default value is [INFINITE][yfiles.geometry.Size].
+   * @see [RectangleHandle.maximumSize]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23maximumSize">Online Documentation</a>
+   */
+  open var maximumSize: ISize
+  
+  /**
+   * Gets or sets the minimum rectangular area that needs to be contained in the reshapeable.
+   * 
+   * The default value is [EMPTY][yfiles.geometry.Rect].
+   * @see [RectangleHandle.minimumEnclosedArea]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23minimumEnclosedArea">Online Documentation</a>
+   */
+  open var minimumEnclosedArea: IRectangle
+  
+  /**
+   * Gets or sets the minimum size allowed for the reshapeable.
+   * 
+   * The default value is [ZERO][yfiles.geometry.Size].
+   * @see [RectangleHandle.minimumSize]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23minimumSize">Online Documentation</a>
+   */
+  open var minimumSize: ISize
+  
+  /**
+   * Returns the [handlePositions][ReshapeHandleProviderBase] property.
+   * @param [context] The context for which the handles are queried.
+   * @return A bitwise combination of all handle positions this instance provides a handle for if queried in [getHandle][RectangleReshapeHandleProvider].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23ReshapeHandleProviderBase-method-getAvailableHandles">Online Documentation</a>
+   */
+  override fun getAvailableHandles(
+    context: IInputModeContext,
+  ): HandlePositions
+  
+  /**
+   * Provides a [IHandle] that uses the rectangle and reshapeable instance bound to this instance to perform the actual reshaping.
+   * @param [context] The context for which the handles are queried.
+   * @param [position] The position to provide an instance for.
+   * @return A handle implementation.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReshapeHandleProviderBase%23ReshapeHandleProviderBase-method-getHandle">Online Documentation</a>
+   */
+  abstract override fun getHandle(
+    context: IInputModeContext,
+    position: HandlePositions,
+  ): IHandle
+  
+  companion object : ClassMetadata<ReshapeHandleProviderBase> {
+  }
 }

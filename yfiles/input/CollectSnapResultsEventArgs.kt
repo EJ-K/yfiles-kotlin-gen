@@ -16,7 +16,7 @@ import yfiles.geometry.Point
 import yfiles.lang.ClassMetadata
 
 /**
- * Event arguments for the [SnapContext.CollectSnapResults] event.
+ * Event arguments for the [collect-snap-results][SnapContext] event.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CollectSnapResultsEventArgs">Online Documentation</a>
  * 
  * @constructor Creates a new instance of the event arguments using the provided values for initialization.
@@ -44,26 +44,28 @@ import yfiles.lang.ClassMetadata
  * Gets the zoom invariant grid snap distance.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CollectSnapResultsEventArgs%23gridSnapDistance">Online Documentation</a>
  */
-external open class CollectSnapResultsEventArgs  (
- context: IInputModeContext ,
+open external class CollectSnapResultsEventArgs (
+context: IInputModeContext,
 final val originalLocation: Point,
 final val newLocation: Point,
 final val snapDistance: Double,
 final val gridSnapDistance: Double,
- snapResults: ICollection<out SnapResult> ) : InputModeEventArgs {
-
-/**
- * Gets the vector by which the mouse has been moved since initialization of the snapping process.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CollectSnapResultsEventArgs%23delta">Online Documentation</a>
- */
-final val delta: Point
-/**
- * Adds a [SnapResult] to the collection of snap results.
- * @param [snapResult] The result to add.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CollectSnapResultsEventArgs%23CollectSnapResultsEventArgs-method-addSnapResult">Online Documentation</a>
- */
- open   fun addSnapResult( snapResult: SnapResult? )
-
-companion object : ClassMetadata<CollectSnapResultsEventArgs> {
-}
+snapResults: ICollection<out SnapResult>) : InputModeEventArgs {
+  /**
+   * Gets the vector by which the mouse has been moved since initialization of the snapping process.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CollectSnapResultsEventArgs%23delta">Online Documentation</a>
+   */
+  final val delta: Point
+  
+  /**
+   * Adds a [SnapResult] to the collection of snap results.
+   * @param [snapResult] The result to add.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CollectSnapResultsEventArgs%23CollectSnapResultsEventArgs-method-addSnapResult">Online Documentation</a>
+   */
+  open fun addSnapResult(
+    snapResult: SnapResult?,
+  )
+  
+  companion object : ClassMetadata<CollectSnapResultsEventArgs> {
+  }
 }

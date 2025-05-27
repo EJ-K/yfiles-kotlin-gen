@@ -14,304 +14,192 @@ package yfiles.graphml
 import yfiles.lang.EventHandler1
 import yfiles.lang.IEventDispatcher
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
- * The interface of the event trigger class that is used by the [IWriteContext.writeEvents] property.
+ * The interface of the event trigger class that is used by the [writeEvents][IWriteContext] property.
  * @see [WriteEventArgs]
- * @see [GraphMLWriter]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents">Online Documentation</a>
  */
-external interface IWriteEvents : YObject, IEventDispatcher {
-/**
- * Occurs just after the [IXmlWriter.writeStartDocument] has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23DocumentWriting">Online Documentation</a>
- */
-fun addDocumentWritingListener(listener: EventHandler1<WriteEventArgs>)
-fun removeDocumentWritingListener(listener: EventHandler1<WriteEventArgs>)
+external interface IWriteEvents : IEventDispatcher {
 
-/**
- * Occurs just before the [IXmlWriter.writeEndDocument] will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23DocumentWritten">Online Documentation</a>
- */
-fun addDocumentWrittenListener(listener: EventHandler1<WriteEventArgs>)
-fun removeDocumentWrittenListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'node' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23NodeWriting">Online Documentation</a>
- */
-fun addNodeWritingListener(listener: EventHandler1<WriteEventArgs>)
-fun removeNodeWritingListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'node' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23NodeWritten">Online Documentation</a>
- */
-fun addNodeWrittenListener(listener: EventHandler1<WriteEventArgs>)
-fun removeNodeWrittenListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'edge' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23EdgeWriting">Online Documentation</a>
- */
-fun addEdgeWritingListener(listener: EventHandler1<WriteEventArgs>)
-fun removeEdgeWritingListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'edge' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23EdgeWritten">Online Documentation</a>
- */
-fun addEdgeWrittenListener(listener: EventHandler1<WriteEventArgs>)
-fun removeEdgeWrittenListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'port' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23PortWriting">Online Documentation</a>
- */
-fun addPortWritingListener(listener: EventHandler1<WriteEventArgs>)
-fun removePortWritingListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'port' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23PortWritten">Online Documentation</a>
- */
-fun addPortWrittenListener(listener: EventHandler1<WriteEventArgs>)
-fun removePortWrittenListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'graph' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23GraphWriting">Online Documentation</a>
- */
-fun addGraphWritingListener(listener: EventHandler1<WriteEventArgs>)
-fun removeGraphWritingListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'graph' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23GraphWritten">Online Documentation</a>
- */
-fun addGraphWrittenListener(listener: EventHandler1<WriteEventArgs>)
-fun removeGraphWrittenListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'graphml' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23GraphMLWriting">Online Documentation</a>
- */
-fun addGraphMLWritingListener(listener: EventHandler1<WriteEventArgs>)
-fun removeGraphMLWritingListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'graphml' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23GraphMLWritten">Online Documentation</a>
- */
-fun addGraphMLWrittenListener(listener: EventHandler1<WriteEventArgs>)
-fun removeGraphMLWrittenListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'data' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23DataWriting">Online Documentation</a>
- */
-fun addDataWritingListener(listener: EventHandler1<WriteEventArgs>)
-fun removeDataWritingListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'data' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23DataWritten">Online Documentation</a>
- */
-fun addDataWrittenListener(listener: EventHandler1<WriteEventArgs>)
-fun removeDataWrittenListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'key' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23KeyWriting">Online Documentation</a>
- */
-fun addKeyWritingListener(listener: EventHandler1<WriteEventArgs>)
-fun removeKeyWritingListener(listener: EventHandler1<WriteEventArgs>)
-
-/**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'key' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23KeyWritten">Online Documentation</a>
- */
-fun addKeyWrittenListener(listener: EventHandler1<WriteEventArgs>)
-fun removeKeyWrittenListener(listener: EventHandler1<WriteEventArgs>)
-
-companion object : InterfaceMetadata<IWriteEvents> {
-}
+  
+  companion object : InterfaceMetadata<IWriteEvents> {
+  }
 }
 
 /**
- * Occurs just after the [IXmlWriter.writeStartDocument] has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23DocumentWriting">Online Documentation</a>
+ * `document-writing`: Occurs just after the [writeStartDocument][IXmlWriter] has been called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23document-writing">Online Documentation</a>
  */
 inline fun  IWriteEvents.addDocumentWritingHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addDocumentWritingListener(listener)
-    return { removeDocumentWritingListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("document-writing", listener)
+  return { removeEventListener("document-writing", listener) }
 }
 /**
- * Occurs just before the [IXmlWriter.writeEndDocument] will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23DocumentWritten">Online Documentation</a>
+ * `document-written`: Occurs just before the [writeEndDocument][IXmlWriter] will be called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23document-written">Online Documentation</a>
  */
 inline fun  IWriteEvents.addDocumentWrittenHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addDocumentWrittenListener(listener)
-    return { removeDocumentWrittenListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("document-written", listener)
+  return { removeEventListener("document-written", listener) }
 }
 /**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'node' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23NodeWriting">Online Documentation</a>
+ * `node-writing`: Occurs right after the [writeStartElement][IXmlWriter] method for writing a GraphMl 'node' element has been called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23node-writing">Online Documentation</a>
  */
 inline fun  IWriteEvents.addNodeWritingHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addNodeWritingListener(listener)
-    return { removeNodeWritingListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("node-writing", listener)
+  return { removeEventListener("node-writing", listener) }
 }
 /**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'node' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23NodeWritten">Online Documentation</a>
+ * `node-written`: Occurs just before the [writeEndElement][IXmlWriter] for the GraphML 'node' element will be called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23node-written">Online Documentation</a>
  */
 inline fun  IWriteEvents.addNodeWrittenHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addNodeWrittenListener(listener)
-    return { removeNodeWrittenListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("node-written", listener)
+  return { removeEventListener("node-written", listener) }
 }
 /**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'edge' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23EdgeWriting">Online Documentation</a>
+ * `edge-writing`: Occurs right after the [writeStartElement][IXmlWriter] method for writing a GraphMl 'edge' element has been called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23edge-writing">Online Documentation</a>
  */
 inline fun  IWriteEvents.addEdgeWritingHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addEdgeWritingListener(listener)
-    return { removeEdgeWritingListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("edge-writing", listener)
+  return { removeEventListener("edge-writing", listener) }
 }
 /**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'edge' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23EdgeWritten">Online Documentation</a>
+ * `edge-written`: Occurs just before the [writeEndElement][IXmlWriter] for the GraphML 'edge' element will be called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23edge-written">Online Documentation</a>
  */
 inline fun  IWriteEvents.addEdgeWrittenHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addEdgeWrittenListener(listener)
-    return { removeEdgeWrittenListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("edge-written", listener)
+  return { removeEventListener("edge-written", listener) }
 }
 /**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'port' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23PortWriting">Online Documentation</a>
+ * `port-writing`: Occurs right after the [writeStartElement][IXmlWriter] method for writing a GraphMl 'port' element has been called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23port-writing">Online Documentation</a>
  */
 inline fun  IWriteEvents.addPortWritingHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addPortWritingListener(listener)
-    return { removePortWritingListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("port-writing", listener)
+  return { removeEventListener("port-writing", listener) }
 }
 /**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'port' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23PortWritten">Online Documentation</a>
+ * `port-written`: Occurs just before the [writeEndElement][IXmlWriter] for the GraphML 'port' element will be called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23port-written">Online Documentation</a>
  */
 inline fun  IWriteEvents.addPortWrittenHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addPortWrittenListener(listener)
-    return { removePortWrittenListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("port-written", listener)
+  return { removeEventListener("port-written", listener) }
 }
 /**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'graph' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23GraphWriting">Online Documentation</a>
+ * `graph-writing`: Occurs right after the [writeStartElement][IXmlWriter] method for writing a GraphMl 'graph' element has been called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23graph-writing">Online Documentation</a>
  */
 inline fun  IWriteEvents.addGraphWritingHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addGraphWritingListener(listener)
-    return { removeGraphWritingListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("graph-writing", listener)
+  return { removeEventListener("graph-writing", listener) }
 }
 /**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'graph' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23GraphWritten">Online Documentation</a>
+ * `graph-written`: Occurs just before the [writeEndElement][IXmlWriter] for the GraphML 'graph' element will be called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23graph-written">Online Documentation</a>
  */
 inline fun  IWriteEvents.addGraphWrittenHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addGraphWrittenListener(listener)
-    return { removeGraphWrittenListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("graph-written", listener)
+  return { removeEventListener("graph-written", listener) }
 }
 /**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'graphml' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23GraphMLWriting">Online Documentation</a>
+ * `graph-m-l-writing`: Occurs right after the [writeStartElement][IXmlWriter] method for writing a GraphMl 'graphml' element has been called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23graph-m-l-writing">Online Documentation</a>
  */
 inline fun  IWriteEvents.addGraphMLWritingHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addGraphMLWritingListener(listener)
-    return { removeGraphMLWritingListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("graph-m-l-writing", listener)
+  return { removeEventListener("graph-m-l-writing", listener) }
 }
 /**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'graphml' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23GraphMLWritten">Online Documentation</a>
+ * `graph-m-l-written`: Occurs just before the [writeEndElement][IXmlWriter] for the GraphML 'graphml' element will be called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23graph-m-l-written">Online Documentation</a>
  */
 inline fun  IWriteEvents.addGraphMLWrittenHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addGraphMLWrittenListener(listener)
-    return { removeGraphMLWrittenListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("graph-m-l-written", listener)
+  return { removeEventListener("graph-m-l-written", listener) }
 }
 /**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'data' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23DataWriting">Online Documentation</a>
+ * `data-writing`: Occurs right after the [writeStartElement][IXmlWriter] method for writing a GraphMl 'data' element has been called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23data-writing">Online Documentation</a>
  */
 inline fun  IWriteEvents.addDataWritingHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addDataWritingListener(listener)
-    return { removeDataWritingListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("data-writing", listener)
+  return { removeEventListener("data-writing", listener) }
 }
 /**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'data' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23DataWritten">Online Documentation</a>
+ * `data-written`: Occurs just before the [writeEndElement][IXmlWriter] for the GraphML 'data' element will be called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23data-written">Online Documentation</a>
  */
 inline fun  IWriteEvents.addDataWrittenHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addDataWrittenListener(listener)
-    return { removeDataWrittenListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("data-written", listener)
+  return { removeEventListener("data-written", listener) }
 }
 /**
- * Occurs right after the [IXmlWriter.writeStartElement] method for writing a GraphMl 'key' element has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23KeyWriting">Online Documentation</a>
+ * `key-writing`: Occurs right after the [writeStartElement][IXmlWriter] method for writing a GraphMl 'key' element has been called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23key-writing">Online Documentation</a>
  */
 inline fun  IWriteEvents.addKeyWritingHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addKeyWritingListener(listener)
-    return { removeKeyWritingListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("key-writing", listener)
+  return { removeEventListener("key-writing", listener) }
 }
 /**
- * Occurs just before the [IXmlWriter.writeEndElement] for the GraphML 'key' element will be called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23KeyWritten">Online Documentation</a>
+ * `key-written`: Occurs just before the [writeEndElement][IXmlWriter] for the GraphML 'key' element will be called.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IWriteEvents%23key-written">Online Documentation</a>
  */
 inline fun  IWriteEvents.addKeyWrittenHandler(
-    crossinline handler: (event:WriteEventArgs) -> Unit
+  crossinline handler: (event:WriteEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<WriteEventArgs> = { _, event -> handler(event) }
-    addKeyWrittenListener(listener)
-    return { removeKeyWrittenListener(listener) }
+  val listener: EventHandler1<WriteEventArgs> = { event, _ -> handler(event) }
+  addEventListener("key-written", listener)
+  return { removeEventListener("key-written", listener) }
 }

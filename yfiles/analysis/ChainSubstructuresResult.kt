@@ -12,21 +12,18 @@
 package yfiles.analysis
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents the chains found by [ChainSubstructures].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChainSubstructuresResult">Online Documentation</a>
  */
-external  class ChainSubstructuresResult 
-private constructor () : YObject {
-
-/**
- * Gets the chains found by [ChainSubstructures].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChainSubstructuresResult%23chains">Online Documentation</a>
- */
-final val chains: ResultItemCollection<SubstructureItems>
-
-companion object : ClassMetadata<ChainSubstructuresResult> {
-}
+external class ChainSubstructuresResult private constructor()  {
+  /**
+   * Gets the chains found by [ChainSubstructures].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ChainSubstructuresResult%23chains">Online Documentation</a>
+   */
+  final val chains: ResultItemCollection<SubstructureItems>
+  
+  companion object : ClassMetadata<ChainSubstructuresResult> {
+  }
 }

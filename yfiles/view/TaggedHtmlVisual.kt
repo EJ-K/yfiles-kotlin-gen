@@ -13,27 +13,28 @@ package yfiles.view
 
 import web.dom.Element
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
- * An utility type for [HtmlVisual] that restricts the type of the [HtmlVisual.element] property and adds a [tag] property to store additional data.
- * @param [TElement] The type of the [element] property.
- * @param [TTag] The type of the [tag] property.
+ * An utility type for [HtmlVisual] that restricts the type of the [element][HtmlVisual] property and adds a [tag][TaggedHtmlVisual] property to store additional data.
+ * @param [TElement] The type of the [element][TaggedHtmlVisual] property.
+ * @param [TTag] The type of the [tag][TaggedHtmlVisual] property.
  * @see [TypedHtmlVisual]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TaggedHtmlVisual">Online Documentation</a>
  */
-external interface TaggedHtmlVisual<TElement : Element, TTag> : YObject {
-/**
- * Gets or sets the HTML element of this visual.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TaggedHtmlVisual%23element">Online Documentation</a>
- */
-var element: TElement
-/**
- * Gets or sets an object that stores additional data.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TaggedHtmlVisual%23tag">Online Documentation</a>
- */
-var tag: TTag
+external interface TaggedHtmlVisual<TElement : Element, TTag>  {
+  /**
+   * Gets or sets the HTML element of this visual.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TaggedHtmlVisual%23element">Online Documentation</a>
+   */
+  var element: TElement
+  
+  /**
+   * Gets or sets an object that stores additional data.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TaggedHtmlVisual%23tag">Online Documentation</a>
+   */
+  var tag: TTag
 
-companion object : InterfaceMetadata<TaggedHtmlVisual<*, *>> {
-}
+  
+  companion object : InterfaceMetadata<TaggedHtmlVisual<*, *>> {
+  }
 }

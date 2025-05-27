@@ -11,6 +11,8 @@
 
 package yfiles.graph
 
+import yfiles.collections.ILookup
+import yfiles.collections.ITagOwner
 import yfiles.lang.InterfaceMetadata
 
 /**
@@ -19,6 +21,7 @@ import yfiles.lang.InterfaceMetadata
  */
 external interface IModelItem : ILookup, ITagOwner {
 
-companion object : InterfaceMetadata<IModelItem> {
-}
+  
+  companion object : InterfaceMetadata<IModelItem> {
+  }
 }

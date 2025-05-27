@@ -21,41 +21,52 @@ import yfiles.lang.ClassMetadata
  * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-constructor-ReparentNodeHandler">Online Documentation</a>
  */
-external open class ReparentNodeHandler  () : IReparentNodeHandler {
-
-/**
- * Gets or sets the event recognizer that determines whether to reparent a node.
- * 
- * The default is [KeyEventRecognizers.SHIFT_IS_DOWN]
- * @see [isReparentGesture]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23reparentRecognizer">Online Documentation</a>
- */
-final var reparentRecognizer: EventRecognizer
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-method-isReparentGesture">Online Documentation</a>
- */
- override   fun isReparentGesture( context: IInputModeContext ,
- node: INode ):Boolean
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-method-isValidParent">Online Documentation</a>
- */
- override   fun isValidParent( context: IInputModeContext ,
- node: INode ,
- newParent: INode? ):Boolean
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-method-reparent">Online Documentation</a>
- */
- override   fun reparent( context: IInputModeContext ,
- node: INode ,
- newParent: INode? )
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-method-shouldReparent">Online Documentation</a>
- */
- override   fun shouldReparent( context: IInputModeContext ,
- node: INode ):Boolean
-
-companion object : ClassMetadata<ReparentNodeHandler> {
-}
+open external class ReparentNodeHandler () : IReparentNodeHandler {
+  /**
+   * Gets or sets the event recognizer that determines whether to reparent a node.
+   * 
+   * The default detects the current platform and delegates either to [META_IS_DOWN][EventRecognizers] (macOS) or [CTRL_IS_DOWN][EventRecognizers] (other platforms).
+   * @see [isReparentGesture]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23reparentRecognizer">Online Documentation</a>
+   */
+  final var reparentRecognizer: EventRecognizer
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-method-isReparentGesture">Online Documentation</a>
+   */
+  override fun isReparentGesture(
+    context: IInputModeContext,
+    node: INode,
+  ): Boolean
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-method-isValidParent">Online Documentation</a>
+   */
+  override fun isValidParent(
+    context: IInputModeContext,
+    node: INode,
+    newParent: INode?,
+  ): Boolean
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-method-reparent">Online Documentation</a>
+   */
+  override fun reparent(
+    context: IInputModeContext,
+    node: INode,
+    newParent: INode?,
+  )
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ReparentNodeHandler%23ReparentNodeHandler-method-shouldReparent">Online Documentation</a>
+   */
+  override fun shouldReparent(
+    context: IInputModeContext,
+    node: INode,
+  ): Boolean
+  
+  companion object : ClassMetadata<ReparentNodeHandler> {
+  }
 }
 
 inline fun ReparentNodeHandler(

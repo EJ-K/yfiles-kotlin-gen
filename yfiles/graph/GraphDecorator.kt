@@ -12,19 +12,18 @@
 package yfiles.graph
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Facilitates decorating [IModelItem]s from an [IGraph] instance.
- * @see [nodeDecorator]
+ * @see [nodes]
  * @see [NodeDecorator]
- * @see [edgeDecorator]
+ * @see [edges]
  * @see [EdgeDecorator]
- * @see [labelDecorator]
+ * @see [labels]
  * @see [LabelDecorator]
- * @see [portDecorator]
+ * @see [ports]
  * @see [PortDecorator]
- * @see [bendDecorator]
+ * @see [bends]
  * @see [BendDecorator]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator">Online Documentation</a>
  * 
@@ -32,36 +31,41 @@ import yfiles.lang.YObject
  * @param [graph] The graph.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23GraphDecorator-constructor-GraphDecorator">Online Documentation</a>
  */
-external  class GraphDecorator  ( graph: IGraph ) : YObject {
-
-/**
- * Gets a [bendDecorator] instance that can be used to decorate the [IBend] instances in the graph that this decorator has been created for.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23bendDecorator">Online Documentation</a>
- */
-final val bendDecorator: BendDecorator
-/**
- * Gets an [edgeDecorator] instance that can be used to decorate the [IEdge] instances in the graph that this decorator has been created for.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23edgeDecorator">Online Documentation</a>
- */
-final val edgeDecorator: EdgeDecorator
-/**
- * Gets a [labelDecorator] instance that can be used to decorate the [ILabel] instances in the graph that this decorator has been created for.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23labelDecorator">Online Documentation</a>
- */
-final val labelDecorator: LabelDecorator
-/**
- * Gets a [nodeDecorator] instance that can be used to decorate the [INode] instances in the graph that this decorator has been created for.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23nodeDecorator">Online Documentation</a>
- */
-final val nodeDecorator: NodeDecorator
-/**
- * Gets a [portDecorator] instance that can be used to decorate the [IPort] instances in the graph that this decorator has been created for.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23portDecorator">Online Documentation</a>
- */
-final val portDecorator: PortDecorator
-
-companion object : ClassMetadata<GraphDecorator> {
-}
+external class GraphDecorator (
+  graph: IGraph,
+)  {
+  /**
+   * Gets a [bends][GraphDecorator] instance that can be used to decorate the [IBend] instances in the graph that this decorator has been created for.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23bends">Online Documentation</a>
+   */
+  final val bends: BendDecorator
+  
+  /**
+   * Gets an [edges][GraphDecorator] instance that can be used to decorate the [IEdge] instances in the graph that this decorator has been created for.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23edges">Online Documentation</a>
+   */
+  final val edges: EdgeDecorator
+  
+  /**
+   * Gets a [labels][GraphDecorator] instance that can be used to decorate the [ILabel] instances in the graph that this decorator has been created for.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23labels">Online Documentation</a>
+   */
+  final val labels: LabelDecorator
+  
+  /**
+   * Gets a [nodes][GraphDecorator] instance that can be used to decorate the [INode] instances in the graph that this decorator has been created for.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23nodes">Online Documentation</a>
+   */
+  final val nodes: NodeDecorator
+  
+  /**
+   * Gets a [ports][GraphDecorator] instance that can be used to decorate the [IPort] instances in the graph that this decorator has been created for.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphDecorator%23ports">Online Documentation</a>
+   */
+  final val ports: PortDecorator
+  
+  companion object : ClassMetadata<GraphDecorator> {
+  }
 }
 
 inline operator fun  GraphDecorator.invoke(

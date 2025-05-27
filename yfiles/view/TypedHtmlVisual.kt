@@ -13,21 +13,21 @@ package yfiles.view
 
 import web.html.HTMLElement
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
- * An utility type for [HtmlVisual] that restricts the type of the [HtmlVisual.element] property.
- * @param [TElement] The type of the [element] property.
+ * An utility type for [HtmlVisual] that restricts the type of the [element][HtmlVisual] property.
+ * @param [TElement] The type of the [element][TypedHtmlVisual] property.
  * @see [TaggedHtmlVisual]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TypedHtmlVisual">Online Documentation</a>
  */
-external interface TypedHtmlVisual<TElement : HTMLElement> : YObject {
-/**
- * Gets or sets the HTML element of this visual.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TypedHtmlVisual%23element">Online Documentation</a>
- */
-var element: TElement
+external interface TypedHtmlVisual<TElement : HTMLElement>  {
+  /**
+   * Gets or sets the HTML element of this visual.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TypedHtmlVisual%23element">Online Documentation</a>
+   */
+  var element: TElement
 
-companion object : InterfaceMetadata<TypedHtmlVisual<*>> {
-}
+  
+  companion object : InterfaceMetadata<TypedHtmlVisual<*>> {
+  }
 }

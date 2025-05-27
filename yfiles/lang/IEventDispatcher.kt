@@ -9,4 +9,7 @@
 
 package yfiles.lang
 
-external interface IEventDispatcher
+external interface IEventDispatcher {
+    final fun <T> addEventListener(event: String, handler: T)
+    final fun <T> removeEventListener(event: String, handler: T)
+}

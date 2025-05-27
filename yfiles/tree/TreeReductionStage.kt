@@ -11,13 +11,21 @@
 
 package yfiles.tree
 
-import yfiles.algorithms.EdgeDpKey
-import yfiles.algorithms.IEdgeMap
-import yfiles.algorithms.ILabelLayoutDpKey
+import yfiles.collections.IMapper
+import yfiles.graph.IEdge
+import yfiles.graph.IGraph
+import yfiles.graph.ILabel
+import yfiles.graph.INode
+import yfiles.labeling.GenericLabeling
 import yfiles.lang.ClassMetadata
 import yfiles.layout.EdgeBundling
+import yfiles.layout.EdgeDataKey
 import yfiles.layout.ILayoutAlgorithm
+import yfiles.layout.LayoutEdge
+import yfiles.layout.LayoutEdgeLabel
 import yfiles.layout.LayoutGraph
+import yfiles.layout.LayoutNode
+import yfiles.layout.LayoutNodeLabel
 import yfiles.layout.LayoutStageBase
 
 /**
@@ -28,82 +36,94 @@ import yfiles.layout.LayoutStageBase
  * @param [coreLayout] the core layout algorithm
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23TreeReductionStage-constructor-TreeReductionStage">Online Documentation</a>
  */
-external open class TreeReductionStage  ( coreLayout: ILayoutAlgorithm?  = definedExternally) : LayoutStageBase {
-
-/**
- * Gets the [EdgeBundling] instance that defines the settings of the edge bundling feature.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23edgeBundling">Online Documentation</a>
- */
-open val edgeBundling: EdgeBundling
-/**
- * Gets or sets whether or not multi-parent structures (structures of multiple nodes that share the same predecessors as well as the same successors) are allowed.
- * 
- * Default value - `false`. The reduced graph is a normal tree.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23multiParentAllowed">Online Documentation</a>
- */
-open var multiParentAllowed: Boolean
-/**
- * Gets or sets the key to register a [IDataProvider][yfiles.algorithms.IDataProvider] that is used by the [non-tree edge labeling algorithm][nonTreeEdgeLabelingAlgorithm] to determine which edge labels it should place.
- * 
- * Default value - `null`. There is no [IDataProvider][yfiles.algorithms.IDataProvider] key specified.
- * @see [nonTreeEdgeLabelingAlgorithm]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23nonTreeEdgeLabelSelectionKey">Online Documentation</a>
- */
-open var nonTreeEdgeLabelSelectionKey: ILabelLayoutDpKey<Boolean>?
-/**
- * Gets or sets the labeling algorithm that is applied to all edge labels that belong to non-tree edges.
- * 
- * Default value - `null`. Edge labels of non-tree edges are not placed.
- * @see [nonTreeEdgeLabelSelectionKey]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23nonTreeEdgeLabelingAlgorithm">Online Documentation</a>
- */
-open var nonTreeEdgeLabelingAlgorithm: ILayoutAlgorithm?
-/**
- * Gets or sets the edge routing algorithm that is applied to all non-tree edges.
- * 
- * Default value - `null`. Non-tree edges are not routed.
- * @see [nonTreeEdgeSelectionKey]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23nonTreeEdgeRouter">Online Documentation</a>
- */
-open var nonTreeEdgeRouter: ILayoutAlgorithm?
-/**
- * Gets or sets the key to register a [IDataProvider][yfiles.algorithms.IDataProvider] that will be used by the [non-tree edge routing algorithm][nonTreeEdgeRouter] to determine the edges that need to be routed.
- * 
- * Default value - `null`. There is no [IDataProvider][yfiles.algorithms.IDataProvider] key specified.
- * @see [nonTreeEdgeRouter]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23nonTreeEdgeSelectionKey">Online Documentation</a>
- */
-open var nonTreeEdgeSelectionKey: EdgeDpKey<Boolean>?
-/**
- * Determines a spanning tree of the graph and passes it to the [core layout algorithm][LayoutStageBase.coreLayout].
- * @param [graph] the input graph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23TreeReductionStage-method-applyLayout">Online Documentation</a>
- */
- override   fun applyLayout( graph: LayoutGraph )
-/**
- * Creates a routing algorithm that routes edges as a single straight segment.
- * @return an edge routing algorithm that produces straight-line edges
- * @see [nonTreeEdgeRouter]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23TreeReductionStage-method-createStraightLineRouter">Online Documentation</a>
- */
- open   fun createStraightLineRouter():ILayoutAlgorithm
-/**
- * Routes all edges that do not belong to the chosen spanning tree.
- * @param [graph] the graph containing tree and non-tree edges
- * @param [nonTreeEdgeMap] the [IEdgeMap] that marks all non-tree edges in the graph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23TreeReductionStage-method-routeNonTreeEdges">Online Documentation</a>
- */
- open protected   fun routeNonTreeEdges( graph: LayoutGraph ,
- nonTreeEdgeMap: IEdgeMap<Boolean> )
-
-companion object : ClassMetadata<TreeReductionStage> {
-/**
- * A data provider key for explicitly marking (some) edges that should not be considered for the tree.
- * @see [nonTreeEdgeRouter]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23NON_TREE_EDGES_DP_KEY">Online Documentation</a>
- */
- val NON_TREE_EDGES_DP_KEY: EdgeDpKey<Boolean>
-}
+open external class TreeReductionStage (
+  coreLayout: ILayoutAlgorithm?  = definedExternally,
+) : LayoutStageBase {
+  /**
+   * Gets or sets whether or not multi-parent structures (structures of multiple nodes that share the same predecessors as well as the same successors) are allowed.
+   * 
+   * Default value - `false`. The reduced graph is a normal tree.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23allowMultiParent">Online Documentation</a>
+   */
+  final var allowMultiParent: Boolean
+  
+  /**
+   * Gets the [EdgeBundling] instance that defines the settings of the edge bundling feature.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23edgeBundling">Online Documentation</a>
+   */
+  final val edgeBundling: EdgeBundling
+  
+  /**
+   * Gets or sets the labeling algorithm that is applied to all edge labels that belong to non-tree edges.
+   * 
+   * Default value - `null`. Edge labels of non-tree edges are not placed.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23nonTreeEdgeLabeling">Online Documentation</a>
+   */
+  final var nonTreeEdgeLabeling: GenericLabeling?
+  
+  /**
+   * Gets or sets the edge routing algorithm that is applied to all non-tree edges.
+   * 
+   * Default value - `null`. Non-tree edges are not routed.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23nonTreeEdgeRouter">Online Documentation</a>
+   */
+  final var nonTreeEdgeRouter: ILayoutAlgorithm?
+  
+  /**
+   * Determines a spanning tree of the graph and passes it to the [coreLayout][LayoutStageBase].
+   * @param [graph] the input graph
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23TreeReductionStage-method-applyLayoutImpl">Online Documentation</a>
+   */
+  override fun applyLayoutImpl(
+    graph: LayoutGraph,
+  )
+  
+  /**
+   * Returns an instance of [LayoutData][yfiles.layout.LayoutData] that can be used to perform item-specific configurations for the [TreeReductionStage].
+   * @param [graph] the graph that determines the generic type arguments of the created layout data
+   * @return an instance of [layout data][yfiles.layout.LayoutData] that can be used to perform item-specific configurations for the given [TreeReductionStage].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23TreeReductionStage-defaultmethod-createLayoutData(LayoutGraph)">Online Documentation</a>
+   */
+  fun createLayoutData(
+    graph: LayoutGraph,
+  ): TreeReductionStageData<LayoutNode, LayoutEdge, LayoutNodeLabel, LayoutEdgeLabel>
+  
+  /**
+   * Returns an instance of [LayoutData][yfiles.layout.LayoutData] that can be used to perform item-specific configurations for the [TreeReductionStage].
+   * @param [graph] the graph that determines the generic type arguments of the created layout data
+   * @return an instance of [layout data][yfiles.layout.LayoutData] that can be used to perform item-specific configurations for the given [TreeReductionStage].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23TreeReductionStage-defaultmethod-createLayoutData(IGraph)">Online Documentation</a>
+   */
+  fun createLayoutData(
+    graph: IGraph?  = definedExternally,
+  ): TreeReductionStageData<INode, IEdge, ILabel, ILabel>
+  
+  /**
+   * Routes all edges that do not belong to the chosen spanning tree.
+   * @param [graph] the graph containing tree and non-tree edges
+   * @param [nonTreeEdgeMap] the [IMapper] that marks an edge with `true` if the edge is a non-tree edge, or `false` otherwise
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23TreeReductionStage-method-routeNonTreeEdges">Online Documentation</a>
+   */
+  protected open fun routeNonTreeEdges(
+    graph: LayoutGraph,
+    nonTreeEdgeMap: IMapper<LayoutEdge, Boolean>,
+  )
+  
+  companion object : ClassMetadata<TreeReductionStage> {
+    /**
+     * A [data key][EdgeDataKey] for explicitly marking (some) edges that should not be considered for the tree.
+     * @see [TreeReductionStageData.nonTreeEdges]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23NON_TREE_EDGES_DATA_KEY">Online Documentation</a>
+     */
+     val NON_TREE_EDGES_DATA_KEY: EdgeDataKey<Boolean>
+    
+    /**
+     * A [data key][EdgeDataKey] for publishing the non-tree edges that this stage actually selected.
+     * @see [nonTreeEdgeRouter]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeReductionStage%23NON_TREE_EDGES_RESULT_DATA_KEY">Online Documentation</a>
+     */
+     val NON_TREE_EDGES_RESULT_DATA_KEY: EdgeDataKey<Boolean>
+  }
 }
 
 inline fun TreeReductionStage(

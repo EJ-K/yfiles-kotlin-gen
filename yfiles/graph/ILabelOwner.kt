@@ -23,15 +23,16 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILabelOwner">Online Documentation</a>
  */
 external interface ILabelOwner : IModelItem {
-/**
- * Gets a collection of [labels][ILabel] that are owned by this instance.
- * @see [IGraph.addLabel]
- * @see [IGraph.remove]
- * @see [ILabel.owner]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILabelOwner%23labels">Online Documentation</a>
- */
-val labels: IListEnumerable<ILabel>
+  /**
+   * Gets a collection of [labels][ILabel] that are owned by this instance.
+   * @see [IGraph.addLabel]
+   * @see [IGraph.remove]
+   * @see [ILabel.owner]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILabelOwner%23labels">Online Documentation</a>
+   */
+  val labels: IListEnumerable<ILabel>
 
-companion object : InterfaceMetadata<ILabelOwner> {
-}
+  
+  companion object : InterfaceMetadata<ILabelOwner> {
+  }
 }

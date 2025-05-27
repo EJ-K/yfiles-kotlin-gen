@@ -13,8 +13,7 @@ package yfiles.graph
 
 import yfiles.geometry.IPoint
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YClass
-import yfiles.lang.YObject
+import yfiles.lang.IClassMetadata
 
 /**
  * A mutable implementation of the [IBend] interface that can be used without an [IGraph].
@@ -22,7 +21,7 @@ import yfiles.lang.YObject
  * 
  * @constructor Initializes a new instance of the [SimpleBend] class using the given owner and location.
  * @param [owner] The owner of the bend.
- * @param [location] The bend's location.
+ * @param [location] The bend's location. By default, the bend is placed at [ORIGIN][yfiles.geometry.Point].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23SimpleBend-constructor-SimpleBend">Online Documentation</a>
  * 
  * @property owner
@@ -31,40 +30,32 @@ import yfiles.lang.YObject
  * 
  * @property location
  * Gets or sets the location of this bend.
- * @see [x]
- * @see [y]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23location">Online Documentation</a>
  */
-external open class SimpleBend  (
-final override var owner: IEdge? = definedExternally,
+external class SimpleBend (
+final override var owner: IEdge = definedExternally,
 final override var location: IPoint = definedExternally) : IBend {
-
-/**
- * Gets or sets the [ILookup] implementation used for calls to [lookup] on this instance.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23lookupImplementation">Online Documentation</a>
- */
-final var lookupImplementation: ILookup?
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23tag">Online Documentation</a>
- */
-final override var tag: Tag?
-/**
- * Gets the current x coordinate of this bend.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23x">Online Documentation</a>
- */
-final val x: Double
-/**
- * Gets the current y coordinate of this bend.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23y">Online Documentation</a>
- */
-final val y: Double
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23SimpleBend-method-lookup">Online Documentation</a>
- */
- override   fun <T : YObject>lookup( type: YClass<T> ):T?
-
-companion object : ClassMetadata<SimpleBend> {
-}
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23tag">Online Documentation</a>
+   */
+  final override var tag: Tag?
+  
+  /**
+   * Gets a [BendDecorator] to modify the ports [ILookup][yfiles.collections.ILookup].
+   * @return A [BendDecorator] for this instance.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23SimpleBend-method-getDecorator">Online Documentation</a>
+   */
+  fun getDecorator(): BendDecorator
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SimpleBend%23SimpleBend-method-lookup">Online Documentation</a>
+   */
+  override fun <T : Any> lookup(
+    type: IClassMetadata<T>,
+  ): T?
+  
+  companion object : ClassMetadata<SimpleBend> {
+  }
 }
 
 inline fun SimpleBend(

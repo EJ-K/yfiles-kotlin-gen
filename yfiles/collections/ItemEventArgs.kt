@@ -13,10 +13,9 @@ package yfiles.collections
 
 import yfiles.lang.ClassMetadata
 import yfiles.lang.EventArgs
-import yfiles.lang.YObject
 
 /**
- * Event argument class used by [IObservableCollection] and similar that holds a specific item that is related to the event.
+ * Event that holds a specific item that is related to the event.
  * @param [T] The type of the item contained in the event.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemEventArgs">Online Documentation</a>
  * 
@@ -28,9 +27,9 @@ import yfiles.lang.YObject
  * Gets the item that is the subject of the event.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemEventArgs%23item">Online Documentation</a>
  */
-external open class ItemEventArgs<T : YObject?>  (
+open external class ItemEventArgs<T : Any?> (
 final val item: T) : EventArgs {
-
-companion object : ClassMetadata<ItemEventArgs<*>> {
-}
+  
+  companion object : ClassMetadata<ItemEventArgs<*>> {
+  }
 }

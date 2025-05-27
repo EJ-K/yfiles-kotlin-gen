@@ -12,20 +12,22 @@
 package yfiles.layout
 
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
  * [ILayoutAlgorithm] describes the general interface for algorithms that perform a layout process on a [LayoutGraph].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILayoutAlgorithm">Online Documentation</a>
  */
-external interface ILayoutAlgorithm : YObject {
-/**
- * Main layout routine that assigns new layout information to the given graph.
- * @param [graph] the input graph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILayoutAlgorithm%23ILayoutAlgorithm-method-applyLayout">Online Documentation</a>
- */
-   fun applyLayout( graph: LayoutGraph )
+external interface ILayoutAlgorithm  {
+  /**
+   * Main layout routine that assigns new layout information to the given graph.
+   * @param [graph] the input graph to process
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILayoutAlgorithm%23ILayoutAlgorithm-method-applyLayout">Online Documentation</a>
+   */
+  fun applyLayout(
+    graph: LayoutGraph,
+  )
 
-companion object : InterfaceMetadata<ILayoutAlgorithm> {
-}
+  
+  companion object : InterfaceMetadata<ILayoutAlgorithm> {
+  }
 }

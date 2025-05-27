@@ -11,31 +11,25 @@
 
 package yfiles.circular
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * Routing style enumeration for edges within and between partitions.
- * @see [EdgeLayoutDescriptor.betweenCirclesRoutingStyle]
- * @see [EdgeLayoutDescriptor.inCircleRoutingStyle]
+ * Routing style enumeration for edges within and between partitions of the [CircularLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutRoutingStyle">Online Documentation</a>
  */
-external sealed class CircularLayoutRoutingStyle: YEnum<CircularLayoutRoutingStyle> {
-   companion object: EnumMetadata<CircularLayoutRoutingStyle> {
-       /**
- * A routing style constant specifying that edges inside or between partitions should be straight lines.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutRoutingStyle%23STRAIGHT">Online Documentation</a>
- */
-val STRAIGHT: CircularLayoutRoutingStyle
 
-/**
- * A routing style constant specifying that edges inside or between partitions should be curved.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutRoutingStyle%23CURVED">Online Documentation</a>
- */
-val CURVED: CircularLayoutRoutingStyle
-   }
+sealed external class CircularLayoutRoutingStyle {
+  /**
+   * A routing style constant specifying that edges inside or between partitions should be straight lines.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutRoutingStyle%23STRAIGHT_LINE">Online Documentation</a>
+   */
+  object STRAIGHT_LINE: CircularLayoutRoutingStyle
+  
+  /**
+   * A routing style constant specifying that edges inside or between partitions should be curved.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutRoutingStyle%23CURVED">Online Documentation</a>
+   */
+  object CURVED: CircularLayoutRoutingStyle
 }

@@ -13,13 +13,13 @@ package yfiles.input
 
 import yfiles.graph.IModelItem
 import yfiles.lang.ClassMetadata
-import yfiles.lang.EventArgs
 
 /**
  * Event argument class containing information about which [IModelItem] the mouse is currently hovering over.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HoveredItemChangedEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [HoveredItemChangedEventArgs] class.
+ * @param [context] The context.
  * @param [item] The model item, possibly `null`.
  * @param [oldItem] The old item, possibly `null`.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HoveredItemChangedEventArgs%23HoveredItemChangedEventArgs-constructor-HoveredItemChangedEventArgs">Online Documentation</a>
@@ -33,10 +33,11 @@ import yfiles.lang.EventArgs
  * @see [ItemEventArgs.item][yfiles.collections.ItemEventArgs.item]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HoveredItemChangedEventArgs%23oldItem">Online Documentation</a>
  */
-external open class HoveredItemChangedEventArgs  (
+external class HoveredItemChangedEventArgs (
+context: IInputModeContext,
 final val item: IModelItem?,
-final val oldItem: IModelItem?) : EventArgs {
-
-companion object : ClassMetadata<HoveredItemChangedEventArgs> {
-}
+final val oldItem: IModelItem?) : InputModeEventArgs {
+  
+  companion object : ClassMetadata<HoveredItemChangedEventArgs> {
+  }
 }

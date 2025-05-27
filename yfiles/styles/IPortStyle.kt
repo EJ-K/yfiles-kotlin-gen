@@ -19,12 +19,18 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPortStyle">Online Documentation</a>
  */
 external interface IPortStyle : ICloneable<IPortStyle> {
-/**
- * Gets the renderer implementation that can be queried for implementations that provide details about the visual appearance and visual behavior for a given port and this style instance.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPortStyle%23renderer">Online Documentation</a>
- */
-val renderer: IPortStyleRenderer
+  /**
+   * Gets the renderer implementation that can be queried for implementations that provide details about the visual appearance and visual behavior for a given port and this style instance.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPortStyle%23renderer">Online Documentation</a>
+   */
+  val renderer: IPortStyleRenderer
 
-companion object : InterfaceMetadata<IPortStyle> {
-}
+  
+  companion object : InterfaceMetadata<IPortStyle> {
+    /**
+     * A void implementation of a port style that does nothing and behaves like an invisible style.
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPortStyle%23VOID_PORT_STYLE">Online Documentation</a>
+     */
+     val VOID_PORT_STYLE: IPortStyle
+  }
 }

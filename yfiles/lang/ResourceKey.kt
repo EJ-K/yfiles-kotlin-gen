@@ -68,6 +68,12 @@ inline val ADD_PORT__UNDO_NAME: ResourceKey<String>
 /**
  * Default value - "Adjust Group Node Size"
  */
+inline val ADJUST_GROUP_NODE_SIZE: ResourceKey<String>
+    get() = ResourceKey("AdjustGroupNodeSize")
+
+/**
+ * Default value - "Adjust Group Node Size"
+ */
 inline val ADJUST_GROUP_NODE_SIZE__REDO_NAME: ResourceKey<String>
     get() = ResourceKey("AdjustGroupNodeSize.RedoName")
 
@@ -78,13 +84,7 @@ inline val ADJUST_GROUP_NODE_SIZE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("AdjustGroupNodeSize.UndoName")
 
 /**
- * Default value - "Adjust Group Node Size"
- */
-inline val ADJUST_GROUP_NODE_SIZE: ResourceKey<String>
-    get() = ResourceKey("AdjustGroupNodeSize")
-
-/**
- * Default hotkey - `Ctrl+Shift+G`
+ * Default hotkey - `Control+Shift+G`
  */
 inline val ADJUST_GROUP_NODE_SIZE_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("AdjustGroupNodeSizeKey")
@@ -114,7 +114,7 @@ inline val COLLAPSE_GROUP: ResourceKey<String>
     get() = ResourceKey("CollapseGroup")
 
 /**
- * Default hotkey - `Ctrl+Subtract`
+ * Default hotkey - `Alt+ArrowLeft`
  */
 inline val COLLAPSE_GROUP_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("CollapseGroupKey")
@@ -138,7 +138,7 @@ inline val COPY: ResourceKey<String>
     get() = ResourceKey("Copy")
 
 /**
- * Default hotkey - `Ctrl+C`
+ * Default hotkey - `Action+C;Control+Insert`
  */
 inline val COPY_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("CopyKey")
@@ -168,16 +168,22 @@ inline val CREATE_NODE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("CreateNode.UndoName")
 
 /**
- * Default value - "CreateStripe"
+ * Default value - "Add Stripe"
  */
 inline val CREATE_STRIPE__REDO_NAME: ResourceKey<String>
     get() = ResourceKey("CreateStripe.RedoName")
 
 /**
- * Default value - "Add Stripe"
+ * Default value - "Remove Stripe"
  */
 inline val CREATE_STRIPE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("CreateStripe.UndoName")
+
+/**
+ * Default value - "Cut"
+ */
+inline val CUT: ResourceKey<String>
+    get() = ResourceKey("Cut")
 
 /**
  * Default value - "Redo Cut"
@@ -192,13 +198,7 @@ inline val CUT__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("Cut.UndoName")
 
 /**
- * Default value - "Cut"
- */
-inline val CUT: ResourceKey<String>
-    get() = ResourceKey("Cut")
-
-/**
- * Default hotkey - `Ctrl+X`
+ * Default hotkey - `Action+X;Shift+Delete`
  */
 inline val CUT_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("CutKey")
@@ -210,13 +210,19 @@ inline val DECREASE_ZOOM: ResourceKey<String>
     get() = ResourceKey("DecreaseZoom")
 
 /**
+ * Default hotkey - `Action+Subtract`
+ */
+inline val DECREASE_ZOOM_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("DecreaseZoomKey")
+
+/**
  * Default value - "Delete"
  */
 inline val DELETE: ResourceKey<String>
     get() = ResourceKey("Delete")
 
 /**
- * Default hotkey - `Delete`
+ * Default hotkey - `Delete;Backspace`
  */
 inline val DELETE_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("DeleteKey")
@@ -240,7 +246,7 @@ inline val DESELECT_ALL: ResourceKey<String>
     get() = ResourceKey("DeselectAll")
 
 /**
- * Default hotkey - `Ctrl+D`
+ * Default hotkey - `Action+Shift+A`
  */
 inline val DESELECT_ALL_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("DeselectAllKey")
@@ -252,13 +258,37 @@ inline val DESELECT_ITEM: ResourceKey<String>
     get() = ResourceKey("DeselectItem")
 
 /**
+ * Default value - "Duplicate"
+ */
+inline val DUPLICATE: ResourceKey<String>
+    get() = ResourceKey("Duplicate")
+
+/**
+ * Default value - "Redo Duplicate"
+ */
+inline val DUPLICATE__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("Duplicate.RedoName")
+
+/**
+ * Default value - "Undo Duplicate"
+ */
+inline val DUPLICATE__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("Duplicate.UndoName")
+
+/**
+ * Default hotkey - `Action+D`
+ */
+inline val DUPLICATE_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("DuplicateKey")
+
+/**
  * Default value - "Edit Label"
  */
 inline val EDIT_LABEL: ResourceKey<String>
     get() = ResourceKey("EditLabel")
 
 /**
- * Default hotkey - `F2`
+ * Default hotkey - `F2;Enter`
  */
 inline val EDIT_LABEL_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("EditLabelKey")
@@ -270,7 +300,7 @@ inline val ENTER_GROUP: ResourceKey<String>
     get() = ResourceKey("EnterGroup")
 
 /**
- * Default hotkey - `Ctrl+Enter`
+ * Default hotkey - `Alt+ArrowDown`
  */
 inline val ENTER_GROUP_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("EnterGroupKey")
@@ -282,7 +312,7 @@ inline val EXIT_GROUP: ResourceKey<String>
     get() = ResourceKey("ExitGroup")
 
 /**
- * Default hotkey - `Ctrl+Backspace`
+ * Default hotkey - `Alt+ArrowUp`
  */
 inline val EXIT_GROUP_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("ExitGroupKey")
@@ -294,22 +324,22 @@ inline val EXPAND_GROUP: ResourceKey<String>
     get() = ResourceKey("ExpandGroup")
 
 /**
- * Default hotkey - `Ctrl+Add`
+ * Default value - "Expand Group"
+ */
+inline val EXPAND_GROUP__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("ExpandGroup.RedoName")
+
+/**
+ * Default value - "Collapse Group"
+ */
+inline val EXPAND_GROUP__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("ExpandGroup.UndoName")
+
+/**
+ * Default hotkey - `Alt+ArrowRight`
  */
 inline val EXPAND_GROUP_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("ExpandGroupKey")
-
-/**
- * Default value - "Expand Node"
- */
-inline val EXPAND_NODE__REDO_NAME: ResourceKey<String>
-    get() = ResourceKey("ExpandNode.RedoName")
-
-/**
- * Default value - "Collapse Node"
- */
-inline val EXPAND_NODE__UNDO_NAME: ResourceKey<String>
-    get() = ResourceKey("ExpandNode.UndoName")
 
 /**
  * Default value - "Extend Selection Down"
@@ -318,10 +348,34 @@ inline val EXTEND_SELECTION_DOWN: ResourceKey<String>
     get() = ResourceKey("ExtendSelectionDown")
 
 /**
- * Default hotkey - `Shift+Down`
+ * Default hotkey - `Shift+ArrowDown`
  */
 inline val EXTEND_SELECTION_DOWN_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("ExtendSelectionDownKey")
+
+/**
+ * Default value - "Extend Selection to Child"
+ */
+inline val EXTEND_SELECTION_HIERARCHY_DOWN: ResourceKey<String>
+    get() = ResourceKey("ExtendSelectionHierarchyDown")
+
+/**
+ * Default hotkey - `Shift+Ctrl+PageDown`
+ */
+inline val EXTEND_SELECTION_HIERARCHY_DOWN_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("ExtendSelectionHierarchyDownKey")
+
+/**
+ * Default value - "Extend Selection to Parent"
+ */
+inline val EXTEND_SELECTION_HIERARCHY_UP: ResourceKey<String>
+    get() = ResourceKey("ExtendSelectionHierarchyUp")
+
+/**
+ * Default hotkey - `Shift+Ctrl+PageUp`
+ */
+inline val EXTEND_SELECTION_HIERARCHY_UP_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("ExtendSelectionHierarchyUpKey")
 
 /**
  * Default value - "Extend Selection Left"
@@ -330,7 +384,7 @@ inline val EXTEND_SELECTION_LEFT: ResourceKey<String>
     get() = ResourceKey("ExtendSelectionLeft")
 
 /**
- * Default hotkey - `Shift+Left`
+ * Default hotkey - `Shift+ArrowLeft`
  */
 inline val EXTEND_SELECTION_LEFT_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("ExtendSelectionLeftKey")
@@ -342,7 +396,7 @@ inline val EXTEND_SELECTION_RIGHT: ResourceKey<String>
     get() = ResourceKey("ExtendSelectionRight")
 
 /**
- * Default hotkey - `Shift+Right`
+ * Default hotkey - `Shift+ArrowRight`
  */
 inline val EXTEND_SELECTION_RIGHT_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("ExtendSelectionRightKey")
@@ -354,7 +408,7 @@ inline val EXTEND_SELECTION_UP: ResourceKey<String>
     get() = ResourceKey("ExtendSelectionUp")
 
 /**
- * Default hotkey - `Shift+Up`
+ * Default hotkey - `Shift+ArrowUp`
  */
 inline val EXTEND_SELECTION_UP_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("ExtendSelectionUpKey")
@@ -372,13 +426,19 @@ inline val FIT_GRAPH_BOUNDS: ResourceKey<String>
     get() = ResourceKey("FitGraphBounds")
 
 /**
+ * Default hotkey - `Alt+1`
+ */
+inline val FIT_GRAPH_BOUNDS_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("FitGraphBoundsKey")
+
+/**
  * Default value - "Group Selection"
  */
 inline val GROUP_SELECTION: ResourceKey<String>
     get() = ResourceKey("GroupSelection")
 
 /**
- * Default hotkey - `Ctrl+G`
+ * Default hotkey - `Action+G`
  */
 inline val GROUP_SELECTION_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("GroupSelectionKey")
@@ -388,6 +448,30 @@ inline val GROUP_SELECTION_KEY: ResourceKey<Hotkey>
  */
 inline val INCREASE_ZOOM: ResourceKey<String>
     get() = ResourceKey("IncreaseZoom")
+
+/**
+ * Default hotkey - `Action+Add`
+ */
+inline val INCREASE_ZOOM_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("IncreaseZoomKey")
+
+/**
+ * Default value - "Lower"
+ */
+inline val LOWER: ResourceKey<String>
+    get() = ResourceKey("Lower")
+
+/**
+ * Default value - "Lower"
+ */
+inline val LOWER__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("Lower.RedoName")
+
+/**
+ * Default value - "Lower"
+ */
+inline val LOWER__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("Lower.UndoName")
 
 /**
  * Default value - "Move Items"
@@ -408,22 +492,10 @@ inline val MOVE_DOWN: ResourceKey<String>
     get() = ResourceKey("MoveDown")
 
 /**
- * Default hotkey - `Down`
+ * Default hotkey - `ArrowDown`
  */
 inline val MOVE_DOWN_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("MoveDownKey")
-
-/**
- * Default value - "Move Focus Backward"
- */
-inline val MOVE_FOCUS_BACK: ResourceKey<String>
-    get() = ResourceKey("MoveFocusBack")
-
-/**
- * Default hotkey - `Ctrl+Left`
- */
-inline val MOVE_FOCUS_BACK_KEY: ResourceKey<Hotkey>
-    get() = ResourceKey("MoveFocusBackKey")
 
 /**
  * Default value - "Move Focus Down"
@@ -432,22 +504,58 @@ inline val MOVE_FOCUS_DOWN: ResourceKey<String>
     get() = ResourceKey("MoveFocusDown")
 
 /**
- * Default hotkey - `Ctrl+Down`
+ * Default hotkey - `Action+ArrowDown`
  */
 inline val MOVE_FOCUS_DOWN_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("MoveFocusDownKey")
 
 /**
- * Default value - "Move Focus Forward"
+ * Default value - "Move Focus to Child"
  */
-inline val MOVE_FOCUS_FORWARD: ResourceKey<String>
-    get() = ResourceKey("MoveFocusForward")
+inline val MOVE_FOCUS_HIERARCHY_DOWN: ResourceKey<String>
+    get() = ResourceKey("MoveFocusHierarchyDown")
 
 /**
- * Default hotkey - `Ctrl+Right`
+ * Default hotkey - `Ctrl+PageDown`
  */
-inline val MOVE_FOCUS_FORWARD_KEY: ResourceKey<Hotkey>
-    get() = ResourceKey("MoveFocusForwardKey")
+inline val MOVE_FOCUS_HIERARCHY_DOWN_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("MoveFocusHierarchyDownKey")
+
+/**
+ * Default value - "Move Focus to Parent"
+ */
+inline val MOVE_FOCUS_HIERARCHY_UP: ResourceKey<String>
+    get() = ResourceKey("MoveFocusHierarchyUp")
+
+/**
+ * Default hotkey - `Ctrl+PageUp`
+ */
+inline val MOVE_FOCUS_HIERARCHY_UP_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("MoveFocusHierarchyUpKey")
+
+/**
+ * Default value - "Move Focus Left"
+ */
+inline val MOVE_FOCUS_LEFT: ResourceKey<String>
+    get() = ResourceKey("MoveFocusLeft")
+
+/**
+ * Default hotkey - `Action+ArrowLeft`
+ */
+inline val MOVE_FOCUS_LEFT_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("MoveFocusLeftKey")
+
+/**
+ * Default value - "Move Focus Right"
+ */
+inline val MOVE_FOCUS_RIGHT: ResourceKey<String>
+    get() = ResourceKey("MoveFocusRight")
+
+/**
+ * Default hotkey - `Action+ArrowRight`
+ */
+inline val MOVE_FOCUS_RIGHT_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("MoveFocusRightKey")
 
 /**
  * Default value - "Move Focus Up"
@@ -456,7 +564,7 @@ inline val MOVE_FOCUS_UP: ResourceKey<String>
     get() = ResourceKey("MoveFocusUp")
 
 /**
- * Default hotkey - `Ctrl+Up`
+ * Default hotkey - `Action+ArrowUp`
  */
 inline val MOVE_FOCUS_UP_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("MoveFocusUpKey")
@@ -474,13 +582,37 @@ inline val MOVE_HANDLE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("MoveHandle.UndoName")
 
 /**
+ * Default value - "Move to child"
+ */
+inline val MOVE_HIERARCHY_DOWN: ResourceKey<String>
+    get() = ResourceKey("MoveHierarchyDown")
+
+/**
+ * Default hotkey - `Alt+PageDown`
+ */
+inline val MOVE_HIERARCHY_DOWN_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("MoveHierarchyDownKey")
+
+/**
+ * Default value - "Move to Parent"
+ */
+inline val MOVE_HIERARCHY_UP: ResourceKey<String>
+    get() = ResourceKey("MoveHierarchyUp")
+
+/**
+ * Default hotkey - `Alt+PageUp`
+ */
+inline val MOVE_HIERARCHY_UP_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("MoveHierarchyUpKey")
+
+/**
  * Default value - "Move Left"
  */
 inline val MOVE_LEFT: ResourceKey<String>
     get() = ResourceKey("MoveLeft")
 
 /**
- * Default hotkey - `Left`
+ * Default hotkey - `ArrowLeft`
  */
 inline val MOVE_LEFT_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("MoveLeftKey")
@@ -492,34 +624,10 @@ inline val MOVE_RIGHT: ResourceKey<String>
     get() = ResourceKey("MoveRight")
 
 /**
- * Default hotkey - `Right`
+ * Default hotkey - `ArrowRight`
  */
 inline val MOVE_RIGHT_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("MoveRightKey")
-
-/**
- * Default value - "Move Page Down"
- */
-inline val MOVE_TO_PAGE_DOWN: ResourceKey<String>
-    get() = ResourceKey("MoveToPageDown")
-
-/**
- * Default hotkey - `PageDown`
- */
-inline val MOVE_TO_PAGE_DOWN_KEY: ResourceKey<Hotkey>
-    get() = ResourceKey("MoveToPageDownKey")
-
-/**
- * Default value - "Move Page Up"
- */
-inline val MOVE_TO_PAGE_UP: ResourceKey<String>
-    get() = ResourceKey("MoveToPageUp")
-
-/**
- * Default hotkey - `PageUp`
- */
-inline val MOVE_TO_PAGE_UP_KEY: ResourceKey<Hotkey>
-    get() = ResourceKey("MoveToPageUpKey")
 
 /**
  * Default value - "Move Up"
@@ -528,7 +636,7 @@ inline val MOVE_UP: ResourceKey<String>
     get() = ResourceKey("MoveUp")
 
 /**
- * Default hotkey - `Up`
+ * Default hotkey - `ArrowUp`
  */
 inline val MOVE_UP_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("MoveUpKey")
@@ -540,7 +648,7 @@ inline val NEW: ResourceKey<String>
     get() = ResourceKey("New")
 
 /**
- * Default hotkey - `Ctrl+N`
+ * Default hotkey - `Action+N`
  */
 inline val NEW_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("NewKey")
@@ -558,22 +666,10 @@ inline val NODE_DROP_INPUT_MODE__NODE_DROPPED__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("NodeDropInputMode.NodeDropped.UndoName")
 
 /**
- * Default value - "Open"
+ * Default value - "Paste"
  */
-inline val OPEN: ResourceKey<String>
-    get() = ResourceKey("Open")
-
-/**
- * Default value - "Error Loading File"
- */
-inline val OPEN_FILE_FAILED__CAPTION: ResourceKey<String>
-    get() = ResourceKey("OpenFileFailed.Caption")
-
-/**
- * Default value - "There was a problem during the loading of the file."
- */
-inline val OPEN_FILE_FAILED__MESSAGE: ResourceKey<String>
-    get() = ResourceKey("OpenFileFailed.Message")
+inline val PASTE: ResourceKey<String>
+    get() = ResourceKey("Paste")
 
 /**
  * Default value - "Redo Paste"
@@ -588,40 +684,28 @@ inline val PASTE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("Paste.UndoName")
 
 /**
- * Default value - "Paste"
- */
-inline val PASTE: ResourceKey<String>
-    get() = ResourceKey("Paste")
-
-/**
- * Default hotkey - `Ctrl+V`
+ * Default hotkey - `Action+V;Shift+Insert`
  */
 inline val PASTE_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("PasteKey")
 
 /**
- * Default value - "Print"
+ * Default value - "Raise"
  */
-inline val PRINT: ResourceKey<String>
-    get() = ResourceKey("Print")
+inline val RAISE: ResourceKey<String>
+    get() = ResourceKey("Raise")
 
 /**
- * Default hotkey - `Ctrl+P`
+ * Default value - "Raise"
  */
-inline val PRINT_KEY: ResourceKey<Hotkey>
-    get() = ResourceKey("PrintKey")
+inline val RAISE__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("Raise.RedoName")
 
 /**
- * Default value - "PrintPreview"
+ * Default value - "Raise"
  */
-inline val PRINT_PREVIEW: ResourceKey<String>
-    get() = ResourceKey("PrintPreview")
-
-/**
- * Default hotkey - `Ctrl+F2`
- */
-inline val PRINT_PREVIEW_KEY: ResourceKey<Hotkey>
-    get() = ResourceKey("PrintPreviewKey")
+inline val RAISE__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("Raise.UndoName")
 
 /**
  * Default value - "Redo"
@@ -630,7 +714,7 @@ inline val REDO: ResourceKey<String>
     get() = ResourceKey("Redo")
 
 /**
- * Default hotkey - `Ctrl+Y`
+ * Default hotkey - `Action+Y;Action+Shift+Z`
  */
 inline val REDO_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("RedoKey")
@@ -696,13 +780,13 @@ inline val REMOVE_PORT__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("RemovePort.UndoName")
 
 /**
- * Default value - "Add Stripe"
+ * Default value - "Remove Stripe"
  */
 inline val REMOVE_STRIPE__REDO_NAME: ResourceKey<String>
     get() = ResourceKey("RemoveStripe.RedoName")
 
 /**
- * Default value - "Remove Stripe"
+ * Default value - "Add Stripe"
  */
 inline val REMOVE_STRIPE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("RemoveStripe.UndoName")
@@ -732,28 +816,28 @@ inline val RESIZE_NODE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("ResizeNode.UndoName")
 
 /**
- * Default value - "Save"
+ * Default value - "Reverse Edge"
  */
-inline val SAVE: ResourceKey<String>
-    get() = ResourceKey("Save")
+inline val REVERSE_EDGE: ResourceKey<String>
+    get() = ResourceKey("ReverseEdge")
 
 /**
- * Default value - "Save As…​"
+ * Default value - "Reverse Edge"
  */
-inline val SAVE_AS: ResourceKey<String>
-    get() = ResourceKey("SaveAs")
+inline val REVERSE_EDGE__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("ReverseEdge.RedoName")
 
 /**
- * Default value - "Error Saving File"
+ * Default value - "Reverse Edge"
  */
-inline val SAVE_FILE_FAILED__CAPTION: ResourceKey<String>
-    get() = ResourceKey("SaveFileFailed.Caption")
+inline val REVERSE_EDGE__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("ReverseEdge.UndoName")
 
 /**
- * Default value - "There was a problem during the saving of the file."
+ * Default hotkey - `Action+R`
  */
-inline val SAVE_FILE_FAILED__MESSAGE: ResourceKey<String>
-    get() = ResourceKey("SaveFileFailed.Message")
+inline val REVERSE_EDGE_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("ReverseEdgeKey")
 
 /**
  * Default value - "Scroll Page Down"
@@ -774,10 +858,22 @@ inline val SCROLL_PAGE_LEFT: ResourceKey<String>
     get() = ResourceKey("ScrollPageLeft")
 
 /**
+ * Default hotkey - `Shift+PageUp`
+ */
+inline val SCROLL_PAGE_LEFT_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("ScrollPageLeftKey")
+
+/**
  * Default value - "Scroll Page Right"
  */
 inline val SCROLL_PAGE_RIGHT: ResourceKey<String>
     get() = ResourceKey("ScrollPageRight")
+
+/**
+ * Default hotkey - `Shift+PageDown`
+ */
+inline val SCROLL_PAGE_RIGHT_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("ScrollPageRightKey")
 
 /**
  * Default value - "Scroll Page Up"
@@ -798,7 +894,7 @@ inline val SELECT_ALL: ResourceKey<String>
     get() = ResourceKey("SelectAll")
 
 /**
- * Default hotkey - `Ctrl+A`
+ * Default hotkey - `Action+A`
  */
 inline val SELECT_ALL_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("SelectAllKey")
@@ -816,6 +912,18 @@ inline val SET_CURRENT_ITEM: ResourceKey<String>
     get() = ResourceKey("SetCurrentItem")
 
 /**
+ * Default value - "Reconnect Edge"
+ */
+inline val SET_EDGE_PORTS__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetEdgePorts.RedoName")
+
+/**
+ * Default value - "Reconnect Edge"
+ */
+inline val SET_EDGE_PORTS__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetEdgePorts.UndoName")
+
+/**
  * Default value - "Change Edge Style"
  */
 inline val SET_EDGE_STYLE__REDO_NAME: ResourceKey<String>
@@ -826,6 +934,30 @@ inline val SET_EDGE_STYLE__REDO_NAME: ResourceKey<String>
  */
 inline val SET_EDGE_STYLE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("SetEdgeStyle.UndoName")
+
+/**
+ * Default value - "Convert Back to Normal Node"
+ */
+inline val SET_IS_GROUP_NODE__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetIsGroupNode.RedoName")
+
+/**
+ * Default value - "Convert to Group Node"
+ */
+inline val SET_IS_GROUP_NODE__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetIsGroupNode.UndoName")
+
+/**
+ * Default value - "Convert Back to Group Node"
+ */
+inline val SET_IS_NO_GROUP_NODE__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetIsNoGroupNode.RedoName")
+
+/**
+ * Default value - "Convert to Normal Node"
+ */
+inline val SET_IS_NO_GROUP_NODE__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetIsNoGroupNode.UndoName")
 
 /**
  * Default value - "Change Label Position"
@@ -864,18 +996,6 @@ inline val SET_LABEL_TEXT__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("SetLabelText.UndoName")
 
 /**
- * Default value - "Convert Back to Group Node"
- */
-inline val SET_LEAF__REDO_NAME: ResourceKey<String>
-    get() = ResourceKey("SetLeaf.RedoName")
-
-/**
- * Default value - "Convert to Normal Node"
- */
-inline val SET_LEAF__UNDO_NAME: ResourceKey<String>
-    get() = ResourceKey("SetLeaf.UndoName")
-
-/**
  * Default value - "Change Port Location"
  */
 inline val SET_LOCATION_MODEL_PARAMETER__REDO_NAME: ResourceKey<String>
@@ -900,18 +1020,6 @@ inline val SET_NODE_STYLE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("SetNodeStyle.UndoName")
 
 /**
- * Default value - "Convert Back to Normal Node"
- */
-inline val SET_NON_LEAF__REDO_NAME: ResourceKey<String>
-    get() = ResourceKey("SetNonLeaf.RedoName")
-
-/**
- * Default value - "Convert to Group Node"
- */
-inline val SET_NON_LEAF__UNDO_NAME: ResourceKey<String>
-    get() = ResourceKey("SetNonLeaf.UndoName")
-
-/**
  * Default value - "Change Parent"
  */
 inline val SET_PARENT__REDO_NAME: ResourceKey<String>
@@ -922,6 +1030,18 @@ inline val SET_PARENT__REDO_NAME: ResourceKey<String>
  */
 inline val SET_PARENT__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("SetParent.UndoName")
+
+/**
+ * Default value - "Change Port Location"
+ */
+inline val SET_PORT_LOCATION_PARAMETER__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetPortLocationParameter.RedoName")
+
+/**
+ * Default value - "Change Port Location"
+ */
+inline val SET_PORT_LOCATION_PARAMETER__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetPortLocationParameter.UndoName")
 
 /**
  * Default value - "Reconnect Edge"
@@ -960,18 +1080,6 @@ inline val SET_PREFERRED_LABEL_SIZE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("SetPreferredLabelSize.UndoName")
 
 /**
- * Default value - "Change Stripe Insets"
- */
-inline val SET_STRIPE_INSETS__REDO_NAME: ResourceKey<String>
-    get() = ResourceKey("SetStripeInsets.RedoName")
-
-/**
- * Default value - "Change Stripe Insets"
- */
-inline val SET_STRIPE_INSETS__UNDO_NAME: ResourceKey<String>
-    get() = ResourceKey("SetStripeInsets.UndoName")
-
-/**
  * Default value - "Change Minimum Stripe Size"
  */
 inline val SET_STRIPE_MINIMUM_SIZE__REDO_NAME: ResourceKey<String>
@@ -982,6 +1090,18 @@ inline val SET_STRIPE_MINIMUM_SIZE__REDO_NAME: ResourceKey<String>
  */
 inline val SET_STRIPE_MINIMUM_SIZE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("SetStripeMinimumSize.UndoName")
+
+/**
+ * Default value - "Change Stripe Insets"
+ */
+inline val SET_STRIPE_PADDING__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetStripePadding.RedoName")
+
+/**
+ * Default value - "Change Stripe Insets"
+ */
+inline val SET_STRIPE_PADDING__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("SetStripePadding.UndoName")
 
 /**
  * Default value - "Change Stripe Size"
@@ -1008,13 +1128,61 @@ inline val SET_STRIPE_STYLE__UNDO_NAME: ResourceKey<String>
     get() = ResourceKey("SetStripeStyle.UndoName")
 
 /**
- * Default value - "Toggle Group State"
+ * Default value - "Change Tag"
+ */
+inline val TAG_CHANGE__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("TagChange.RedoName")
+
+/**
+ * Default value - "Change Tag"
+ */
+inline val TAG_CHANGE__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("TagChange.UndoName")
+
+/**
+ * Default value - "To Back"
+ */
+inline val TO_BACK: ResourceKey<String>
+    get() = ResourceKey("ToBack")
+
+/**
+ * Default value - "To Back"
+ */
+inline val TO_BACK__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("ToBack.RedoName")
+
+/**
+ * Default value - "To Back"
+ */
+inline val TO_BACK__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("ToBack.UndoName")
+
+/**
+ * Default value - "To Front"
+ */
+inline val TO_FRONT: ResourceKey<String>
+    get() = ResourceKey("ToFront")
+
+/**
+ * Default value - "To Front"
+ */
+inline val TO_FRONT__REDO_NAME: ResourceKey<String>
+    get() = ResourceKey("ToFront.RedoName")
+
+/**
+ * Default value - "To Front"
+ */
+inline val TO_FRONT__UNDO_NAME: ResourceKey<String>
+    get() = ResourceKey("ToFront.UndoName")
+
+/**
+ * Default value - "Toggle Expansion State"
  */
 inline val TOGGLE_EXPANSION_STATE: ResourceKey<String>
     get() = ResourceKey("ToggleExpansionState")
 
 /**
- * Default hotkey - `Ctrl+Multiply`
+ * Default hotkey - `Alt+Shift+ArrowLeft;Alt+Shift+ArrowRight`
  */
 inline val TOGGLE_EXPANSION_STATE_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("ToggleExpansionStateKey")
@@ -1026,7 +1194,7 @@ inline val TOGGLE_ITEM_SELECTION: ResourceKey<String>
     get() = ResourceKey("ToggleItemSelection")
 
 /**
- * Default hotkey - `Ctrl+Space`
+ * Default hotkey - `Control+Space`
  */
 inline val TOGGLE_ITEM_SELECTION_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("ToggleItemSelectionKey")
@@ -1044,7 +1212,7 @@ inline val UNDO: ResourceKey<String>
     get() = ResourceKey("Undo")
 
 /**
- * Default hotkey - `Ctrl+Z`
+ * Default hotkey - `Action+Z`
  */
 inline val UNDO_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("UndoKey")
@@ -1056,27 +1224,51 @@ inline val UNGROUP_SELECTION: ResourceKey<String>
     get() = ResourceKey("UngroupSelection")
 
 /**
- * Default hotkey - `Ctrl+U`
+ * Default hotkey - `Action+U`
  */
 inline val UNGROUP_SELECTION_KEY: ResourceKey<Hotkey>
     get() = ResourceKey("UngroupSelectionKey")
 
 /**
- * Default value - "Update Content Rectangle"
+ * Default value - "Update Content Bounds"
  */
-inline val UPDATE_CONTENT_RECT: ResourceKey<String>
-    get() = ResourceKey("UpdateContentRect")
+inline val UPDATE_CONTENT_BOUNDS: ResourceKey<String>
+    get() = ResourceKey("UpdateContentBounds")
 
 /**
  * Default value - "Zoom"
  */
-inline val ZOOM: ResourceKey<String>
-    get() = ResourceKey("Zoom")
+inline val ZOOM_100: ResourceKey<String>
+    get() = ResourceKey("Zoom 100%")
+
+/**
+ * Default hotkey - `Action+0;Alt+0`
+ */
+inline val ZOOM_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("ZoomKey")
 
 /**
  * Default value - "Zoom To Current Item"
  */
 inline val ZOOM_TO_CURRENT_ITEM: ResourceKey<String>
     get() = ResourceKey("ZoomToCurrentItem")
+
+/**
+ * Default hotkey - `Alt+3`
+ */
+inline val ZOOM_TO_CURRENT_ITEM_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("ZoomToCurrentItemKey")
+
+/**
+ * Default value - "Zoom To Selected Items"
+ */
+inline val ZOOM_TO_SELECTION: ResourceKey<String>
+    get() = ResourceKey("ZoomToSelection")
+
+/**
+ * Default hotkey - `Alt+2`
+ */
+inline val ZOOM_TO_SELECTION_KEY: ResourceKey<Hotkey>
+    get() = ResourceKey("ZoomToSelectionKey")
 
         }

@@ -20,6 +20,7 @@ import yfiles.lang.InterfaceMetadata
  */
 external interface IPortGridConstraintProvider : IGridConstraintProvider<IPort> {
 
-companion object : InterfaceMetadata<IPortGridConstraintProvider> {
-}
+  
+  companion object : InterfaceMetadata<IPortGridConstraintProvider> {
+  }
 }

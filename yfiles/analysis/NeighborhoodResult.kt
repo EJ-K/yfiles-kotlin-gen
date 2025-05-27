@@ -13,21 +13,18 @@ package yfiles.analysis
 
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
- * The direct or indirect neighbors of the a given set of [Neighborhood.startNodes].
+ * The direct or indirect neighbors of a given set of [startNodes][Neighborhood].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NeighborhoodResult">Online Documentation</a>
  */
-external  class NeighborhoodResult 
-private constructor () : YObject {
-
-/**
- * The direct or indirect neighbors of the [Neighborhood.startNodes].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NeighborhoodResult%23neighbors">Online Documentation</a>
- */
-final val neighbors: ResultItemCollection<INode>
-
-companion object : ClassMetadata<NeighborhoodResult> {
-}
+external class NeighborhoodResult private constructor()  {
+  /**
+   * The direct or indirect neighbors of the [startNodes][Neighborhood].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NeighborhoodResult%23neighbors">Online Documentation</a>
+   */
+  final val neighbors: ResultItemCollection<INode>
+  
+  companion object : ClassMetadata<NeighborhoodResult> {
+  }
 }

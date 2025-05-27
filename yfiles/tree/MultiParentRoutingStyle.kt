@@ -11,40 +11,36 @@
 
 package yfiles.tree
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * @see [MultiParentDescriptor.edgeStyle]
+ * Specifies the routing styles for edges in a multi-parent structure.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MultiParentRoutingStyle">Online Documentation</a>
  */
-external sealed class MultiParentRoutingStyle: YEnum<MultiParentRoutingStyle> {
-   companion object: EnumMetadata<MultiParentRoutingStyle> {
-       /**
- * Routing style for routing non-shared edge segments in a polyline fashion.
- * 
- * Value - `0`
- * @see [MultiParentDescriptor.edgeStyle]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MultiParentRoutingStyle%23POLYLINE">Online Documentation</a>
- */
-val POLYLINE: MultiParentRoutingStyle
 
-/**
- * Routing style for routing non-shared edge segments in an orthogonal fashion.
- * 
- * Value - `1`
- * @see [MultiParentDescriptor.edgeStyle]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MultiParentRoutingStyle%23ORTHOGONAL">Online Documentation</a>
- */
-val ORTHOGONAL: MultiParentRoutingStyle
-
-/**
- * Routing style for routing non-shared edge segments straight.
- * 
- * Value - `2`
- * @see [MultiParentDescriptor.edgeStyle]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MultiParentRoutingStyle%23STRAIGHT">Online Documentation</a>
- */
-val STRAIGHT: MultiParentRoutingStyle
-   }
+sealed external class MultiParentRoutingStyle {
+  /**
+   * Routing style for routing non-shared edge segments in a polyline fashion.
+   * 
+   * Value - `0`
+   * @see [MultiParentDescriptor.edgeRoutingStyle]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MultiParentRoutingStyle%23POLYLINE">Online Documentation</a>
+   */
+  object POLYLINE: MultiParentRoutingStyle
+  
+  /**
+   * Routing style for routing non-shared edge segments in an orthogonal fashion.
+   * 
+   * Value - `1`
+   * @see [MultiParentDescriptor.edgeRoutingStyle]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MultiParentRoutingStyle%23ORTHOGONAL">Online Documentation</a>
+   */
+  object ORTHOGONAL: MultiParentRoutingStyle
+  
+  /**
+   * Routing style for routing non-shared edge segments straight.
+   * 
+   * Value - `2`
+   * @see [MultiParentDescriptor.edgeRoutingStyle]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MultiParentRoutingStyle%23STRAIGHT_LINE">Online Documentation</a>
+   */
+  object STRAIGHT_LINE: MultiParentRoutingStyle
 }

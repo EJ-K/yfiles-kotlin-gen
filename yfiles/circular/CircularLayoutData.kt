@@ -11,19 +11,16 @@
 
 package yfiles.circular
 
-import yfiles.algorithms.AbortHandler
 import yfiles.algorithms.EdgeDirectedness
 import yfiles.collections.IMapper
-import yfiles.graph.IEdge
-import yfiles.graph.INode
+import yfiles.collections.ItemCollection
+import yfiles.collections.ItemMapping
+import yfiles.geometry.Insets
 import yfiles.lang.ClassMetadata
-import yfiles.lang.Id
+import yfiles.lang.Comparison1
+import yfiles.layout.BasicPortData
 import yfiles.layout.EdgeBundleDescriptor
-import yfiles.layout.INodeType
-import yfiles.layout.ItemCollection
-import yfiles.layout.ItemMapping
 import yfiles.layout.LayoutData
-import yfiles.layout.NodeHalo
 
 /**
  * Specifies custom data for the [CircularLayout].
@@ -32,71 +29,72 @@ import yfiles.layout.NodeHalo
  * @constructor Creates a new instance of [CircularLayoutData] which helps configuring [CircularLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23CircularLayoutData-constructor-CircularLayoutData">Online Documentation</a>
  */
-external open class CircularLayoutData  () : LayoutData {
-
-/**
- * Gets or sets the [AbortHandler] used during the layout.
- * @see [LayoutExecutor.abortHandler][yfiles.layout.LayoutExecutor.abortHandler]
- * @see [AbortHandler.ABORT_HANDLER_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23abortHandler">Online Documentation</a>
- */
-final var abortHandler: AbortHandler?
-/**
- * Gets or sets the mapper from nodes to their circle id.
- * @see [CircularLayout.CIRCLE_ID_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23circleIds">Online Documentation</a>
- */
-final var circleIds: IMapper<INode, Int>
-/**
- * Gets or sets the mapping from nodes to their custom group object.
- * @see [CircularLayout.CUSTOM_GROUPS_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23customGroups">Online Documentation</a>
- */
-final var customGroups: ItemMapping<INode, Id>
-/**
- * Gets or sets the mapping of edges to their [EdgeBundleDescriptor].
- * @see [EdgeBundleDescriptor]
- * @see [EdgeBundling.EDGE_BUNDLE_DESCRIPTOR_DP_KEY][yfiles.layout.EdgeBundling.EDGE_BUNDLE_DESCRIPTOR_DP_KEY]
- * @see [CircularLayout.edgeBundling]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23edgeBundleDescriptors">Online Documentation</a>
- */
-final var edgeBundleDescriptors: ItemMapping<IEdge, EdgeBundleDescriptor>
-/**
- * Gets or sets the mapping from edges to their directedness.
- * @see [CircularLayout.starSubstructureStyle]
- * @see [CircularLayout.EDGE_DIRECTEDNESS_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23edgeDirectedness">Online Documentation</a>
- */
-final var edgeDirectedness: ItemMapping<IEdge, EdgeDirectedness>
-/**
- * Gets or sets the collection of edges that are routed around the exterior of circle formed by each partition.
- * @see [CircularLayoutEdgeRoutingPolicy.MARKED_EXTERIOR]
- * @see [CircularLayout.EXTERIOR_EDGES_DP_KEY]
- * @see [CircularLayout.exteriorEdgeLayoutDescriptor]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23exteriorEdges">Online Documentation</a>
- */
-final var exteriorEdges: ItemCollection<IEdge>
-/**
- * Gets or sets the mapping from nodes to their [NodeHalo].
- * @see [NodeHalo.NODE_HALO_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23nodeHalos">Online Documentation</a>
- */
-final var nodeHalos: ItemMapping<INode, NodeHalo>
-/**
- * Gets or sets the mapping from nodes to an object defining the node type which is considered during the layout.
- * @see [LayoutKeys.NODE_TYPE_DP_KEY][yfiles.layout.LayoutKeys.NODE_TYPE_DP_KEY]
- * @see [NodeTypeAwareSequencer]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23nodeTypes">Online Documentation</a>
- */
-final var nodeTypes: ItemMapping<INode, INodeType>
-
-companion object : ClassMetadata<CircularLayoutData> {
-}
-}
-
-inline fun CircularLayoutData(
-    block: CircularLayoutData.() -> Unit
-): CircularLayoutData {
-    return CircularLayoutData()
-        .apply(block)
+external class CircularLayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> () : LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> {
+  /**
+   * Gets a mapper from nodes to their circle ID.
+   * @see [CircularLayout.CIRCLE_ID_RESULT_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23circleIdsResult">Online Documentation</a>
+   */
+  final val circleIdsResult: IMapper<TNode, Double>
+  
+  /**
+   * Gets or sets the mapping of edges to their [EdgeBundleDescriptor].
+   * @see [EdgeBundleDescriptor]
+   * @see [EdgeBundling.EDGE_BUNDLE_DESCRIPTOR_DATA_KEY][yfiles.layout.EdgeBundling.EDGE_BUNDLE_DESCRIPTOR_DATA_KEY]
+   * @see [CircularLayout.edgeBundling]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23edgeBundleDescriptors">Online Documentation</a>
+   */
+  final var edgeBundleDescriptors: ItemMapping<TEdge, EdgeBundleDescriptor>
+  
+  /**
+   * Gets or sets the mapping from edges to their directedness.
+   * @see [CircularLayout.starSubstructureStyle]
+   * @see [LayoutKeys.EDGE_DIRECTEDNESS_DATA_KEY][yfiles.layout.LayoutKeys.EDGE_DIRECTEDNESS_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23edgeDirectedness">Online Documentation</a>
+   */
+  final var edgeDirectedness: ItemMapping<TEdge, EdgeDirectedness>
+  
+  /**
+   * Gets or sets the collection of edges that are routed around the exterior of a circle formed by each partition.
+   * @see [CircularLayout.EXTERIOR_EDGES_DATA_KEY]
+   * @see [CircularLayout.exteriorEdgeDescriptor]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23exteriorEdges">Online Documentation</a>
+   */
+  final var exteriorEdges: ItemCollection<TEdge>
+  
+  /**
+   * Gets or sets a comparison function used for determining the node order on the circle.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23nodeComparator">Online Documentation</a>
+   */
+  final var nodeComparator: Comparison1<TNode>?
+  
+  /**
+   * Gets or sets the mapping from nodes to their margins.
+   * @see [LayoutKeys.NODE_MARGIN_DATA_KEY][yfiles.layout.LayoutKeys.NODE_MARGIN_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23nodeMargins">Online Documentation</a>
+   */
+  final var nodeMargins: ItemMapping<TNode, Insets>
+  
+  /**
+   * Gets or sets the mapping from nodes to an object defining the node type which is considered during the layout.
+   * @see [LayoutKeys.NODE_TYPE_DATA_KEY][yfiles.layout.LayoutKeys.NODE_TYPE_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23nodeTypes">Online Documentation</a>
+   */
+  final var nodeTypes: ItemMapping<TNode, Any>
+  
+  /**
+   * Gets or sets the mapping from nodes to their partition object.
+   * @see [CircularLayout.PARTITION_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23partitions">Online Documentation</a>
+   */
+  final var partitions: ItemMapping<TNode, Any>
+  
+  /**
+   * Gets or sets the sub-data that provides a way of influencing the placement of the ports.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CircularLayoutData%23ports">Online Documentation</a>
+   */
+  final var ports: BasicPortData<TNode, TEdge, TNodeLabel, TEdgeLabel>
+  
+  companion object : ClassMetadata<CircularLayoutData<*, *, *, *>> {
+  }
 }

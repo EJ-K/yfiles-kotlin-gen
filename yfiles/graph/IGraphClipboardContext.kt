@@ -11,6 +11,7 @@
 
 package yfiles.graph
 
+import yfiles.collections.ILookup
 import yfiles.lang.InterfaceMetadata
 
 /**
@@ -18,22 +19,25 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphClipboardContext">Online Documentation</a>
  */
 external interface IGraphClipboardContext : ILookup {
-/**
- * Gets the clipboard that created this context and is used during the current operation.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphClipboardContext%23clipboard">Online Documentation</a>
- */
-val clipboard: GraphClipboard
-/**
- * Gets the source graph for the current operation.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphClipboardContext%23sourceGraph">Online Documentation</a>
- */
-val sourceGraph: IGraph
-/**
- * Gets the target graph for the current operation.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphClipboardContext%23targetGraph">Online Documentation</a>
- */
-val targetGraph: IGraph
+  /**
+   * Gets the clipboard that created this context and is used during the current operation.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphClipboardContext%23clipboard">Online Documentation</a>
+   */
+  val clipboard: GraphClipboard
+  
+  /**
+   * Gets the source graph for the current operation.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphClipboardContext%23sourceGraph">Online Documentation</a>
+   */
+  val sourceGraph: IGraph
+  
+  /**
+   * Gets the target graph for the current operation.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphClipboardContext%23targetGraph">Online Documentation</a>
+   */
+  val targetGraph: IGraph
 
-companion object : InterfaceMetadata<IGraphClipboardContext> {
-}
+  
+  companion object : InterfaceMetadata<IGraphClipboardContext> {
+  }
 }

@@ -11,46 +11,41 @@
 
 package yfiles.input
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * Defines the direction of an edge segment
- * @see [CreateEdgeInputMode.getFirstSegmentDirection]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection">Online Documentation</a>
  */
-external sealed class EdgeSegmentDirection: YEnum<EdgeSegmentDirection> {
-   companion object: EnumMetadata<EdgeSegmentDirection> {
-       /**
- * The edge segment is going into north direction
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection%23NORTH">Online Documentation</a>
- */
-val NORTH: EdgeSegmentDirection
 
-/**
- * The edge segment is going into east direction
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection%23EAST">Online Documentation</a>
- */
-val EAST: EdgeSegmentDirection
-
-/**
- * The edge segment is going into south direction
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection%23SOUTH">Online Documentation</a>
- */
-val SOUTH: EdgeSegmentDirection
-
-/**
- * The edge segment is going into west direction
- * 
- * Value - `3`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection%23WEST">Online Documentation</a>
- */
-val WEST: EdgeSegmentDirection
-   }
+sealed external class EdgeSegmentDirection {
+  /**
+   * The edge segment is going upwards.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection%23UP">Online Documentation</a>
+   */
+  object UP: EdgeSegmentDirection
+  
+  /**
+   * The edge segment is going to the right.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection%23RIGHT">Online Documentation</a>
+   */
+  object RIGHT: EdgeSegmentDirection
+  
+  /**
+   * The edge segment is going downwards.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection%23DOWN">Online Documentation</a>
+   */
+  object DOWN: EdgeSegmentDirection
+  
+  /**
+   * The edge segment is going to the left.
+   * 
+   * Value - `3`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeSegmentDirection%23LEFT">Online Documentation</a>
+   */
+  object LEFT: EdgeSegmentDirection
 }

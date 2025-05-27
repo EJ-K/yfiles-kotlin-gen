@@ -13,7 +13,6 @@ package yfiles.binding
 
 import yfiles.collections.ItemEventArgs
 import yfiles.graph.IGraph
-import yfiles.graph.IModelItem
 import yfiles.lang.ClassMetadata
 
 /**
@@ -27,22 +26,20 @@ import yfiles.lang.ClassMetadata
  * @param [item] The item created from `dataItem`.
  * @param [dataItem] The object `item` was created from.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphBuilderItemEventArgs%23GraphBuilderItemEventArgs-constructor-GraphBuilderItemEventArgs">Online Documentation</a>
- */
-external open class GraphBuilderItemEventArgs<TItem : IModelItem, TDataItem>  ( graph: IGraph ,
- item: TItem ,
- dataItem: TDataItem? ) : ItemEventArgs<TItem> {
-
-/**
- * Gets the object the [ItemEventArgs.item] has been created from.
+ * 
+ * @property graph
+ * Gets the graph that can be used to modify the [item][ItemEventArgs].
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphBuilderItemEventArgs%23graph">Online Documentation</a>
+ * 
+ * @property dataItem
+ * Gets the object the [item][ItemEventArgs] has been created from.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphBuilderItemEventArgs%23dataItem">Online Documentation</a>
  */
-final val dataItem: TDataItem
-/**
- * Gets the graph that can be used to modify the [ItemEventArgs.item].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphBuilderItemEventArgs%23graph">Online Documentation</a>
- */
-final val graph: IGraph
-
-companion object : ClassMetadata<GraphBuilderItemEventArgs<*, *>> {
-}
+external class GraphBuilderItemEventArgs<TItem, TDataItem> (
+final val graph: IGraph,
+item: TItem,
+final val dataItem: TDataItem) : ItemEventArgs<TItem> {
+  
+  companion object : ClassMetadata<GraphBuilderItemEventArgs<*, *>> {
+  }
 }

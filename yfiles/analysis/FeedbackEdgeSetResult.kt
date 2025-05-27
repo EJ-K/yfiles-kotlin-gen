@@ -13,21 +13,18 @@ package yfiles.analysis
 
 import yfiles.graph.IEdge
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
- * Represents edges that can be removed or reversed in a graph to make it acyclic as computed by [feedbackEdgeSet].
+ * Represents edges that can be removed or reversed in a graph to make it acyclic as computed by [feedbackEdgeSet][FeedbackEdgeSetResult].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FeedbackEdgeSetResult">Online Documentation</a>
  */
-external  class FeedbackEdgeSetResult 
-private constructor () : YObject {
-
-/**
- * Gets a collection of edges whose removal or reversal would make the graph acyclic.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FeedbackEdgeSetResult%23feedbackEdgeSet">Online Documentation</a>
- */
-final val feedbackEdgeSet: ResultItemCollection<IEdge>
-
-companion object : ClassMetadata<FeedbackEdgeSetResult> {
-}
+external class FeedbackEdgeSetResult private constructor()  {
+  /**
+   * Gets a collection of edges whose removal or reversal would make the graph acyclic.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/FeedbackEdgeSetResult%23feedbackEdgeSet">Online Documentation</a>
+   */
+  final val feedbackEdgeSet: ResultItemCollection<IEdge>
+  
+  companion object : ClassMetadata<FeedbackEdgeSetResult> {
+  }
 }

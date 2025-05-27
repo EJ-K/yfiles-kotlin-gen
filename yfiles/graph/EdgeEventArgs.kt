@@ -19,40 +19,36 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [EdgeEventArgs] class.
- * @param [edge] The edge to assign to the [ItemEventArgs.item] property.
+ * @param [edge] The edge to assign to the [item][ItemEventArgs] property.
  * @param [sourcePort] The source port the edge was connected to before the event happened.
  * @param [targetPort] The target port the edge was connected to before the event happened.
  * @param [sourcePortOwner] The owner of the source port the edge was connected to before the event happened.
  * @param [targetPortOwner] The owner of the target port the edge was connected to before the event happened.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeEventArgs%23EdgeEventArgs-constructor-EdgeEventArgs">Online Documentation</a>
- */
-external  class EdgeEventArgs  ( edge: IEdge ,
- sourcePort: IPort?  = definedExternally,
- targetPort: IPort?  = definedExternally,
- sourcePortOwner: IPortOwner?  = definedExternally,
- targetPortOwner: IPortOwner?  = definedExternally) : ItemEventArgs<IEdge> {
-
-/**
+ * 
+ * @property sourcePort
  * Gets the source port the edge was connected to before the event happened.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeEventArgs%23sourcePort">Online Documentation</a>
- */
-final val sourcePort: IPort
-/**
- * Gets the owner of the source port the edge was connected to before the event happened.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeEventArgs%23sourcePortOwner">Online Documentation</a>
- */
-final val sourcePortOwner: IPortOwner
-/**
+ * 
+ * @property targetPort
  * Gets the target port the edge was connected to before the event happened.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeEventArgs%23targetPort">Online Documentation</a>
- */
-final val targetPort: IPort
-/**
+ * 
+ * @property sourcePortOwner
+ * Gets the owner of the source port the edge was connected to before the event happened.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeEventArgs%23sourcePortOwner">Online Documentation</a>
+ * 
+ * @property targetPortOwner
  * Gets the owner of the target port the edge was connected to before the event happened.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/EdgeEventArgs%23targetPortOwner">Online Documentation</a>
  */
-final val targetPortOwner: IPortOwner
-
-companion object : ClassMetadata<EdgeEventArgs> {
-}
+external class EdgeEventArgs (
+edge: IEdge,
+final val sourcePort: IPort = definedExternally,
+final val targetPort: IPort = definedExternally,
+final val sourcePortOwner: IPortOwner = definedExternally,
+final val targetPortOwner: IPortOwner = definedExternally) : ItemEventArgs<IEdge> {
+  
+  companion object : ClassMetadata<EdgeEventArgs> {
+  }
 }

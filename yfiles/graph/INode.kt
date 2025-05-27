@@ -22,19 +22,21 @@ import yfiles.styles.INodeStyle
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/INode">Online Documentation</a>
  */
 external interface INode : IPortOwner, ILabelOwner {
-/**
- * Gets a rectangle describing the position and size of the node.
- * @see [IGraph.setNodeLayout]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/INode%23layout">Online Documentation</a>
- */
-val layout: IRectangle
-/**
- * Gets the style that is responsible for the visual representation of this node in a [CanvasComponent][yfiles.view.CanvasComponent].
- * @see [IGraph.setStyle]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/INode%23style">Online Documentation</a>
- */
-val style: INodeStyle
+  /**
+   * Gets a rectangle describing the position and size of the node.
+   * @see [IGraph.setNodeLayout]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/INode%23layout">Online Documentation</a>
+   */
+  val layout: IRectangle
+  
+  /**
+   * Gets the style that is responsible for the visual representation of this node in a [CanvasComponent][yfiles.view.CanvasComponent].
+   * @see [IGraph.setStyle]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/INode%23style">Online Documentation</a>
+   */
+  val style: INodeStyle
 
-companion object : InterfaceMetadata<INode> {
-}
+  
+  companion object : InterfaceMetadata<INode> {
+  }
 }

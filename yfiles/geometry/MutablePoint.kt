@@ -15,66 +15,75 @@ import yfiles.lang.ClassMetadata
 import yfiles.lang.ICloneable
 
 /**
- * A mutable point in 2D coordinate space with double precision coordinates.
+ * Represents a mutable point in two-dimensional Cartesian coordinates.
+ * @see [Point]
  * @see [IPoint]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint">Online Documentation</a>
  * 
  * @constructor Creates an instance using the given coordinate pair.
- * @param [x] The x coordinate
- * @param [y] The y coordinate
+ * @param [x] The x-coordinate
+ * @param [y] The y-coordinate
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-constructor-MutablePoint(number,number)">Online Documentation</a>
  * 
  * @property x
- * Gets or sets the x coordinate.
+ * Gets or sets the x-coordinate.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23x">Online Documentation</a>
  * 
  * @property y
- * Gets or sets the y coordinate.
+ * Gets or sets the y-coordinate.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23y">Online Documentation</a>
  */
-external  class MutablePoint  (
+external class MutablePoint (
 final override var x: Double,
 final override var y: Double) : IMutablePoint, ICloneable<MutablePoint> {
-/**
- * Creates the point with initially `0.0` values for [x] and [y].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-constructor-MutablePoint()">Online Documentation</a>
- */
- constructor()
-/**
- * Creates an instance using the given coordinate pair.
- * @param [point] The coordinate.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-constructor-MutablePoint(IPoint)">Online Documentation</a>
- */
- constructor( point: IPoint )
-
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-method-clone">Online Documentation</a>
- */
- final override   fun clone():MutablePoint
-/**
- * Moves this instance by adding the provided offsets to the coordinates of this point.
- * @param [delta] The offset to add to this point's x coordinate
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-method-moveBy">Online Documentation</a>
- */
- final   fun moveBy( delta: Point )
-/**
- * Normalizes this point as if it was a vector.
- * @see [Point.normalized]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-method-normalize">Online Documentation</a>
- */
- final   fun normalize()
-
-/**
- * @return [x]
- */    
-@JsName("__ygen_x_negy__")
-final operator fun component1(): Double
-/**
- * @return [y]
- */    
-@JsName("__ygen_y_negy__")
-final operator fun component2(): Double
-
-companion object : ClassMetadata<MutablePoint> {
-}
+  /**
+   * Creates the point with initial `0.0` values for [x][MutablePoint] and [y][MutablePoint].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-constructor-MutablePoint()">Online Documentation</a>
+   */ constructor()
+  /**
+   * Creates an instance using the given coordinate pair.
+   * @param [point] The coordinate.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-constructor-MutablePoint(IPoint)">Online Documentation</a>
+   */ constructor(
+    point: IPoint,
+  )
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-method-clone">Online Documentation</a>
+   */
+  override fun clone(): MutablePoint
+  /**
+   * @return [x]
+   */    
+  @JsName("__ygen_x_negy__")
+  final operator fun component1(): Double
+  /**
+   * @return [y]
+   */    
+  @JsName("__ygen_y_negy__")
+  final operator fun component2(): Double
+  
+  
+  
+  companion object : ClassMetadata<MutablePoint> {
+    /**
+     * Performs an implicit conversion from [Point] to [MutablePoint].
+     * @param [point] The point to convert.
+     * @return A mutable instance of the given point.
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-method-convertFrom">Online Documentation</a>
+     */
+    @JsName("convertFrom")
+    operator fun invoke(
+      point: Point,
+    ): MutablePoint
+    
+    /**
+     * Performs an explicit conversion from [MutablePoint] to [Point].
+     * @param [p] The point to convert.
+     * @return The result of the conversion.
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/MutablePoint%23MutablePoint-method-convertToPointD">Online Documentation</a>
+     */
+    fun convertToPointD(
+      p: MutablePoint,
+    ): Point
+  }
 }

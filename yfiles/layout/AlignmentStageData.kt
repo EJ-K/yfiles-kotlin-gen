@@ -11,52 +11,39 @@
 
 package yfiles.layout
 
-import yfiles.algorithms.AbortHandler
+import yfiles.collections.ItemMapping
 import yfiles.geometry.IPoint
-import yfiles.graph.INode
+import yfiles.geometry.Insets
 import yfiles.lang.ClassMetadata
 
 /**
  * Specifies custom data for the [AlignmentStage].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData">Online Documentation</a>
  * 
- * @constructor Creates a new instance of [AlignmentStageData] which helps configuring [AlignmentStage].
+ * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData%23AlignmentStageData-constructor-AlignmentStageData">Online Documentation</a>
  */
-external open class AlignmentStageData  () : LayoutData {
-
-/**
- * Gets or sets the [AbortHandler] used during the layout.
- * @see [LayoutExecutor.abortHandler]
- * @see [AbortHandler.ABORT_HANDLER_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData%23abortHandler">Online Documentation</a>
- */
-final var abortHandler: AbortHandler?
-/**
- * Gets or sets the mapping from nodes to their [NodeHalo].
- * @see [NodeHalo.NODE_HALO_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData%23nodeHalos">Online Documentation</a>
- */
-final var nodeHalos: ItemMapping<INode, NodeHalo>
-/**
- * Gets or sets the [partition grid][PartitionGrid] layout data which allows to define a grid that is respected by the [AlignmentStage] so that nodes that are not in the same column/row may not be aligned.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData%23partitionGridData">Online Documentation</a>
- */
-final var partitionGridData: PartitionGridData
-/**
- * Gets or sets the mapping from nodes to the points relative to the center that are aligned.
- * @see [AlignmentStage.SNAP_OFFSET_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData%23snapOffsets">Online Documentation</a>
- */
-final var snapOffsets: ItemMapping<INode, IPoint>
-
-companion object : ClassMetadata<AlignmentStageData> {
-}
-}
-
-inline fun AlignmentStageData(
-    block: AlignmentStageData.() -> Unit
-): AlignmentStageData {
-    return AlignmentStageData()
-        .apply(block)
+external class AlignmentStageData<TNode, TEdge, TNodeLabel, TEdgeLabel> () : LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> {
+  /**
+   * Gets or sets the [LayoutGrid] layout data which allows to define a grid that is respected by the [AlignmentStage] so that nodes that are not in the same column/row may not be aligned.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData%23layoutGridData">Online Documentation</a>
+   */
+  final var layoutGridData: LayoutGridData<TNode, TEdge, TNodeLabel, TEdgeLabel>
+  
+  /**
+   * Gets or sets the mapping from nodes to their margins.
+   * @see [LayoutKeys.NODE_MARGIN_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData%23nodeMargins">Online Documentation</a>
+   */
+  final var nodeMargins: ItemMapping<TNode, Insets>
+  
+  /**
+   * Gets or sets the mapping from nodes to the points relative to the center that are aligned.
+   * @see [AlignmentStage.SNAP_OFFSET_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AlignmentStageData%23snapOffsets">Online Documentation</a>
+   */
+  final var snapOffsets: ItemMapping<TNode, IPoint>
+  
+  companion object : ClassMetadata<AlignmentStageData<*, *, *, *>> {
+  }
 }

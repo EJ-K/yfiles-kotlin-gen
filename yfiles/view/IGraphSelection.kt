@@ -11,6 +11,7 @@
 
 package yfiles.view
 
+import yfiles.collections.IObservableCollection
 import yfiles.graph.IBend
 import yfiles.graph.IEdge
 import yfiles.graph.ILabel
@@ -21,36 +22,41 @@ import yfiles.lang.InterfaceMetadata
 
 /**
  * Manages the selection state of items in an [IGraph][yfiles.graph.IGraph] instance.
- * @see [ISelectionModel]
+ * @see [IObservableCollection]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection">Online Documentation</a>
  */
-external interface IGraphSelection : ISelectionModel<IModelItem> {
-/**
- * Gets an [ISelectionModel] of the selected bends.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23selectedBends">Online Documentation</a>
- */
-val selectedBends: ISelectionModel<IBend>
-/**
- * Gets an [ISelectionModel] of the selected edges.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23selectedEdges">Online Documentation</a>
- */
-val selectedEdges: ISelectionModel<IEdge>
-/**
- * Gets an [ISelectionModel] of the selected labels.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23selectedLabels">Online Documentation</a>
- */
-val selectedLabels: ISelectionModel<ILabel>
-/**
- * Gets an [ISelectionModel] of the selected nodes.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23selectedNodes">Online Documentation</a>
- */
-val selectedNodes: ISelectionModel<INode>
-/**
- * Gets an [ISelectionModel] of the selected ports.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23selectedPorts">Online Documentation</a>
- */
-val selectedPorts: ISelectionModel<IPort>
+external interface IGraphSelection : IObservableCollection<IModelItem> {
+  /**
+   * Gets an [IObservableCollection] of the selected bends.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23bends">Online Documentation</a>
+   */
+  val bends: IObservableCollection<IBend>
+  
+  /**
+   * Gets an [IObservableCollection] of the selected edges.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23edges">Online Documentation</a>
+   */
+  val edges: IObservableCollection<IEdge>
+  
+  /**
+   * Gets an [IObservableCollection] of the selected labels.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23labels">Online Documentation</a>
+   */
+  val labels: IObservableCollection<ILabel>
+  
+  /**
+   * Gets an [IObservableCollection] of the selected nodes.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23nodes">Online Documentation</a>
+   */
+  val nodes: IObservableCollection<INode>
+  
+  /**
+   * Gets an [IObservableCollection] of the selected ports.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IGraphSelection%23ports">Online Documentation</a>
+   */
+  val ports: IObservableCollection<IPort>
 
-companion object : InterfaceMetadata<IGraphSelection> {
-}
+  
+  companion object : InterfaceMetadata<IGraphSelection> {
+  }
 }

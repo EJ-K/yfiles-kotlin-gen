@@ -14,20 +14,20 @@ package yfiles.graphml
 import web.dom.Node
 import yfiles.lang.ClassMetadata
 import yfiles.lang.EventArgs
-import yfiles.lang.YClass
+import yfiles.lang.IClassMetadata
 
 /**
- * The event arguments used by [GraphMLIOHandler.HandleDeserialization] and [GraphMLParser.HandleDeserialization] to let registered deserialization code perform the deserialization.
+ * The event arguments used by [handle-deserialization][GraphMLIOHandler] to let registered deserialization code perform the deserialization.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HandleDeserializationEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [HandleDeserializationEventArgs] class.
  * @param [context] The context in which serialization should take place.
  * @param [xmlNode] The XML element that contains the data to deserialize.
- * @param [targetType] The required [target type][targetType] of the [result].
+ * @param [targetType] The required [targetType][HandleDeserializationEventArgs] of the [result][HandleDeserializationEventArgs].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HandleDeserializationEventArgs%23HandleDeserializationEventArgs-constructor-HandleDeserializationEventArgs">Online Documentation</a>
  * 
  * @property context
- * Gets the context in which the [xmlNode] shall be deserialized.
+ * Gets the context in which the [xmlNode][HandleDeserializationEventArgs] shall be deserialized.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HandleDeserializationEventArgs%23context">Online Documentation</a>
  * 
  * @property xmlNode
@@ -39,23 +39,23 @@ import yfiles.lang.YClass
  * @see [IParseContext.deserializeCore]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HandleDeserializationEventArgs%23targetType">Online Documentation</a>
  */
-external  class HandleDeserializationEventArgs  (
+external class HandleDeserializationEventArgs (
 final val context: IParseContext,
 final val xmlNode: Node,
-final val targetType: YClass<*>?) : EventArgs {
-
-/**
- * Gets or sets a value indicating whether this [HandleDeserializationEventArgs] is handled.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HandleDeserializationEventArgs%23handled">Online Documentation</a>
- */
-final var handled: Boolean
-/**
- * Gets or sets the result of the deserialization, which is `null` initially.
- * @throws ArgumentError If the value is not assignable to [targetType]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HandleDeserializationEventArgs%23result">Online Documentation</a>
- */
-final var result: Any?
-
-companion object : ClassMetadata<HandleDeserializationEventArgs> {
-}
+final val targetType: IClassMetadata<*>?) : EventArgs {
+  /**
+   * Gets or sets a value indicating whether this [HandleDeserializationEventArgs] is handled.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HandleDeserializationEventArgs%23handled">Online Documentation</a>
+   */
+  final var handled: Boolean
+  
+  /**
+   * Gets or sets the result of the deserialization, which is `null` initially.
+   * @throws ArgumentError If the value is not assignable to [targetType][HandleDeserializationEventArgs]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HandleDeserializationEventArgs%23result">Online Documentation</a>
+   */
+  final var result: Any?
+  
+  companion object : ClassMetadata<HandleDeserializationEventArgs> {
+  }
 }

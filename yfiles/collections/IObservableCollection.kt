@@ -14,7 +14,6 @@ package yfiles.collections
 import yfiles.lang.EventHandler1
 import yfiles.lang.IEventDispatcher
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
  * The interface for a collection that will notify registered event handlers of changes to its contents.
@@ -22,62 +21,32 @@ import yfiles.lang.YObject
  * @see [ObservableCollection]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection">Online Documentation</a>
  */
-external interface IObservableCollection<T : YObject> : ICollection<T>, IEventDispatcher {
-/**
- * Occurs when an item has been added to this collection.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection%23ItemAdded">Online Documentation</a>
- */
-fun addItemAddedListener(listener: EventHandler1<ItemEventArgs<T>>)
-fun removeItemAddedListener(listener: EventHandler1<ItemEventArgs<T>>)
+external interface IObservableCollection<T> : ICollection<T>, IEventDispatcher {
 
-/**
- * Occurs when an item has been removed from this collection.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection%23ItemRemoved">Online Documentation</a>
- */
-fun addItemRemovedListener(listener: EventHandler1<ItemEventArgs<T>>)
-fun removeItemRemovedListener(listener: EventHandler1<ItemEventArgs<T>>)
-
-/**
- * Occurs when an item in this collection has changed significantly.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection%23ItemChanged">Online Documentation</a>
- */
-fun addItemChangedListener(listener: EventHandler1<ItemEventArgs<T>>)
-fun removeItemChangedListener(listener: EventHandler1<ItemEventArgs<T>>)
-
-companion object : InterfaceMetadata<IObservableCollection<*>> {
-}
+  
+  companion object : InterfaceMetadata<IObservableCollection<*>> {
+  }
 }
 
 /**
- * Occurs when an item has been added to this collection.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection%23ItemAdded">Online Documentation</a>
+ * `item-added`: Occurs when an item has been added to this collection.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection%23item-added">Online Documentation</a>
  */
-inline fun <T : YObject> IObservableCollection<T>.addItemAddedHandler(
-    crossinline handler: (item:T) -> Unit
+inline fun <T> IObservableCollection<T>.addItemAddedHandler(
+  crossinline handler: (item:T) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ItemEventArgs<T>> = { _, event -> handler(event.item) }
-    addItemAddedListener(listener)
-    return { removeItemAddedListener(listener) }
+  val listener: EventHandler1<ItemEventArgs<T>> = { event, _ -> handler(event.item) }
+  addEventListener("item-added", listener)
+  return { removeEventListener("item-added", listener) }
 }
 /**
- * Occurs when an item has been removed from this collection.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection%23ItemRemoved">Online Documentation</a>
+ * `item-removed`: Occurs when an item has been removed from this collection.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection%23item-removed">Online Documentation</a>
  */
-inline fun <T : YObject> IObservableCollection<T>.addItemRemovedHandler(
-    crossinline handler: (item:T) -> Unit
+inline fun <T> IObservableCollection<T>.addItemRemovedHandler(
+  crossinline handler: (item:T) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ItemEventArgs<T>> = { _, event -> handler(event.item) }
-    addItemRemovedListener(listener)
-    return { removeItemRemovedListener(listener) }
-}
-/**
- * Occurs when an item in this collection has changed significantly.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IObservableCollection%23ItemChanged">Online Documentation</a>
- */
-inline fun <T : YObject> IObservableCollection<T>.addItemChangedHandler(
-    crossinline handler: (item:T) -> Unit
-): () -> Unit {
-    val listener: EventHandler1<ItemEventArgs<T>> = { _, event -> handler(event.item) }
-    addItemChangedListener(listener)
-    return { removeItemChangedListener(listener) }
+  val listener: EventHandler1<ItemEventArgs<T>> = { event, _ -> handler(event.item) }
+  addEventListener("item-removed", listener)
+  return { removeEventListener("item-removed", listener) }
 }

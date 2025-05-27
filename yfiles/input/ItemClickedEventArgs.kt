@@ -14,11 +14,11 @@ package yfiles.input
 import yfiles.geometry.Point
 import yfiles.graph.IModelItem
 import yfiles.lang.ClassMetadata
-import yfiles.view.ModifierKeys
-import yfiles.view.MouseButtons
+import yfiles.view.PointerButtons
+import yfiles.view.PointerEventArgs
 
 /**
- * Provides data for the [GraphInputMode.ItemClicked], [GraphInputMode.ItemDoubleClicked], [GraphInputMode.ItemLeftClicked], [GraphInputMode.ItemLeftDoubleClicked], [GraphInputMode.ItemRightClicked] and [GraphInputMode.ItemRightDoubleClicked] events.
+ * Provides data for the [item-clicked][GraphInputMode], [item-double-clicked][GraphInputMode], [item-left-clicked][GraphInputMode], [item-left-double-clicked][GraphInputMode], [item-right-clicked][GraphInputMode] and [item-right-double-clicked][GraphInputMode] events.
  * @param [T] The type of the item this event carries.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemClickedEventArgs">Online Documentation</a>
  * 
@@ -26,23 +26,23 @@ import yfiles.view.MouseButtons
  * @param [item] The item which is the subject of the event.
  * @param [context] The context in which the click or tap occurred.
  * @param [location] The location.
- * @param [modifiers] State of the modifiers.
- * @param [mouseButtons] The mouse button(s) that have changed.
+ * @param [buttons] The pointer button(s) that have changed.
  * @param [clickCount] The number of clicks.
+ * @param [event] The original pointer event args.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemClickedEventArgs%23ItemClickedEventArgs-constructor-ItemClickedEventArgs">Online Documentation</a>
  * 
  * @property item
  * Gets the item that is the subject of the event.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemClickedEventArgs%23item">Online Documentation</a>
  */
-external open class ItemClickedEventArgs<T : IModelItem>  (
+open external class ItemClickedEventArgs<T : IModelItem> (
 final val item: T,
- context: IInputModeContext ,
- location: Point ,
- modifiers: ModifierKeys  = definedExternally,
- mouseButtons: MouseButtons  = definedExternally,
- clickCount: Int  = definedExternally) : ClickEventArgs {
-
-companion object : ClassMetadata<ItemClickedEventArgs<*>> {
-}
+context: IInputModeContext,
+location: Point,
+buttons: PointerButtons,
+clickCount: Int,
+event: PointerEventArgs) : ClickEventArgs {
+  
+  companion object : ClassMetadata<ItemClickedEventArgs<*>> {
+  }
 }

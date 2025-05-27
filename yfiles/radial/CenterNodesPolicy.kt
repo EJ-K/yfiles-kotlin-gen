@@ -11,53 +11,39 @@
 
 package yfiles.radial
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * @see [RadialLayout.centerNodesPolicy]
+ * Specifies the policies used to determine the center nodes in a [RadialLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CenterNodesPolicy">Online Documentation</a>
  */
-external sealed class CenterNodesPolicy: YEnum<CenterNodesPolicy> {
-   companion object: EnumMetadata<CenterNodesPolicy> {
-       /**
- * Specifier for a center nodes policy which chooses all nodes with in-degree equal to `0` as center nodes.
- * 
- * Value - `0`
- * @see [RadialLayout.centerNodesPolicy]
- * @see [Trees.getRoot][yfiles.algorithms.Trees.getRoot]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CenterNodesPolicy%23DIRECTED">Online Documentation</a>
- */
-val DIRECTED: CenterNodesPolicy
 
-/**
- * Specifier for a center nodes policy which chooses the node with the highest centrality as center node.
- * 
- * Value - `1`
- * @see [RadialLayout.centerNodesPolicy]
- * @see [Trees.getCenterRoot][yfiles.algorithms.Trees.getCenterRoot]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CenterNodesPolicy%23CENTRALITY">Online Documentation</a>
- */
-val CENTRALITY: CenterNodesPolicy
-
-/**
- * Specifier for a center nodes policy which chooses the node with the highest weighted centrality as center node.
- * 
- * Value - `2`
- * @see [RadialLayout.centerNodesPolicy]
- * @see [Trees.getWeightedCenterNode][yfiles.algorithms.Trees.getWeightedCenterNode]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CenterNodesPolicy%23WEIGHTED_CENTRALITY">Online Documentation</a>
- */
-val WEIGHTED_CENTRALITY: CenterNodesPolicy
-
-/**
- * Specifier for a center nodes policy which uses center nodes specified by the user.
- * 
- * Value - `3`
- * @see [RadialLayout.centerNodesPolicy]
- * @see [RadialLayout.centerNodesDpKey]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CenterNodesPolicy%23CUSTOM">Online Documentation</a>
- */
-val CUSTOM: CenterNodesPolicy
-   }
+sealed external class CenterNodesPolicy {
+  /**
+   * Specifies a policy where all nodes with an in-degree of zero are chosen as center nodes.
+   * 
+   * Value - `0`
+   * @see [RadialLayout.centerNodesPolicy]
+   * @see [yfiles.analysis.LayoutGraphAlgorithms.findRoot]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CenterNodesPolicy%23DIRECTED">Online Documentation</a>
+   */
+  object DIRECTED: CenterNodesPolicy
+  
+  /**
+   * Specifies a policy where the node with the highest centrality is chosen as the center node.
+   * 
+   * Value - `1`
+   * @see [RadialLayout.centerNodesPolicy]
+   * @see [yfiles.analysis.LayoutGraphAlgorithms.findCenterRoot]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CenterNodesPolicy%23CENTRALITY">Online Documentation</a>
+   */
+  object CENTRALITY: CenterNodesPolicy
+  
+  /**
+   * Specifies a policy where the node with the highest weighted centrality is chosen as the center node.
+   * 
+   * Value - `2`
+   * @see [RadialLayout.centerNodesPolicy]
+   * @see [yfiles.analysis.LayoutGraphAlgorithms.findWeightedCenterNode]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CenterNodesPolicy%23WEIGHTED_CENTRALITY">Online Documentation</a>
+   */
+  object WEIGHTED_CENTRALITY: CenterNodesPolicy
 }

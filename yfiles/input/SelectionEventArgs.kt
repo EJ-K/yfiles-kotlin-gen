@@ -11,13 +11,13 @@
 
 package yfiles.input
 
+import yfiles.collections.IObservableCollection
 import yfiles.graph.IModelItem
 import yfiles.lang.ClassMetadata
-import yfiles.view.ISelectionModel
 
 /**
- * Event arguments that are used when modifying a [ISelectionModel]
- * @param [T] The type of the items in the [ISelectionModel].
+ * Event arguments that are used when modifying an [IObservableCollection] in the context of [IGraphSelection][yfiles.view.IGraphSelection]s.
+ * @param [T] The type of the items in the [IObservableCollection].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SelectionEventArgs">Online Documentation</a>
  * 
  * @constructor Creates a new instance.
@@ -29,10 +29,10 @@ import yfiles.view.ISelectionModel
  * Gets the selection these event arguments refer to.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SelectionEventArgs%23selection">Online Documentation</a>
  */
-external open class SelectionEventArgs<T : IModelItem>  (
- context: IInputModeContext ,
-final val selection: ISelectionModel<T>) : InputModeEventArgs {
-
-companion object : ClassMetadata<SelectionEventArgs<*>> {
-}
+external class SelectionEventArgs<T : IModelItem> (
+context: IInputModeContext,
+final val selection: IObservableCollection<T>) : InputModeEventArgs {
+  
+  companion object : ClassMetadata<SelectionEventArgs<*>> {
+  }
 }

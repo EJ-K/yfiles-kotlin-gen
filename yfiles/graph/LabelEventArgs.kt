@@ -19,7 +19,7 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [LabelEventArgs] class.
- * @param [label] The label to assign to the [ItemEventArgs.item] property.
+ * @param [label] The label to assign to the [item][ItemEventArgs] property.
  * @param [owner] The previous owner of the label.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelEventArgs%23LabelEventArgs-constructor-LabelEventArgs">Online Documentation</a>
  * 
@@ -27,10 +27,10 @@ import yfiles.lang.ClassMetadata
  * Gets the owner of the label that owned the label before the event happened.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelEventArgs%23owner">Online Documentation</a>
  */
-external  class LabelEventArgs  (
- label: ILabel ,
-final val owner: ILabelOwner) : ItemEventArgs<ILabel> {
-
-companion object : ClassMetadata<LabelEventArgs> {
-}
+external class LabelEventArgs (
+label: ILabel,
+final val owner: ILabelOwner?) : ItemEventArgs<ILabel> {
+  
+  companion object : ClassMetadata<LabelEventArgs> {
+  }
 }

@@ -21,15 +21,16 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPortOwner">Online Documentation</a>
  */
 external interface IPortOwner : IModelItem {
-/**
- * Gets a collection of [ports][IPort] that are owned by this instance.
- * @see [IPort.owner]
- * @see [IGraph.addPort]
- * @see [IGraph.remove]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPortOwner%23ports">Online Documentation</a>
- */
-val ports: IListEnumerable<IPort>
+  /**
+   * Gets a collection of [ports][IPort] that are owned by this instance.
+   * @see [IPort.owner]
+   * @see [IGraph.addPort]
+   * @see [IGraph.remove]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPortOwner%23ports">Online Documentation</a>
+   */
+  val ports: IListEnumerable<IPort>
 
-companion object : InterfaceMetadata<IPortOwner> {
-}
+  
+  companion object : InterfaceMetadata<IPortOwner> {
+  }
 }

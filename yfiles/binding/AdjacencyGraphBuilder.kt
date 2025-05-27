@@ -19,7 +19,6 @@ import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
 import yfiles.lang.EventHandler1
 import yfiles.lang.IEventDispatcher
-import yfiles.lang.YObject
 
 /**
  * Populates a graph from custom data where node data items know about their predecessors and/or successors.
@@ -28,367 +27,346 @@ import yfiles.lang.YObject
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [AdjacencyGraphBuilder] class that operates on the given graph.
- * @param [graph] An [IGraph] instance on which this builder operates or `null` if a new [DefaultGraph][yfiles.graph.DefaultGraph] should be created.
+ * @param [graph] An [IGraph] instance on which this builder operates or `null` if a new [Graph][yfiles.graph.Graph] should be created.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-constructor-AdjacencyGraphBuilder">Online Documentation</a>
- */
-external open class AdjacencyGraphBuilder  ( graph: IGraph?  = definedExternally) : YObject, IEventDispatcher {
-
-/**
+ * 
+ * @property graph
  * Gets the [graph][IGraph] used by this builder.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23graph">Online Documentation</a>
  */
-final val graph: IGraph
-/**
- * Binds a collection of data items to the given `nodesSource`.
- * @param [TDataItem] The type of the data items in the source.
- * @param [data] The collection of objects that is bound to the source.
- * @param [nodesSource] The source to which the data is bound.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-addNodesSource">Online Documentation</a>
- */
- final   fun <TDataItem>addNodesSource( data: ReadonlyArray<TDataItem> /* TDataItem[] | Iterable<TDataItem> | Map<any, TDataItem> | {[id: string]: TDataItem;} | (() => GeneratorLike<TDataItem>) */ ,
- nodesSource: AdjacencyNodesSource<TDataItem> )
-/**
- * Populates the graph with items generated from the bound data.
- * @return The [graph] of this builder populated by the defined sources.
- * @see [updateGraph]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-buildGraph">Online Documentation</a>
- */
- open   fun buildGraph():IGraph
-/**
- * Creates a new [AdjacencyNodesSource] and binds a collection of group node data items to it.
- * @param [TDataItem] The type of the data items in the source.
- * @param [data] The collection of objects to iterate and create the group nodes from.
- * @param [idProvider] An optional function that yields an ID for each element in the `data`. This ID is used by [AdjacencyNodesSource.parentIdProvider], [AdjacencyNodesSource.addSuccessorIds], and [AdjacencyNodesSource.addPredecessorIds] to resolve the parent, source, or target nodes. The ID is also used to identify nodes during [updateGraph].
- * @return A new [AdjacencyNodesSource] instance that can be used to further customize the creation of nodes, e.g. provide specific [style defaults][NodeCreator.defaults].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-createGroupNodesSource">Online Documentation</a>
- */
- final   fun <TDataItem>createGroupNodesSource( data: ReadonlyArray<TDataItem> /* TDataItem[] | Iterable<TDataItem> | Map<any, TDataItem> | {[id: string]: TDataItem;} | (() => GeneratorLike<TDataItem>) */ ,
- idProvider: IdProvider<TDataItem>?  = definedExternally):AdjacencyNodesSource<TDataItem>
-/**
- * Creates a new [AdjacencyNodesSource] and binds a collection of node data items to it.
- * @param [TDataItem] The type of the data items in the source.
- * @param [data] The collection of objects to iterate and create the nodes from.
- * @param [idProvider] An optional function that yields an ID for each element in the `data`. This ID is used by [AdjacencyNodesSource.parentIdProvider], [AdjacencyNodesSource.addSuccessorIds], and [AdjacencyNodesSource.addPredecessorIds] to resolve the parent, source, or target nodes. The ID is also used to identify nodes during [updateGraph].
- * @return A new [AdjacencyNodesSource] instance that can be used to further customize the creation of nodes, e.g. provide specific [style defaults][NodeCreator.defaults].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-createNodesSource">Online Documentation</a>
- */
- final   fun <TDataItem>createNodesSource( data: ReadonlyArray<TDataItem> /* TDataItem[] | Iterable<TDataItem> | Map<any, TDataItem> | {[id: string]: TDataItem;} | (() => GeneratorLike<TDataItem>) */ ,
- idProvider: IdProvider<TDataItem>?  = definedExternally):AdjacencyNodesSource<TDataItem>
-/**
- * Returns the data item the given `node` was created for.
- * @param [node] The node that was created for the data item.
- * @return The data item the given `node` was created for.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-getDataItem(INode)">Online Documentation</a>
- */
- open   fun getDataItem( node: INode ):Any?
-/**
- * Returns the data item the given `edge` was created for.
- * @param [edge] The edge that was created for the data item.
- * @return The data item the given `edge` was created for.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-getDataItem(IEdge)">Online Documentation</a>
- */
- open   fun getDataItem( edge: IEdge ):Any?
-/**
- * Returns the [INode] that was created for a data item with the given `id`.
- * @param [TId] The type of the id.
- * @param [id] The id the node was created for.
- * @return The [INode] that was created for a data item with the given `id`.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-getNodeById">Online Documentation</a>
- */
- open   fun <TId>getNodeById( id: TId ):INode?
-/**
- * Returns the [INode] that was created for the given `item`.
- * @param [TDataItem] The type of the data item.
- * @param [item] The data item the node was created for.
- * @return The [INode] that was created for the given `item`.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-getNodeForItem">Online Documentation</a>
- */
- open   fun <TDataItem>getNodeForItem( item: TDataItem ):INode?
-/**
- * Triggers the [EdgeCreated] event.
- * @param [edge] The edge that has been created.
- * @param [dataItem] The data item from which the edge has been created.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onEdgeCreated">Online Documentation</a>
- */
- open protected   fun onEdgeCreated( edge: IEdge ,
- dataItem: Any )
-/**
- * Triggers the [EdgeRemoved] event.
- * @param [edge] The edge that has been removed.
- * @param [dataItem] The corresponding data item of the removed edge.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onEdgeRemoved">Online Documentation</a>
- */
- open protected   fun onEdgeRemoved( edge: IEdge ,
- dataItem: Any )
-/**
- * Triggers the [EdgeUpdated] event.
- * @param [edge] The edge that has been updated.
- * @param [dataItem] The data item with which the edge has been updated.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onEdgeUpdated">Online Documentation</a>
- */
- open protected   fun onEdgeUpdated( edge: IEdge ,
- dataItem: Any )
-/**
- * Triggers the [LabelAdded] event.
- * @param [label] The label that has been added.
- * @param [dataItem] The data item from which the label has been created.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onLabelAdded">Online Documentation</a>
- */
- open protected   fun onLabelAdded( label: ILabel ,
- dataItem: Any )
-/**
- * Triggers the [LabelRemoved] event.
- * @param [label] The label that has been removed.
- * @param [dataItem] The corresponding data item of the removed label.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onLabelRemoved">Online Documentation</a>
- */
- open protected   fun onLabelRemoved( label: ILabel ,
- dataItem: Any )
-/**
- * Triggers the [LabelUpdated] event.
- * @param [label] The label that has been updated.
- * @param [dataItem] The data item with which the label has been updated.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onLabelUpdated">Online Documentation</a>
- */
- open protected   fun onLabelUpdated( label: ILabel ,
- dataItem: Any )
-/**
- * Triggers the [NodeCreated] event.
- * @param [node] The node that has been created.
- * @param [dataItem] The data item from which the node has been created.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onNodeCreated">Online Documentation</a>
- */
- open protected   fun onNodeCreated( node: INode ,
- dataItem: Any )
-/**
- * Triggers the [NodeRemoved] event.
- * @param [node] The node that has been removed.
- * @param [dataItem] The corresponding data item of the removed node.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onNodeRemoved">Online Documentation</a>
- */
- open protected   fun onNodeRemoved( node: INode ,
- dataItem: Any )
-/**
- * Triggers the [NodeUpdated] event.
- * @param [node] The node that has been updated.
- * @param [dataItem] The data item with which the node has been updated.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onNodeUpdated">Online Documentation</a>
- */
- open protected   fun onNodeUpdated( node: INode ,
- dataItem: Any )
-/**
- * Binds a new data collection to an [AdjacencyNodesSource], replacing the old one.
- * @param [TDataItem] The type of the data items in the source.
- * @param [nodesSource] The source whose data source should be re-assigned.
- * @param [data] The collection of objects that is specified for the given source.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-setData">Online Documentation</a>
- */
- final   fun <TDataItem>setData( nodesSource: AdjacencyNodesSource<TDataItem> ,
- data: ReadonlyArray<TDataItem> /* TDataItem[] | Iterable<TDataItem> | Map<any, TDataItem> | {[id: string]: TDataItem;} | (() => GeneratorLike<TDataItem>) */ )
-/**
- * Updates the graph after changes in the bound data.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-updateGraph">Online Documentation</a>
- */
- open   fun updateGraph()
-/**
- * Occurs when a node has been created by any one of the [nodes sources][createNodesSource].
- * @see [addNodeUpdatedListener]
- * @see [addNodeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23NodeCreated">Online Documentation</a>
- */
-fun addNodeCreatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>>)
-fun removeNodeCreatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>>)
-
-/**
- * Occurs when a node has been updated.
- * @see [addNodeCreatedListener]
- * @see [addNodeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23NodeUpdated">Online Documentation</a>
- */
-fun addNodeUpdatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>>)
-fun removeNodeUpdatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>>)
-
-/**
- * Occurs when a node has been removed from any one of the [nodes sources][createNodesSource].
- * @see [addNodeCreatedListener]
- * @see [addNodeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23NodeRemoved">Online Documentation</a>
- */
-fun addNodeRemovedListener(listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>>)
-fun removeNodeRemovedListener(listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>>)
-
-/**
- * Occurs when an edge has been created by any one of [AdjacencyNodesSource]'s add or create methods.
- * @see [addEdgeUpdatedListener]
- * @see [addEdgeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23EdgeCreated">Online Documentation</a>
- */
-fun addEdgeCreatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>>)
-fun removeEdgeCreatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>>)
-
-/**
- * Occurs when an edge has been updated.
- * @see [addEdgeCreatedListener]
- * @see [addEdgeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23EdgeUpdated">Online Documentation</a>
- */
-fun addEdgeUpdatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>>)
-fun removeEdgeUpdatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>>)
-
-/**
- * Occurs when an edge has been removed.
- * @see [addEdgeCreatedListener]
- * @see [addEdgeUpdatedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23EdgeRemoved">Online Documentation</a>
- */
-fun addEdgeRemovedListener(listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>>)
-fun removeEdgeRemovedListener(listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>>)
-
-/**
- * Occurs when a label has been added to a node or edge.
- * @see [addLabelUpdatedListener]
- * @see [addLabelRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23LabelAdded">Online Documentation</a>
- */
-fun addLabelAddedListener(listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>>)
-fun removeLabelAddedListener(listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>>)
-
-/**
- * Occurs when a node or edge label has been updated.
- * @see [addLabelAddedListener]
- * @see [addLabelRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23LabelUpdated">Online Documentation</a>
- */
-fun addLabelUpdatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>>)
-fun removeLabelUpdatedListener(listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>>)
-
-/**
- * Occurs when a node or edge label has been removed.
- * @see [addLabelAddedListener]
- * @see [addLabelUpdatedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23LabelRemoved">Online Documentation</a>
- */
-fun addLabelRemovedListener(listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>>)
-fun removeLabelRemovedListener(listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>>)
-
-companion object : ClassMetadata<AdjacencyGraphBuilder> {
-}
+open external class AdjacencyGraphBuilder (
+final val graph: IGraph = definedExternally) : IEventDispatcher {
+  /**
+   * Binds a collection of data items to the given `nodesSource`.
+   * @param [TDataItem] The type of the data items in the source.
+   * @param [data] The collection of objects that is bound to the source.
+   * @param [nodesSource] The source to which the data is bound.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-addNodesSource">Online Documentation</a>
+   */
+  fun <TDataItem> addNodesSource(
+    data: ReadonlyArray<TDataItem> /* TDataItem[] | Iterable<TDataItem> | Map<any, TDataItem> | {[id: string]: TDataItem;} | (() => Generator<TDataItem>) */,
+    nodesSource: AdjacencyNodesSource<TDataItem>,
+  )
+  
+  /**
+   * Populates the graph with items generated from the bound data.
+   * @return The [graph][AdjacencyGraphBuilder] of this builder populated by the defined sources.
+   * @see [updateGraph]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-buildGraph">Online Documentation</a>
+   */
+  open fun buildGraph(): IGraph
+  
+  /**
+   * Creates a new [AdjacencyNodesSource] and binds a collection of group node data items to it.
+   * @param [TDataItem] The type of the data items in the source.
+   * @param [data] The collection of objects to iterate and create the group nodes from.
+   * @param [idProvider] An optional function that yields an ID for each element in the `data`. This ID is used by [parentIdProvider][AdjacencyNodesSource], [addSuccessorIds][AdjacencyNodesSource], and [addPredecessorIds][AdjacencyNodesSource] to resolve the parent, source, or target nodes. The ID is also used to identify nodes during [updateGraph][AdjacencyGraphBuilder].
+   * @return A new [AdjacencyNodesSource] instance that can be used to further customize the creation of nodes, e.g. provide specific style [defaults][NodeCreator].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-createGroupNodesSource">Online Documentation</a>
+   */
+  fun <TDataItem> createGroupNodesSource(
+    data: ReadonlyArray<TDataItem> /* TDataItem[] | Iterable<TDataItem> | Map<any, TDataItem> | {[id: string]: TDataItem;} | (() => Generator<TDataItem>) */,
+    idProvider: IdProvider<TDataItem>?,
+  ): AdjacencyNodesSource<TDataItem>
+  
+  /**
+   * Creates a new [AdjacencyNodesSource] and binds a collection of node data items to it.
+   * @param [TDataItem] The type of the data items in the source.
+   * @param [data] The collection of objects to iterate and create the nodes from.
+   * @param [idProvider] An optional function that yields an ID for each element in the `data`. This ID is used by [parentIdProvider][AdjacencyNodesSource], [addSuccessorIds][AdjacencyNodesSource], and [addPredecessorIds][AdjacencyNodesSource] to resolve the parent, source, or target nodes. The ID is also used to identify nodes during [updateGraph][AdjacencyGraphBuilder].
+   * @return A new [AdjacencyNodesSource] instance that can be used to further customize the creation of nodes, e.g. provide specific style [defaults][NodeCreator].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-createNodesSource">Online Documentation</a>
+   */
+  fun <TDataItem> createNodesSource(
+    data: ReadonlyArray<TDataItem> /* TDataItem[] | Iterable<TDataItem> | Map<any, TDataItem> | {[id: string]: TDataItem;} | (() => Generator<TDataItem>) */,
+    idProvider: IdProvider<TDataItem>?,
+  ): AdjacencyNodesSource<TDataItem>
+  
+  /**
+   * Returns the data item the given `node` was created for.
+   * @param [node] The node that was created for the data item.
+   * @return The data item the given `node` was created for.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-getDataItem(INode)">Online Documentation</a>
+   */
+  open fun getDataItem(
+    node: INode,
+  ): Any?
+  
+  /**
+   * Returns the data item the given `edge` was created for.
+   * @param [edge] The edge that was created for the data item.
+   * @return The data item the given `edge` was created for.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-getDataItem(IEdge)">Online Documentation</a>
+   */
+  open fun getDataItem(
+    edge: IEdge,
+  ): Any?
+  
+  /**
+   * Returns the [INode] that was created for a data item with the given `id`.
+   * @param [TId] The type of the id.
+   * @param [id] The id the node was created for.
+   * @return The [INode] that was created for a data item with the given `id`.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-getNodeById">Online Documentation</a>
+   */
+  open fun <TId> getNodeById(
+    id: TId,
+  ): INode?
+  
+  /**
+   * Returns the [INode] that was created for the given `item`.
+   * @param [TDataItem] The type of the data item.
+   * @param [item] The data item the node was created for.
+   * @return The [INode] that was created for the given `item`.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-getNodeForItem">Online Documentation</a>
+   */
+  open fun <TDataItem> getNodeForItem(
+    item: TDataItem,
+  ): INode?
+  
+  /**
+   * Triggers the [edge-created][AdjacencyGraphBuilder] event.
+   * @param [edge] The edge that has been created.
+   * @param [dataItem] The data item from which the edge has been created.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onEdgeCreated">Online Documentation</a>
+   */
+  protected open fun onEdgeCreated(
+    edge: IEdge,
+    dataItem: Any,
+  )
+  
+  /**
+   * Triggers the [edge-removed][AdjacencyGraphBuilder] event.
+   * @param [edge] The edge that has been removed.
+   * @param [dataItem] The corresponding data item of the removed edge.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onEdgeRemoved">Online Documentation</a>
+   */
+  protected open fun onEdgeRemoved(
+    edge: IEdge,
+    dataItem: Any,
+  )
+  
+  /**
+   * Triggers the [edge-updated][AdjacencyGraphBuilder] event.
+   * @param [edge] The edge that has been updated.
+   * @param [dataItem] The data item with which the edge has been updated.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onEdgeUpdated">Online Documentation</a>
+   */
+  protected open fun onEdgeUpdated(
+    edge: IEdge,
+    dataItem: Any,
+  )
+  
+  /**
+   * Triggers the [label-added][AdjacencyGraphBuilder] event.
+   * @param [label] The label that has been added.
+   * @param [dataItem] The data item from which the label has been created.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onLabelAdded">Online Documentation</a>
+   */
+  protected open fun onLabelAdded(
+    label: ILabel,
+    dataItem: Any,
+  )
+  
+  /**
+   * Triggers the [label-removed][AdjacencyGraphBuilder] event.
+   * @param [label] The label that has been removed.
+   * @param [dataItem] The corresponding data item of the removed label.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onLabelRemoved">Online Documentation</a>
+   */
+  protected open fun onLabelRemoved(
+    label: ILabel,
+    dataItem: Any,
+  )
+  
+  /**
+   * Triggers the [label-updated][AdjacencyGraphBuilder] event.
+   * @param [label] The label that has been updated.
+   * @param [dataItem] The data item with which the label has been updated.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onLabelUpdated">Online Documentation</a>
+   */
+  protected open fun onLabelUpdated(
+    label: ILabel,
+    dataItem: Any,
+  )
+  
+  /**
+   * Triggers the [node-created][AdjacencyGraphBuilder] event.
+   * @param [node] The node that has been created.
+   * @param [dataItem] The data item from which the node has been created.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onNodeCreated">Online Documentation</a>
+   */
+  protected open fun onNodeCreated(
+    node: INode,
+    dataItem: Any,
+  )
+  
+  /**
+   * Triggers the [node-removed][AdjacencyGraphBuilder] event.
+   * @param [node] The node that has been removed.
+   * @param [dataItem] The corresponding data item of the removed node.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onNodeRemoved">Online Documentation</a>
+   */
+  protected open fun onNodeRemoved(
+    node: INode,
+    dataItem: Any,
+  )
+  
+  /**
+   * Triggers the [node-updated][AdjacencyGraphBuilder] event.
+   * @param [node] The node that has been updated.
+   * @param [dataItem] The data item with which the node has been updated.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-onNodeUpdated">Online Documentation</a>
+   */
+  protected open fun onNodeUpdated(
+    node: INode,
+    dataItem: Any,
+  )
+  
+  /**
+   * Binds a new data collection to an [AdjacencyNodesSource], replacing the old one.
+   * @param [TDataItem] The type of the data items in the source.
+   * @param [nodesSource] The source whose data source should be reassigned.
+   * @param [data] The collection of objects that is specified for the given source.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-setData">Online Documentation</a>
+   */
+  fun <TDataItem> setData(
+    nodesSource: AdjacencyNodesSource<TDataItem>,
+    data: ReadonlyArray<TDataItem> /* TDataItem[] | Iterable<TDataItem> | Map<any, TDataItem> | {[id: string]: TDataItem;} | (() => Generator<TDataItem>) */,
+  )
+  
+  /**
+   * Updates the graph after changes in the bound data.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23AdjacencyGraphBuilder-method-updateGraph">Online Documentation</a>
+   */
+  open fun updateGraph()
+  
+  companion object : ClassMetadata<AdjacencyGraphBuilder> {
+  }
 }
 
 /**
- * Occurs when a node has been created by any one of the [nodes sources][createNodesSource].
- * @see [addNodeUpdatedListener]
- * @see [addNodeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23NodeCreated">Online Documentation</a>
+ * `node-created`: Occurs when a node has been created by any one of the [nodes sources][AdjacencyGraphBuilder].
+ * @see [addNodeUpdatedHandler]
+ * @see [addNodeRemovedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23node-created">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addNodeCreatedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<INode, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<INode, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>> = { _, event -> handler(event) }
-    addNodeCreatedListener(listener)
-    return { removeNodeCreatedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<INode, Any>> = { event, _ -> handler(event) }
+  addEventListener("node-created", listener)
+  return { removeEventListener("node-created", listener) }
 }
+
 /**
- * Occurs when a node has been updated.
- * @see [addNodeCreatedListener]
- * @see [addNodeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23NodeUpdated">Online Documentation</a>
+ * `node-updated`: Occurs when a node has been updated.
+ * @see [addNodeCreatedHandler]
+ * @see [addNodeRemovedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23node-updated">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addNodeUpdatedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<INode, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<INode, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>> = { _, event -> handler(event) }
-    addNodeUpdatedListener(listener)
-    return { removeNodeUpdatedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<INode, Any>> = { event, _ -> handler(event) }
+  addEventListener("node-updated", listener)
+  return { removeEventListener("node-updated", listener) }
 }
+
 /**
- * Occurs when a node has been removed from any one of the [nodes sources][createNodesSource].
- * @see [addNodeCreatedListener]
- * @see [addNodeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23NodeRemoved">Online Documentation</a>
+ * `node-removed`: Occurs when a node has been removed from any one of the [nodes sources][AdjacencyGraphBuilder].
+ * @see [addNodeCreatedHandler]
+ * @see [addNodeRemovedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23node-removed">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addNodeRemovedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<INode, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<INode, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<INode, BusinessObject>> = { _, event -> handler(event) }
-    addNodeRemovedListener(listener)
-    return { removeNodeRemovedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<INode, Any>> = { event, _ -> handler(event) }
+  addEventListener("node-removed", listener)
+  return { removeEventListener("node-removed", listener) }
 }
+
 /**
- * Occurs when an edge has been created by any one of [AdjacencyNodesSource]'s add or create methods.
- * @see [addEdgeUpdatedListener]
- * @see [addEdgeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23EdgeCreated">Online Documentation</a>
+ * `edge-created`: Occurs when an edge has been created by any one of [AdjacencyNodesSource]'s add or create methods.
+ * @see [addEdgeUpdatedHandler]
+ * @see [addEdgeRemovedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23edge-created">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addEdgeCreatedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<IEdge, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<IEdge, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>> = { _, event -> handler(event) }
-    addEdgeCreatedListener(listener)
-    return { removeEdgeCreatedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, Any>> = { event, _ -> handler(event) }
+  addEventListener("edge-created", listener)
+  return { removeEventListener("edge-created", listener) }
 }
+
 /**
- * Occurs when an edge has been updated.
- * @see [addEdgeCreatedListener]
- * @see [addEdgeRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23EdgeUpdated">Online Documentation</a>
+ * `edge-updated`: Occurs when an edge has been updated.
+ * @see [addEdgeCreatedHandler]
+ * @see [addEdgeRemovedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23edge-updated">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addEdgeUpdatedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<IEdge, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<IEdge, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>> = { _, event -> handler(event) }
-    addEdgeUpdatedListener(listener)
-    return { removeEdgeUpdatedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, Any>> = { event, _ -> handler(event) }
+  addEventListener("edge-updated", listener)
+  return { removeEventListener("edge-updated", listener) }
 }
+
 /**
- * Occurs when an edge has been removed.
- * @see [addEdgeCreatedListener]
- * @see [addEdgeUpdatedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23EdgeRemoved">Online Documentation</a>
+ * `edge-removed`: Occurs when an edge has been removed.
+ * @see [addEdgeCreatedHandler]
+ * @see [addEdgeUpdatedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23edge-removed">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addEdgeRemovedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<IEdge, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<IEdge, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, BusinessObject>> = { _, event -> handler(event) }
-    addEdgeRemovedListener(listener)
-    return { removeEdgeRemovedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<IEdge, Any>> = { event, _ -> handler(event) }
+  addEventListener("edge-removed", listener)
+  return { removeEventListener("edge-removed", listener) }
 }
+
 /**
- * Occurs when a label has been added to a node or edge.
- * @see [addLabelUpdatedListener]
- * @see [addLabelRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23LabelAdded">Online Documentation</a>
+ * `label-added`: Occurs when a label has been added to a node or edge.
+ * @see [addLabelUpdatedHandler]
+ * @see [addLabelRemovedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23label-added">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addLabelAddedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<ILabel, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<ILabel, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>> = { _, event -> handler(event) }
-    addLabelAddedListener(listener)
-    return { removeLabelAddedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, Any>> = { event, _ -> handler(event) }
+  addEventListener("label-added", listener)
+  return { removeEventListener("label-added", listener) }
 }
+
 /**
- * Occurs when a node or edge label has been updated.
- * @see [addLabelAddedListener]
- * @see [addLabelRemovedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23LabelUpdated">Online Documentation</a>
+ * `label-updated`: Occurs when a node or edge label has been updated.
+ * @see [addLabelAddedHandler]
+ * @see [addLabelRemovedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23label-updated">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addLabelUpdatedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<ILabel, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<ILabel, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>> = { _, event -> handler(event) }
-    addLabelUpdatedListener(listener)
-    return { removeLabelUpdatedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, Any>> = { event, _ -> handler(event) }
+  addEventListener("label-updated", listener)
+  return { removeEventListener("label-updated", listener) }
 }
+
 /**
- * Occurs when a node or edge label has been removed.
- * @see [addLabelAddedListener]
- * @see [addLabelUpdatedListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23LabelRemoved">Online Documentation</a>
+ * `label-removed`: Occurs when a node or edge label has been removed.
+ * @see [addLabelAddedHandler]
+ * @see [addLabelUpdatedHandler]
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/AdjacencyGraphBuilder%23label-removed">Online Documentation</a>
  */
 inline fun  AdjacencyGraphBuilder.addLabelRemovedHandler(
-    crossinline handler: (event:GraphBuilderItemEventArgs<ILabel, BusinessObject>) -> Unit
+  crossinline handler: (event:GraphBuilderItemEventArgs<ILabel, Any>) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, BusinessObject>> = { _, event -> handler(event) }
-    addLabelRemovedListener(listener)
-    return { removeLabelRemovedListener(listener) }
+  val listener: EventHandler1<GraphBuilderItemEventArgs<ILabel, Any>> = { event, _ -> handler(event) }
+  addEventListener("label-removed", listener)
+  return { removeEventListener("label-removed", listener) }
 }

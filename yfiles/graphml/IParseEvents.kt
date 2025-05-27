@@ -14,304 +14,192 @@ package yfiles.graphml
 import yfiles.lang.EventHandler1
 import yfiles.lang.IEventDispatcher
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
- * The interface of the event trigger class that is used by the [IParseContext.parseEvents] property.
+ * The interface of the event trigger class that is used by the [parseEvents][IParseContext] property.
  * @see [ParseEventArgs]
- * @see [GraphMLParser]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents">Online Documentation</a>
  */
-external interface IParseEvents : YObject, IEventDispatcher {
-/**
- * Occurs when the document is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23DocumentParsing">Online Documentation</a>
- */
-fun addDocumentParsingListener(listener: EventHandler1<ParseEventArgs>)
-fun removeDocumentParsingListener(listener: EventHandler1<ParseEventArgs>)
+external interface IParseEvents : IEventDispatcher {
 
-/**
- * Occurs when the document has been parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23DocumentParsed">Online Documentation</a>
- */
-fun addDocumentParsedListener(listener: EventHandler1<ParseEventArgs>)
-fun removeDocumentParsedListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs when a node element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23NodeParsing">Online Documentation</a>
- */
-fun addNodeParsingListener(listener: EventHandler1<ParseEventArgs>)
-fun removeNodeParsingListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs after a node element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23NodeParsed">Online Documentation</a>
- */
-fun addNodeParsedListener(listener: EventHandler1<ParseEventArgs>)
-fun removeNodeParsedListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs when an edge element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23EdgeParsing">Online Documentation</a>
- */
-fun addEdgeParsingListener(listener: EventHandler1<ParseEventArgs>)
-fun removeEdgeParsingListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs after a edge element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23EdgeParsed">Online Documentation</a>
- */
-fun addEdgeParsedListener(listener: EventHandler1<ParseEventArgs>)
-fun removeEdgeParsedListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs when a port element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23PortParsing">Online Documentation</a>
- */
-fun addPortParsingListener(listener: EventHandler1<ParseEventArgs>)
-fun removePortParsingListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs after a port element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23PortParsed">Online Documentation</a>
- */
-fun addPortParsedListener(listener: EventHandler1<ParseEventArgs>)
-fun removePortParsedListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs when a graph element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23GraphParsing">Online Documentation</a>
- */
-fun addGraphParsingListener(listener: EventHandler1<ParseEventArgs>)
-fun removeGraphParsingListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs after a graph element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23GraphParsed">Online Documentation</a>
- */
-fun addGraphParsedListener(listener: EventHandler1<ParseEventArgs>)
-fun removeGraphParsedListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs when the graphml element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23GraphMLParsing">Online Documentation</a>
- */
-fun addGraphMLParsingListener(listener: EventHandler1<ParseEventArgs>)
-fun removeGraphMLParsingListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs after the graphml element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23GraphMLParsed">Online Documentation</a>
- */
-fun addGraphMLParsedListener(listener: EventHandler1<ParseEventArgs>)
-fun removeGraphMLParsedListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs when a data element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23DataParsing">Online Documentation</a>
- */
-fun addDataParsingListener(listener: EventHandler1<ParseEventArgs>)
-fun removeDataParsingListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs after a data element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23DataParsed">Online Documentation</a>
- */
-fun addDataParsedListener(listener: EventHandler1<ParseEventArgs>)
-fun removeDataParsedListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs when a key element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23KeyParsing">Online Documentation</a>
- */
-fun addKeyParsingListener(listener: EventHandler1<ParseEventArgs>)
-fun removeKeyParsingListener(listener: EventHandler1<ParseEventArgs>)
-
-/**
- * Occurs after a key element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23KeyParsed">Online Documentation</a>
- */
-fun addKeyParsedListener(listener: EventHandler1<ParseEventArgs>)
-fun removeKeyParsedListener(listener: EventHandler1<ParseEventArgs>)
-
-companion object : InterfaceMetadata<IParseEvents> {
-}
+  
+  companion object : InterfaceMetadata<IParseEvents> {
+  }
 }
 
 /**
- * Occurs when the document is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23DocumentParsing">Online Documentation</a>
+ * `document-parsing`: Occurs when the document is about to be parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23document-parsing">Online Documentation</a>
  */
 inline fun  IParseEvents.addDocumentParsingHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addDocumentParsingListener(listener)
-    return { removeDocumentParsingListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("document-parsing", listener)
+  return { removeEventListener("document-parsing", listener) }
 }
 /**
- * Occurs when the document has been parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23DocumentParsed">Online Documentation</a>
+ * `document-parsed`: Occurs when the document has been parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23document-parsed">Online Documentation</a>
  */
 inline fun  IParseEvents.addDocumentParsedHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addDocumentParsedListener(listener)
-    return { removeDocumentParsedListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("document-parsed", listener)
+  return { removeEventListener("document-parsed", listener) }
 }
 /**
- * Occurs when a node element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23NodeParsing">Online Documentation</a>
+ * `node-parsing`: Occurs when a node element is about to be parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23node-parsing">Online Documentation</a>
  */
 inline fun  IParseEvents.addNodeParsingHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addNodeParsingListener(listener)
-    return { removeNodeParsingListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("node-parsing", listener)
+  return { removeEventListener("node-parsing", listener) }
 }
 /**
- * Occurs after a node element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23NodeParsed">Online Documentation</a>
+ * `node-parsed`: Occurs after a node element has been fully parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23node-parsed">Online Documentation</a>
  */
 inline fun  IParseEvents.addNodeParsedHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addNodeParsedListener(listener)
-    return { removeNodeParsedListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("node-parsed", listener)
+  return { removeEventListener("node-parsed", listener) }
 }
 /**
- * Occurs when an edge element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23EdgeParsing">Online Documentation</a>
+ * `edge-parsing`: Occurs when an edge element is about to be parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23edge-parsing">Online Documentation</a>
  */
 inline fun  IParseEvents.addEdgeParsingHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addEdgeParsingListener(listener)
-    return { removeEdgeParsingListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("edge-parsing", listener)
+  return { removeEventListener("edge-parsing", listener) }
 }
 /**
- * Occurs after a edge element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23EdgeParsed">Online Documentation</a>
+ * `edge-parsed`: Occurs after a edge element has been fully parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23edge-parsed">Online Documentation</a>
  */
 inline fun  IParseEvents.addEdgeParsedHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addEdgeParsedListener(listener)
-    return { removeEdgeParsedListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("edge-parsed", listener)
+  return { removeEventListener("edge-parsed", listener) }
 }
 /**
- * Occurs when a port element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23PortParsing">Online Documentation</a>
+ * `port-parsing`: Occurs when a port element is about to be parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23port-parsing">Online Documentation</a>
  */
 inline fun  IParseEvents.addPortParsingHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addPortParsingListener(listener)
-    return { removePortParsingListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("port-parsing", listener)
+  return { removeEventListener("port-parsing", listener) }
 }
 /**
- * Occurs after a port element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23PortParsed">Online Documentation</a>
+ * `port-parsed`: Occurs after a port element has been fully parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23port-parsed">Online Documentation</a>
  */
 inline fun  IParseEvents.addPortParsedHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addPortParsedListener(listener)
-    return { removePortParsedListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("port-parsed", listener)
+  return { removeEventListener("port-parsed", listener) }
 }
 /**
- * Occurs when a graph element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23GraphParsing">Online Documentation</a>
+ * `graph-parsing`: Occurs when a graph element is about to be parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23graph-parsing">Online Documentation</a>
  */
 inline fun  IParseEvents.addGraphParsingHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addGraphParsingListener(listener)
-    return { removeGraphParsingListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("graph-parsing", listener)
+  return { removeEventListener("graph-parsing", listener) }
 }
 /**
- * Occurs after a graph element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23GraphParsed">Online Documentation</a>
+ * `graph-parsed`: Occurs after a graph element has been fully parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23graph-parsed">Online Documentation</a>
  */
 inline fun  IParseEvents.addGraphParsedHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addGraphParsedListener(listener)
-    return { removeGraphParsedListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("graph-parsed", listener)
+  return { removeEventListener("graph-parsed", listener) }
 }
 /**
- * Occurs when the graphml element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23GraphMLParsing">Online Documentation</a>
+ * `graph-m-l-parsing`: Occurs when the graphml element is about to be parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23graph-m-l-parsing">Online Documentation</a>
  */
 inline fun  IParseEvents.addGraphMLParsingHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addGraphMLParsingListener(listener)
-    return { removeGraphMLParsingListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("graph-m-l-parsing", listener)
+  return { removeEventListener("graph-m-l-parsing", listener) }
 }
 /**
- * Occurs after the graphml element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23GraphMLParsed">Online Documentation</a>
+ * `graph-m-l-parsed`: Occurs after the graphml element has been fully parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23graph-m-l-parsed">Online Documentation</a>
  */
 inline fun  IParseEvents.addGraphMLParsedHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addGraphMLParsedListener(listener)
-    return { removeGraphMLParsedListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("graph-m-l-parsed", listener)
+  return { removeEventListener("graph-m-l-parsed", listener) }
 }
 /**
- * Occurs when a data element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23DataParsing">Online Documentation</a>
+ * `data-parsing`: Occurs when a data element is about to be parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23data-parsing">Online Documentation</a>
  */
 inline fun  IParseEvents.addDataParsingHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addDataParsingListener(listener)
-    return { removeDataParsingListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("data-parsing", listener)
+  return { removeEventListener("data-parsing", listener) }
 }
 /**
- * Occurs after a data element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23DataParsed">Online Documentation</a>
+ * `data-parsed`: Occurs after a data element has been fully parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23data-parsed">Online Documentation</a>
  */
 inline fun  IParseEvents.addDataParsedHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addDataParsedListener(listener)
-    return { removeDataParsedListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("data-parsed", listener)
+  return { removeEventListener("data-parsed", listener) }
 }
 /**
- * Occurs when a key element is about to be parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23KeyParsing">Online Documentation</a>
+ * `key-parsing`: Occurs when a key element is about to be parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23key-parsing">Online Documentation</a>
  */
 inline fun  IParseEvents.addKeyParsingHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addKeyParsingListener(listener)
-    return { removeKeyParsingListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("key-parsing", listener)
+  return { removeEventListener("key-parsing", listener) }
 }
 /**
- * Occurs after a key element has been fully parsed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23KeyParsed">Online Documentation</a>
+ * `key-parsed`: Occurs after a key element has been fully parsed.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IParseEvents%23key-parsed">Online Documentation</a>
  */
 inline fun  IParseEvents.addKeyParsedHandler(
-    crossinline handler: (event:ParseEventArgs) -> Unit
+  crossinline handler: (event:ParseEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<ParseEventArgs> = { _, event -> handler(event) }
-    addKeyParsedListener(listener)
-    return { removeKeyParsedListener(listener) }
+  val listener: EventHandler1<ParseEventArgs> = { event, _ -> handler(event) }
+  addEventListener("key-parsed", listener)
+  return { removeEventListener("key-parsed", listener) }
 }

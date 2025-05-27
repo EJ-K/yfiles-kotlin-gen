@@ -12,21 +12,18 @@
 package yfiles.analysis
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents the trees found by [TreeSubstructures].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeSubstructuresResult">Online Documentation</a>
  */
-external  class TreeSubstructuresResult 
-private constructor () : YObject {
-
-/**
- * Gets the trees found by [TreeSubstructures].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeSubstructuresResult%23trees">Online Documentation</a>
- */
-final val trees: ResultItemCollection<SubstructureItems>
-
-companion object : ClassMetadata<TreeSubstructuresResult> {
-}
+external class TreeSubstructuresResult private constructor()  {
+  /**
+   * Gets the trees found by [TreeSubstructures].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TreeSubstructuresResult%23trees">Online Documentation</a>
+   */
+  final val trees: ResultItemCollection<SubstructureItems>
+  
+  companion object : ClassMetadata<TreeSubstructuresResult> {
+  }
 }

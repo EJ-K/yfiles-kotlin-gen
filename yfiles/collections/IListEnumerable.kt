@@ -19,20 +19,23 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IListEnumerable">Online Documentation</a>
  */
 external interface IListEnumerable<out T> : IEnumerable<T> {
-/**
- * Gets the `i`-th element in the collection.
- * @param [index] the zero-based index of the item in this collection
- * @return the item for the given index
- * @throws ArgumentError `i` is not a valid index in the [IListEnumerable].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IListEnumerable%23IListEnumerable-method-get">Online Documentation</a>
- */
-  operator fun get( index: Int ):T
+  /**
+   * Gets the element at the specified index of this enumerable.
+   * @param [index] The index to get the item for.
+   * @return The item at the given index.
+   * @throws ArgumentError `index` is not a valid index in this enumerable.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IListEnumerable%23IListEnumerable-method-get">Online Documentation</a>
+   */
+  operator fun get(
+    index: Int,
+  ): T
 
-companion object : InterfaceMetadata<IListEnumerable<*>> {
-/**
- * An empty, immutable instance of [IListEnumerable].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IListEnumerable%23EMPTY">Online Documentation</a>
- */
- val EMPTY: IListEnumerable<*>
-}
+  
+  companion object : InterfaceMetadata<IListEnumerable<*>> {
+    /**
+     * An empty, immutable instance of [IListEnumerable].
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IListEnumerable%23EMPTY">Online Documentation</a>
+     */
+     val EMPTY: IListEnumerable<*>
+  }
 }

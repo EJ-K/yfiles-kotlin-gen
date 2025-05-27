@@ -20,6 +20,7 @@ import yfiles.lang.InterfaceMetadata
  */
 external interface INodeGridConstraintProvider : IGridConstraintProvider<INode> {
 
-companion object : InterfaceMetadata<INodeGridConstraintProvider> {
-}
+  
+  companion object : InterfaceMetadata<INodeGridConstraintProvider> {
+  }
 }

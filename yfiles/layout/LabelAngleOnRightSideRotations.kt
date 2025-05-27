@@ -11,36 +11,32 @@
 
 package yfiles.layout
 
-import yfiles.lang.YFlags
-
 /**
- * Angle interpretation specifier which expresses that the rotation angle should be interpreted *clockwise*.
- * @see [PreferredPlacementDescriptor.angleRotationOnRightSide]
+ * Specifies in which direction the rotation angle should be interpreted.
+ * @see [EdgeLabelPreferredPlacement.angleRotationOnRightSide]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelAngleOnRightSideRotations">Online Documentation</a>
  */
-external class LabelAngleOnRightSideRotations 
-    private constructor(): YFlags<LabelAngleOnRightSideRotations> {
-    companion object {
-    /**
- * Angle interpretation specifier which expresses that the rotation angle should be interpreted *clockwise*.
- * 
- * Value - `1`
- * @see [PreferredPlacementDescriptor.angleRotationOnRightSide]
- * @see [PreferredPlacementDescriptor.angle]
- * @see [PreferredPlacementDescriptor.sideOfEdge]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelAngleOnRightSideRotations%23CLOCKWISE">Online Documentation</a>
- */
-val CLOCKWISE: LabelAngleOnRightSideRotations
-/**
- * Angle interpretation specifier which expresses that the rotation angle should be interpreted *counter-clockwise*.
- * 
- * Value - `2`
- * @see [PreferredPlacementDescriptor.angleRotationOnRightSide]
- * @see [PreferredPlacementDescriptor.angle]
- * @see [PreferredPlacementDescriptor.sideOfEdge]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelAngleOnRightSideRotations%23COUNTER_CLOCKWISE">Online Documentation</a>
- */
-val COUNTER_CLOCKWISE: LabelAngleOnRightSideRotations
 
-    }
+sealed external class LabelAngleOnRightSideRotations {
+  /**
+   * Angle interpretation specifier which expresses that the rotation angle should be interpreted *clockwise*.
+   * 
+   * Value - `1`
+   * @see [EdgeLabelPreferredPlacement.angleRotationOnRightSide]
+   * @see [EdgeLabelPreferredPlacement.angle]
+   * @see [EdgeLabelPreferredPlacement.edgeSide]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelAngleOnRightSideRotations%23CLOCKWISE">Online Documentation</a>
+   */
+  object CLOCKWISE: LabelAngleOnRightSideRotations
+  
+  /**
+   * Angle interpretation specifier which expresses that the rotation angle should be interpreted *counter-clockwise*.
+   * 
+   * Value - `2`
+   * @see [EdgeLabelPreferredPlacement.angleRotationOnRightSide]
+   * @see [EdgeLabelPreferredPlacement.angle]
+   * @see [EdgeLabelPreferredPlacement.edgeSide]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LabelAngleOnRightSideRotations%23COUNTER_CLOCKWISE">Online Documentation</a>
+   */
+  object COUNTER_CLOCKWISE: LabelAngleOnRightSideRotations
 }

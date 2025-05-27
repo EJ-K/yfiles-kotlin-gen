@@ -11,44 +11,46 @@
 
 package yfiles.analysis
 
+import yfiles.collections.ItemCollection
 import yfiles.graph.IEdge
 import yfiles.graph.IGraph
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
-import yfiles.layout.ItemCollection
 
 /**
  * Calculates a bipartition of the given graph, if one exists.
- * @see [Bipartitions.getBipartition][yfiles.algorithms.Bipartitions.getBipartition]
+ * @see [LayoutGraphAlgorithms.bipartition]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Bipartition">Online Documentation</a>
  * 
- * @constructor Creates a new [Bipartition] instance.
+ * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Bipartition%23Bipartition-constructor-Bipartition">Online Documentation</a>
  */
-external  class Bipartition  () : YObject {
-
-/**
- * Gets or sets the collection of [edges][IEdge] which define a subset of the graph for the algorithms to work on.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Bipartition%23subgraphEdges">Online Documentation</a>
- */
-final var subgraphEdges: ItemCollection<IEdge>
-/**
- * Gets or sets the collection of [nodes][INode] which define a subset of the graph for the algorithms to work on.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Bipartition%23subgraphNodes">Online Documentation</a>
- */
-final var subgraphNodes: ItemCollection<INode>
-/**
- * Calculates a bipartition of the given graph, if one exists.
- * @param [graph] The input graph to run the algorithm on.
- * @return A [BipartitionResult] containing both partitions of `graph`. If the graph is not bipartite, the resulting partitions are empty and [BipartitionResult.isBipartite] is `false`.
- * @throws InvalidOperationError If the algorithm can't create a valid result due to an invalid graph structure or wrongly configured properties.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Bipartition%23Bipartition-method-run">Online Documentation</a>
- */
- final   fun run( graph: IGraph ):BipartitionResult
-
-companion object : ClassMetadata<Bipartition> {
-}
+external class Bipartition ()  {
+  /**
+   * Gets or sets the collection of [edges][IEdge] which define a subset of the graph for the algorithms to work on.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Bipartition%23subgraphEdges">Online Documentation</a>
+   */
+  final var subgraphEdges: ItemCollection<IEdge>
+  
+  /**
+   * Gets or sets the collection of [nodes][INode] which define a subset of the graph for the algorithms to work on.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Bipartition%23subgraphNodes">Online Documentation</a>
+   */
+  final var subgraphNodes: ItemCollection<INode>
+  
+  /**
+   * Calculates a bipartition of the given graph, if one exists.
+   * @param [graph] The input graph to run the algorithm on.
+   * @return A [BipartitionResult] containing both partitions of `graph`. If the graph is not bipartite, the resulting partitions are empty and [isBipartite][BipartitionResult] is `false`.
+   * @throws InvalidOperationError If the algorithm can't create a valid result due to an invalid graph structure or wrongly configured properties.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/Bipartition%23Bipartition-method-run">Online Documentation</a>
+   */
+  fun run(
+    graph: IGraph,
+  ): BipartitionResult
+  
+  companion object : ClassMetadata<Bipartition> {
+  }
 }
 
 inline fun Bipartition(

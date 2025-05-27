@@ -14,7 +14,6 @@ package yfiles.input
 import yfiles.graph.INode
 import yfiles.graph.IStripe
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Further describes the result of a hit test on a stripe or table.
@@ -33,16 +32,15 @@ import yfiles.lang.YObject
  * Gets the stripe that this instance describes.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StripeSubregion%23stripe">Online Documentation</a>
  */
-external  class StripeSubregion  (
+external class StripeSubregion (
 final val subregionType: StripeSubregionTypes,
-final val stripe: IStripe) : YObject {
-
-/**
- * Gets the node the region is associated to.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StripeSubregion%23targetTableNode">Online Documentation</a>
- */
-final val targetTableNode: INode?
-
-companion object : ClassMetadata<StripeSubregion> {
-}
+final val stripe: IStripe)  {
+  /**
+   * Gets the node the region is associated with.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StripeSubregion%23targetTableNode">Online Documentation</a>
+   */
+  final val targetTableNode: INode?
+  
+  companion object : ClassMetadata<StripeSubregion> {
+  }
 }

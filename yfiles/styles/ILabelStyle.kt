@@ -19,12 +19,18 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILabelStyle">Online Documentation</a>
  */
 external interface ILabelStyle : ICloneable<ILabelStyle> {
-/**
- * Gets the renderer implementation that can be queried for implementations that provide details about the visual appearance and visual behavior for a given label and this style instance.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILabelStyle%23renderer">Online Documentation</a>
- */
-val renderer: ILabelStyleRenderer
+  /**
+   * Gets the renderer implementation that can be queried for implementations that provide details about the visual appearance and visual behavior for a given label and this style instance.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILabelStyle%23renderer">Online Documentation</a>
+   */
+  val renderer: ILabelStyleRenderer
 
-companion object : InterfaceMetadata<ILabelStyle> {
-}
+  
+  companion object : InterfaceMetadata<ILabelStyle> {
+    /**
+     * A void implementation of a label style that does nothing and behaves like an invisible style.
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ILabelStyle%23VOID_LABEL_STYLE">Online Documentation</a>
+     */
+     val VOID_LABEL_STYLE: ILabelStyle
+  }
 }

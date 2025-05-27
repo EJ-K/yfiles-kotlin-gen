@@ -39,37 +39,48 @@ import yfiles.lang.ClassMetadata
  * Gets the table used for additional constraints.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23table">Online Documentation</a>
  */
-external open class TableReshapeHandler  (
+external class TableReshapeHandler (
 final val coreHandler: IReshapeHandler,
 final val tableNode: INode,
 final val table: ITable) : IReshapeHandler {
-
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23bounds">Online Documentation</a>
- */
-final override val bounds: IRectangle
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23TableReshapeHandler-method-cancelReshape">Online Documentation</a>
- */
- final override   fun cancelReshape( context: IInputModeContext ,
- originalBounds: Rect )
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23TableReshapeHandler-method-handleReshape">Online Documentation</a>
- */
- final override   fun handleReshape( context: IInputModeContext ,
- originalBounds: Rect ,
- newBounds: Rect )
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23TableReshapeHandler-method-initializeReshape">Online Documentation</a>
- */
- final override   fun initializeReshape( context: IInputModeContext )
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23TableReshapeHandler-method-reshapeFinished">Online Documentation</a>
- */
- final override   fun reshapeFinished( context: IInputModeContext ,
- originalBounds: Rect ,
- newBounds: Rect )
-
-companion object : ClassMetadata<TableReshapeHandler> {
-}
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23bounds">Online Documentation</a>
+   */
+  final override val bounds: IRectangle
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23TableReshapeHandler-method-cancelReshape">Online Documentation</a>
+   */
+  override fun cancelReshape(
+    context: IInputModeContext,
+    originalBounds: Rect,
+  )
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23TableReshapeHandler-method-handleReshape">Online Documentation</a>
+   */
+  override fun handleReshape(
+    context: IInputModeContext,
+    originalBounds: Rect,
+    newBounds: Rect,
+  )
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23TableReshapeHandler-method-initializeReshape">Online Documentation</a>
+   */
+  override fun initializeReshape(
+    context: IInputModeContext,
+  )
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableReshapeHandler%23TableReshapeHandler-method-reshapeFinished">Online Documentation</a>
+   */
+  override fun reshapeFinished(
+    context: IInputModeContext,
+    originalBounds: Rect,
+    newBounds: Rect,
+  )
+  
+  companion object : ClassMetadata<TableReshapeHandler> {
+  }
 }

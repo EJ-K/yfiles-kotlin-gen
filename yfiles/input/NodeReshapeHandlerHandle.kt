@@ -31,53 +31,67 @@ import yfiles.lang.ClassMetadata
  * Gets the node to reshape with this handle.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23node">Online Documentation</a>
  */
-external open class NodeReshapeHandlerHandle  (
+open external class NodeReshapeHandlerHandle (
 final val node: INode,
- reshapeHandler: IReshapeHandler ,
- position: HandlePositions ) : ReshapeHandlerHandle {
-
-/**
- * Gets or sets the maximum size allowed for the reshapeable.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23maximumSize">Online Documentation</a>
- */
-override var maximumSize: ISize
-/**
- * Gets or sets the minimum enclosed area that needs to be encompassed by this reshapeable.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23minimumEnclosedArea">Online Documentation</a>
- */
-override var minimumEnclosedArea: IRectangle
-/**
- * Gets or sets the minimum size allowed for the reshapeable.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23minimumSize">Online Documentation</a>
- */
-override var minimumSize: ISize
-/**
- * Gets or sets an [INodeSizeConstraintProvider] that is queried in [minimumSize], [maximumSize] and [minimumEnclosedArea] if no explicit value was set.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23sizeConstraintProvider">Online Documentation</a>
- */
-final var sizeConstraintProvider: INodeSizeConstraintProvider?
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23NodeReshapeHandlerHandle-method-cancelDrag">Online Documentation</a>
- */
- override   fun cancelDrag( context: IInputModeContext ,
- originalLocation: Point )
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23NodeReshapeHandlerHandle-method-dragFinished">Online Documentation</a>
- */
- override   fun dragFinished( context: IInputModeContext ,
- originalLocation: Point ,
- newLocation: Point )
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23NodeReshapeHandlerHandle-method-handleMove">Online Documentation</a>
- */
- override   fun handleMove( context: IInputModeContext ,
- originalLocation: Point ,
- newLocation: Point )
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23NodeReshapeHandlerHandle-method-initializeDrag">Online Documentation</a>
- */
- override   fun initializeDrag( context: IInputModeContext )
-
-companion object : ClassMetadata<NodeReshapeHandlerHandle> {
-}
+reshapeHandler: IReshapeHandler,
+position: HandlePositions) : ReshapeHandlerHandle {
+  /**
+   * Gets or sets the maximum size allowed for the reshapeable.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23maximumSize">Online Documentation</a>
+   */
+  open override var maximumSize: ISize
+  
+  /**
+   * Gets or sets the minimum enclosed area that needs to be encompassed by this reshapeable.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23minimumEnclosedArea">Online Documentation</a>
+   */
+  open override var minimumEnclosedArea: IRectangle
+  
+  /**
+   * Gets or sets the minimum size allowed for the reshapeable.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23minimumSize">Online Documentation</a>
+   */
+  open override var minimumSize: ISize
+  
+  /**
+   * Gets or sets an [INodeSizeConstraintProvider] that is queried in [minimumSize][NodeReshapeHandlerHandle], [maximumSize][NodeReshapeHandlerHandle] and [minimumEnclosedArea][NodeReshapeHandlerHandle] if no explicit value was set.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23sizeConstraintProvider">Online Documentation</a>
+   */
+  final var sizeConstraintProvider: INodeSizeConstraintProvider?
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23NodeReshapeHandlerHandle-method-cancelDrag">Online Documentation</a>
+   */
+  override fun cancelDrag(
+    context: IInputModeContext,
+    originalLocation: Point,
+  )
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23NodeReshapeHandlerHandle-method-dragFinished">Online Documentation</a>
+   */
+  override fun dragFinished(
+    context: IInputModeContext,
+    originalLocation: Point,
+    newLocation: Point,
+  )
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23NodeReshapeHandlerHandle-method-handleMove">Online Documentation</a>
+   */
+  override fun handleMove(
+    context: IInputModeContext,
+    originalLocation: Point,
+    newLocation: Point,
+  )
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeReshapeHandlerHandle%23NodeReshapeHandlerHandle-method-initializeDrag">Online Documentation</a>
+   */
+  override fun initializeDrag(
+    context: IInputModeContext,
+  )
+  
+  companion object : ClassMetadata<NodeReshapeHandlerHandle> {
+  }
 }

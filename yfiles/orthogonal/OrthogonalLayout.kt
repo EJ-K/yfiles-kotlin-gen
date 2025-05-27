@@ -11,11 +11,24 @@
 
 package yfiles.orthogonal
 
-import yfiles.algorithms.EdgeDirectedness
-import yfiles.algorithms.EdgeDpKey
+import yfiles.graph.IEdge
+import yfiles.graph.IGraph
+import yfiles.graph.ILabel
+import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
+import yfiles.lang.TimeSpan
+import yfiles.layout.ComponentLayout
+import yfiles.layout.EdgeDataKey
+import yfiles.layout.EdgeLabelPlacement
+import yfiles.layout.ILayoutAlgorithm
+import yfiles.layout.LayoutEdge
+import yfiles.layout.LayoutEdgeLabel
 import yfiles.layout.LayoutGraph
-import yfiles.layout.MultiStageLayout
+import yfiles.layout.LayoutNode
+import yfiles.layout.LayoutNodeLabel
+import yfiles.layout.LayoutOrientation
+import yfiles.layout.LayoutStageStack
+import yfiles.layout.NodeLabelPlacement
 
 /**
  * This layout algorithm arranges graphs in an orthogonal fashion.
@@ -24,254 +37,245 @@ import yfiles.layout.MultiStageLayout
  * @constructor Creates a new [OrthogonalLayout] instance with default settings.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23OrthogonalLayout-constructor-OrthogonalLayout">Online Documentation</a>
  */
-external open class OrthogonalLayout  () : MultiStageLayout {
-
-/**
- * Gets or sets whether or not degree-one nodes that have the same neighbor should be aligned.
- * 
- * Default value - `false`. Degree-one nodes with the same neighbor are not aligned with each other.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23alignDegreeOneNodes">Online Documentation</a>
- */
-open var alignDegreeOneNodes: Boolean
-/**
- * Gets or sets the minimum size (number of nodes) a chain needs to have to be detected and handled as a chain substructure.
- * 
- * Default value - `4`
- * @throws ArgumentError if the given minimum size is less than `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23chainSize">Online Documentation</a>
- */
-open var chainSize: Int
-/**
- * Gets or sets the chain layout style that defines how *chain* substructures are arranged.
- * 
- * Default value - [ChainLayoutStyle.NONE]. Chains are not handled explicitly.
- * @throws ArgumentError if an unknown chain style is given
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23chainStyle">Online Documentation</a>
- */
-open var chainStyle: ChainLayoutStyle
-/**
- * Sets whether or not the [ILayoutStage][yfiles.layout.ILayoutStage] used for arranging the components of the graph is activated.
- * 
- * Default value - `true`. The stage that arranges connected graph components is activated.
- * @see [MultiStageLayout.componentLayoutEnabled]
- * @see [MultiStageLayout.componentLayout]
- * @see [ComponentLayout][yfiles.layout.ComponentLayout]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23componentLayoutEnabled">Online Documentation</a>
- */
-override var componentLayoutEnabled: Boolean
-/**
- * Gets or sets whether or not the layout algorithm considers node labels when calculating node positions to avoid overlaps.
- * 
- * Default value - `false`. Node labels are ignored.
- * @throws InvalidOperationError if no properly configured [LabelLayoutTranslator][yfiles.layout.LabelLayoutTranslator] is registered even though this property was enabled earlier (can happen when manually specifying the [labeling algorithm][MultiStageLayout.labeling]).
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23considerNodeLabels">Online Documentation</a>
- */
-open var considerNodeLabels: Boolean
-/**
- * Gets or sets whether or not the number of edge crossings should be reduced.
- * 
- * Default value - `true`. The number of edge crossings is reduced.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23crossingReduction">Online Documentation</a>
- */
-open var crossingReduction: Boolean
-/**
- * Gets or sets the minimum size (number of nodes) a cycle needs to have to be detected and explicitly handled as a cycle substructure.
- * 
- * Default value - `4`
- * @throws ArgumentError if the given minimum size is less than `4`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23cycleSize">Online Documentation</a>
- */
-open var cycleSize: Int
-/**
- * Gets or sets the cycle layout style that defines how *cycle* substructures are arranged.
- * 
- * Default value - [CycleLayoutStyle.NONE]. Cycles are not handled explicitly.
- * @throws ArgumentError if an unknown cycle style is given
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23cycleStyle">Online Documentation</a>
- */
-open var cycleStyle: CycleLayoutStyle
-/**
- * Gets or sets the [EdgeLayoutDescriptor] instance used for all those edges that do not have a specific layout descriptor assigned.
- * 
- * Default value - [EdgeLayoutDescriptor]
- * @see [EDGE_LAYOUT_DESCRIPTOR_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23edgeLayoutDescriptor">Online Documentation</a>
- */
-open var edgeLayoutDescriptor: EdgeLayoutDescriptor
-/**
- * Gets or sets whether or not the overall edge length should be optimized.
- * 
- * Default value - `true`. The overall edge length is reduced.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23edgeLengthReduction">Online Documentation</a>
- */
-open var edgeLengthReduction: Boolean
-/**
- * Gets or sets whether or not one face of the embedding of the graph should be maximized.
- * 
- * Default value - `false`. No face of the embedding is maximized.
- * @see [randomization]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23faceMaximization">Online Documentation</a>
- */
-open var faceMaximization: Boolean
-/**
- * Gets or sets whether or not the existing drawing should be used as a sketch of the resulting orthogonal layout.
- * 
- * Default value - `false`. The initial coordinates of the nodes are not considered.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23fromSketchMode">Online Documentation</a>
- */
-open var fromSketchMode: Boolean
-/**
- * Gets or sets the equidistant spacing between the horizontal and vertical grid lines.
- * 
- * Default value - `20`
- * @throws ArgumentError if the grid spacing is negative
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23gridSpacing">Online Documentation</a>
- */
-open var gridSpacing: Double
-/**
- * Sets whether or not the [ILayoutStage][yfiles.layout.ILayoutStage] used for hiding group nodes is activated.
- * 
- * Default value - `true`. The stage responsible for hiding group nodes is activated.
- * @see [MultiStageLayout.hideGroupsStageEnabled]
- * @see [MultiStageLayout.hideGroupsStage]
- * @see [HideGroupsStage][yfiles.layout.HideGroupsStage]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23hideGroupsStageEnabled">Online Documentation</a>
- */
-override var hideGroupsStageEnabled: Boolean
-/**
- * Gets or sets whether or not the layout algorithm preserves space and places edge labels.
- * 
- * Default value - `false`. Integrated edge labeling is disabled.
- * @throws InvalidOperationError if no properly configured [LabelLayoutTranslator][yfiles.layout.LabelLayoutTranslator] is registered even though integrated labeling was enabled earlier (can happen when manually specifying the [labeling algorithm][MultiStageLayout.labeling]).
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23integratedEdgeLabeling">Online Documentation</a>
- */
-open var integratedEdgeLabeling: Boolean
-/**
- * Gets or sets the layout style for this layout algorithm.
- * 
- * Default value - [LayoutStyle.NORMAL]
- * @throws ArgumentError if an unknown layout style is given
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23layoutStyle">Online Documentation</a>
- */
-open var layoutStyle: LayoutStyle
-/**
- * Gets or sets the preferred time limit in milliseconds.
- * 
- * Default value - `<code>0x7FFFFFFF</code>`. The layout algorithm runs unrestricted.
- * @throws ArgumentError if the maximum duration is negative
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23maximumDuration">Online Documentation</a>
- */
-open var maximumDuration: Int
-/**
- * Gets or sets whether or not the number of perceived bends should be minimized.
- * 
- * Default value - `true`. The number of perceived bends will be minimized.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23optimizePerceivedBends">Online Documentation</a>
- */
-open var optimizePerceivedBends: Boolean
-/**
- * Sets whether or not the [ILayoutStage][yfiles.layout.ILayoutStage] that modifies the orientation of the layout is activated.
- * 
- * Default value - `true`. The orientation [ILayoutStage][yfiles.layout.ILayoutStage] is activated.
- * @see [MultiStageLayout.orientationLayoutEnabled]
- * @see [MultiStageLayout.orientationLayout]
- * @see [MultiStageLayout.layoutOrientation]
- * @see [OrientationLayout][yfiles.layout.OrientationLayout]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23orientationLayoutEnabled">Online Documentation</a>
- */
-override var orientationLayoutEnabled: Boolean
-/**
- * Gets or sets whether or not parallel routes for parallel edges (multi-edges) are preferred over independent routes.
- * 
- * Default value - `true`. The algorithm tries to route parallel edges in parallel.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23preferParallelRoutes">Online Documentation</a>
- */
-open var preferParallelRoutes: Boolean
-/**
- * Gets or sets whether or not a randomization strategy should be performed.
- * 
- * Default value - `true`. A randomization strategy is applied.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23randomization">Online Documentation</a>
- */
-open var randomization: Boolean
-/**
- * Gets or sets the desired orientation for subtree layouts.
- * 
- * Default value - [SubstructureOrientation.AUTO_DETECT]. The tree orientation is determined automatically.
- * @throws ArgumentError if the given layout orientation is unknown
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23treeOrientation">Online Documentation</a>
- */
-open var treeOrientation: SubstructureOrientation
-/**
- * Gets or sets the minimum size (number of nodes) a subtree needs to have to be detected and explicitly handled as a tree substructure.
- * 
- * Default value - `3`
- * @throws ArgumentError if the given minimum size is less than `3`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23treeSize">Online Documentation</a>
- */
-open var treeSize: Int
-/**
- * Gets or sets the tree layout style that defines the basic arrangement style for subtrees.
- * 
- * Default value - [TreeLayoutStyle.NONE]. Subtrees are not arranged in a special way.
- * @throws ArgumentError if an unknown tree style is given
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23treeStyle">Online Documentation</a>
- */
-open var treeStyle: TreeLayoutStyle
-/**
- * Gets or sets whether or not the layout algorithm should try to obtain a uniform port assignment of the edges incident to the same node side.
- * 
- * Default value - `false`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23uniformPortAssignment">Online Documentation</a>
- */
-open var uniformPortAssignment: Boolean
-/**
- * Calculates an orthogonal layout for the given graph.
- * @param [graph] the input graph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23OrthogonalLayout-method-applyLayout">Online Documentation</a>
- */
- override   fun applyLayout( graph: LayoutGraph )
-/**
- * Calculates an orthogonal layout for the given graph.
- * @param [graph] the input graph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23OrthogonalLayout-method-applyLayoutCore">Online Documentation</a>
- */
- override   fun applyLayoutCore( graph: LayoutGraph )
-/**
- * Returns a new [EdgeLayoutDescriptor] instance that will be used during the various phases of the layout algorithm to determine the drawing details of the edges of the graph.
- * @return a new [EdgeLayoutDescriptor] instance
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23OrthogonalLayout-method-createEdgeLayoutDescriptor">Online Documentation</a>
- */
- open protected   fun createEdgeLayoutDescriptor():EdgeLayoutDescriptor
-
-companion object : ClassMetadata<OrthogonalLayout> {
-/**
- * A data provider key for marking edges which should be routed such that they point to the main layout orientation.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23DIRECTED_EDGE_DP_KEY">Online Documentation</a>
- */
- val DIRECTED_EDGE_DP_KEY: EdgeDpKey<Boolean>
-/**
- * A data provider key for providing bend costs for each edge.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23EDGE_BEND_COST_DP_KEY">Online Documentation</a>
- */
- val EDGE_BEND_COST_DP_KEY: EdgeDpKey<Double>
-/**
- * A data provider key for providing crossing costs for each edge.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23EDGE_CROSSING_COST_DP_KEY">Online Documentation</a>
- */
- val EDGE_CROSSING_COST_DP_KEY: EdgeDpKey<Double>
-/**
- * A data provider key for specifying the directedness of edges for the detection of substructures.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23EDGE_DIRECTEDNESS_DP_KEY">Online Documentation</a>
- */
- val EDGE_DIRECTEDNESS_DP_KEY: EdgeDpKey<EdgeDirectedness>
-/**
- * A data provider key for providing layout information for each edge.
- * @see [layoutStyle]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23EDGE_LAYOUT_DESCRIPTOR_DP_KEY">Online Documentation</a>
- */
- val EDGE_LAYOUT_DESCRIPTOR_DP_KEY: EdgeDpKey<EdgeLayoutDescriptor>
-}
+open external class OrthogonalLayout () : ILayoutAlgorithm {
+  /**
+   * Gets or sets whether degree-one nodes that have the same neighbor should be aligned.
+   * 
+   * Default value - `false`. Degree-one nodes with the same neighbor are not aligned with each other.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23alignDegreeOneNodes">Online Documentation</a>
+   */
+  final var alignDegreeOneNodes: Boolean
+  
+  /**
+   * Gets or sets the minimum size (number of nodes) a chain needs to have to be detected and handled as a chain substructure.
+   * 
+   * Default value - `4`
+   * @throws ArgumentError if the given minimum size is less than `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23chainSubstructureSize">Online Documentation</a>
+   */
+  final var chainSubstructureSize: Int
+  
+  /**
+   * Gets or sets the arrangement style for chain substructures.
+   * 
+   * Default value - [OrthogonalLayoutChainSubstructureStyle.NONE]. Chains are not handled explicitly.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23chainSubstructureStyle">Online Documentation</a>
+   */
+  final var chainSubstructureStyle: OrthogonalLayoutChainSubstructureStyle
+  
+  /**
+   * Gets or sets the [ComponentLayout] from the [layoutStages][OrthogonalLayout] of this instance.
+   * @throws InvalidOperationError If there is no instance of the respective type in the [layoutStages][OrthogonalLayout]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23componentLayout">Online Documentation</a>
+   */
+  final val componentLayout: ComponentLayout
+  
+  /**
+   * Gets or sets the minimum size (number of nodes) a cycle needs to have to be detected and explicitly handled as a cycle substructure.
+   * 
+   * Default value - `4`
+   * @throws ArgumentError if the given minimum size is less than `4`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23cycleSubstructureSize">Online Documentation</a>
+   */
+  final var cycleSubstructureSize: Int
+  
+  /**
+   * Gets or sets the arrangement style for cycle substructures.
+   * 
+   * Default value - [OrthogonalLayoutCycleSubstructureStyle.NONE]. Cycles are not handled explicitly.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23cycleSubstructureStyle">Online Documentation</a>
+   */
+  final var cycleSubstructureStyle: OrthogonalLayoutCycleSubstructureStyle
+  
+  /**
+   * Gets or sets the [OrthogonalLayoutEdgeDescriptor] instance used for all those edges that do not have a [specific descriptor][OrthogonalLayoutData] assigned.
+   * 
+   * Default value - [OrthogonalLayoutEdgeDescriptor]. A descriptor instance with default settings.
+   * @see [OrthogonalLayoutData.edgeDescriptors]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23defaultEdgeDescriptor">Online Documentation</a>
+   */
+  final var defaultEdgeDescriptor: OrthogonalLayoutEdgeDescriptor
+  
+  /**
+   * Gets or sets how the layout handles the position of edge labels.
+   * 
+   * Default value - [EdgeLabelPlacement.INTEGRATED]. Edge labels are placed by the layout algorithm.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23edgeLabelPlacement">Online Documentation</a>
+   */
+  final var edgeLabelPlacement: EdgeLabelPlacement
+  
+  /**
+   * Gets or sets whether the existing drawing should be used as a sketch of the resulting orthogonal layout.
+   * 
+   * Default value - `false`. The initial coordinates of the nodes are not considered.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23fromSketchMode">Online Documentation</a>
+   */
+  final var fromSketchMode: Boolean
+  
+  /**
+   * Gets or sets the equidistant spacing between the horizontal and vertical grid lines.
+   * 
+   * Default value - `20`
+   * @throws ArgumentError if the grid spacing is negative
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23gridSpacing">Online Documentation</a>
+   */
+  final var gridSpacing: Double
+  
+  /**
+   * Gets or sets the main layout mode for this algorithm.
+   * 
+   * Default value - [OrthogonalLayoutMode.STRICT]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23layoutMode">Online Documentation</a>
+   */
+  final var layoutMode: OrthogonalLayoutMode
+  
+  /**
+   * Gets or sets the [layoutOrientation][OrthogonalLayout] of the [OrientationStage][yfiles.layout.OrientationStage].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23layoutOrientation">Online Documentation</a>
+   */
+  final var layoutOrientation: LayoutOrientation
+  
+  /**
+   * Gets the mutable stack of [ILayoutStage][yfiles.layout.ILayoutStage] that will be applied to this layout.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23layoutStages">Online Documentation</a>
+   */
+  final val layoutStages: LayoutStageStack
+  
+  /**
+   * Gets or sets how the layout handles the position of node labels.
+   * 
+   * Default value - [NodeLabelPlacement.CONSIDER]. Node labels are considered.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23nodeLabelPlacement">Online Documentation</a>
+   */
+  final var nodeLabelPlacement: NodeLabelPlacement
+  
+  /**
+   * Gets or sets whether parallel routes for parallel edges (multi-edges) are preferred over independent routes.
+   * 
+   * Default value - `true`. The algorithm tries to route parallel edges in parallel.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23preferParallelRoutes">Online Documentation</a>
+   */
+  final var preferParallelRoutes: Boolean
+  
+  /**
+   * Gets or sets the ratio of layout quality versus running time.
+   * 
+   * Default value - `0.6`. Quality is a bit more important than fast running time.
+   * @throws ArgumentError if the specified ratio is outside the interval `[0,1]`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23qualityTimeRatio">Online Documentation</a>
+   */
+  final var qualityTimeRatio: Double
+  
+  /**
+   * Gets or sets the preferred time limit.
+   * 
+   * Default value - [TimeSpan.MAX_VALUE]. The layout algorithm runs unrestricted.
+   * @throws ArgumentError if the stop duration is negative
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23stopDuration">Online Documentation</a>
+   */
+  final var stopDuration: TimeSpan
+  
+  /**
+   * Gets or sets the desired orientation for tree substructure layouts.
+   * 
+   * Default value - [SubstructureOrientation.AUTO_DETECT]. The tree orientation is determined automatically.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23treeSubstructureOrientation">Online Documentation</a>
+   */
+  final var treeSubstructureOrientation: SubstructureOrientation
+  
+  /**
+   * Gets or sets the minimum size (number of nodes) a subtree needs to have to be detected and explicitly handled as a tree substructure.
+   * 
+   * Default value - `3`
+   * @throws ArgumentError if the given minimum size is less than `3`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23treeSubstructureSize">Online Documentation</a>
+   */
+  final var treeSubstructureSize: Int
+  
+  /**
+   * Gets or sets the arrangement style for tree substructures.
+   * 
+   * Default value - [OrthogonalLayoutTreeSubstructureStyle.NONE]. Subtrees are not arranged in a special way.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23treeSubstructureStyle">Online Documentation</a>
+   */
+  final var treeSubstructureStyle: OrthogonalLayoutTreeSubstructureStyle
+  
+  /**
+   * Gets or sets whether the layout algorithm should try to obtain a uniform port assignment of the edges incident to the same node side.
+   * 
+   * Default value - `false`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23uniformPortAssignment">Online Documentation</a>
+   */
+  final var uniformPortAssignment: Boolean
+  
+  /**
+   * Calculates an orthogonal layout for the given graph.
+   * @param [graph] the input graph
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23OrthogonalLayout-method-applyLayout">Online Documentation</a>
+   */
+  override fun applyLayout(
+    graph: LayoutGraph,
+  )
+  
+  /**
+   * Calculates an orthogonal layout for the given graph.
+   * @param [graph] the input graph
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23OrthogonalLayout-method-applyLayoutCore">Online Documentation</a>
+   */
+  protected fun applyLayoutCore(
+    graph: LayoutGraph,
+  )
+  
+  /**
+   * Returns an instance of [LayoutData][yfiles.layout.LayoutData] that can be used to perform item-specific configurations for the [OrthogonalLayout].
+   * @param [graph] the graph that determines the generic type arguments of the created layout data
+   * @return an instance of [layout data][yfiles.layout.LayoutData] that can be used to perform item-specific configurations for the given [OrthogonalLayout].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23OrthogonalLayout-defaultmethod-createLayoutData(LayoutGraph)">Online Documentation</a>
+   */
+  fun createLayoutData(
+    graph: LayoutGraph,
+  ): OrthogonalLayoutData<LayoutNode, LayoutEdge, LayoutNodeLabel, LayoutEdgeLabel>
+  
+  /**
+   * Returns an instance of [LayoutData][yfiles.layout.LayoutData] that can be used to perform item-specific configurations for the [OrthogonalLayout].
+   * @param [graph] the graph that determines the generic type arguments of the created layout data
+   * @return an instance of [layout data][yfiles.layout.LayoutData] that can be used to perform item-specific configurations for the given [OrthogonalLayout].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23OrthogonalLayout-defaultmethod-createLayoutData(IGraph)">Online Documentation</a>
+   */
+  fun createLayoutData(
+    graph: IGraph?  = definedExternally,
+  ): OrthogonalLayoutData<INode, IEdge, ILabel, ILabel>
+  
+  companion object : ClassMetadata<OrthogonalLayout> {
+    /**
+     * A [data key][EdgeDataKey] for providing bend costs for each edge.
+     * @see [OrthogonalLayoutData.edgeBendCosts]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23EDGE_BEND_COST_DATA_KEY">Online Documentation</a>
+     */
+     val EDGE_BEND_COST_DATA_KEY: EdgeDataKey<Number>
+    
+    /**
+     * A [data key][EdgeDataKey] for providing crossing costs for each edge.
+     * @see [OrthogonalLayoutData.edgeCrossingCosts]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23EDGE_CROSSING_COST_DATA_KEY">Online Documentation</a>
+     */
+     val EDGE_CROSSING_COST_DATA_KEY: EdgeDataKey<Number>
+    
+    /**
+     * A [data key][EdgeDataKey] for providing layout information for each edge.
+     * @see [OrthogonalLayoutData.edgeDescriptors]
+     * @see [layoutMode]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23EDGE_DESCRIPTOR_DATA_KEY">Online Documentation</a>
+     */
+     val EDGE_DESCRIPTOR_DATA_KEY: EdgeDataKey<OrthogonalLayoutEdgeDescriptor>
+    
+    /**
+     * A [data key][EdgeDataKey] for specifying the orientation of edges with respect to the main layout orientation.
+     * @see [OrthogonalLayoutData.edgeOrientation]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalLayout%23EDGE_ORIENTATION_DATA_KEY">Online Documentation</a>
+     */
+     val EDGE_ORIENTATION_DATA_KEY: EdgeDataKey<Number>
+  }
 }
 
 inline fun OrthogonalLayout(

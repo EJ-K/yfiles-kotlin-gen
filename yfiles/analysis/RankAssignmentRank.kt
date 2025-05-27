@@ -13,26 +13,24 @@ package yfiles.analysis
 
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
- * Represents a group of nodes with the same [rank][index].
+ * Represents a group of nodes with the same [rank][RankAssignmentRank].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RankAssignmentRank">Online Documentation</a>
  */
-external  class RankAssignmentRank 
-private constructor () : YObject {
-
-/**
- * Gets the rank or layer index.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RankAssignmentRank%23index">Online Documentation</a>
- */
-final val index: Int
-/**
- * Gets a collection of all nodes with the same rank.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RankAssignmentRank%23nodes">Online Documentation</a>
- */
-final val nodes: ResultItemCollection<INode>
-
-companion object : ClassMetadata<RankAssignmentRank> {
-}
+external class RankAssignmentRank private constructor()  {
+  /**
+   * Gets the rank or layer index.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RankAssignmentRank%23index">Online Documentation</a>
+   */
+  final val index: Int
+  
+  /**
+   * Gets a collection of all nodes with the same rank.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RankAssignmentRank%23nodes">Online Documentation</a>
+   */
+  final val nodes: ResultItemCollection<INode>
+  
+  companion object : ClassMetadata<RankAssignmentRank> {
+  }
 }

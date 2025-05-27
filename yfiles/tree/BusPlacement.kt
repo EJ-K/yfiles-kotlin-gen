@@ -11,38 +11,33 @@
 
 package yfiles.tree
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * A bus placement that places the bus that connects the child nodes in the center of the child subtrees.
- * @see [GridNodePlacer.busPlacement]
+ * A bus placement that places the bus connecting the child nodes in the center of the child subtrees.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BusPlacement">Online Documentation</a>
  */
-external sealed class BusPlacement: YEnum<BusPlacement> {
-   companion object: EnumMetadata<BusPlacement> {
-       /**
- * A bus placement that places the bus that connects the child nodes in a leading way, left of the child subtrees.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BusPlacement%23LEADING">Online Documentation</a>
- */
-val LEADING: BusPlacement
 
-/**
- * A bus placement that places the bus that connects the child nodes in a trailing way, right of the child subtrees.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BusPlacement%23TRAILING">Online Documentation</a>
- */
-val TRAILING: BusPlacement
-
-/**
- * A bus placement that places the bus that connects the child nodes in the center of the child subtrees.
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BusPlacement%23CENTER">Online Documentation</a>
- */
-val CENTER: BusPlacement
-   }
+sealed external class BusPlacement {
+  /**
+   * A bus placement that places the bus that connects the child nodes in a leading way, left of the child subtrees.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BusPlacement%23LEADING">Online Documentation</a>
+   */
+  object LEADING: BusPlacement
+  
+  /**
+   * A bus placement that places the bus that connects the child nodes in a trailing way, right of the child subtrees.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BusPlacement%23TRAILING">Online Documentation</a>
+   */
+  object TRAILING: BusPlacement
+  
+  /**
+   * A bus placement that places the bus that connects the child nodes in the center of the child subtrees.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BusPlacement%23CENTER">Online Documentation</a>
+   */
+  object CENTER: BusPlacement
 }

@@ -12,19 +12,7 @@ package yfiles.graph
 import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
-import yfiles.styles.Templates
 
-fun <T: Any> Tag.deepObservable(value: T): IPropertyProvider<Tag, T> {
-    check(jsTypeOf(value) == "object")
-    makeObservable()            
-    return TagPropertyProvider(value)
-}    
-
-fun <T> Tag.observable(initialValue: T): ReadWriteProperty<Tag, T> {
-    makeObservable()
-    return Property(initialValue)
-}    
-    
 fun <T> Any.observable(initialValue: T): ReadWriteProperty<Any, T> {
     return Property(initialValue)
 }
@@ -82,12 +70,6 @@ private class Property<P:Any, T>(
             this.value = value
             thisRef.firePropertyChanged(property.name)
         }
-    }
-}
- 
-private inline fun Tag.makeObservable() {
-    if (!firePropertyChangedDeclared) {
-        Templates.makeObservable(this)
     }
 }
  

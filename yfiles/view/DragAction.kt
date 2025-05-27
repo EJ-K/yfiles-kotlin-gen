@@ -11,38 +11,34 @@
 
 package yfiles.view
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * Holds the possible drag actions.
  * @see [QueryContinueDragEventArgs.action]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragAction">Online Documentation</a>
  */
-external sealed class DragAction: YEnum<DragAction> {
-   companion object: EnumMetadata<DragAction> {
-       /**
- * Whether the drag should be continued.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragAction%23CONTINUE">Online Documentation</a>
- */
-val CONTINUE: DragAction
 
-/**
- * Whether the drag should be finalized by an immediate drop.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragAction%23DROP">Online Documentation</a>
- */
-val DROP: DragAction
-
-/**
- * Whether the drag operation should be canceled.
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragAction%23CANCEL">Online Documentation</a>
- */
-val CANCEL: DragAction
-   }
+sealed external class DragAction {
+  /**
+   * Whether the drag should be continued.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragAction%23CONTINUE">Online Documentation</a>
+   */
+  object CONTINUE: DragAction
+  
+  /**
+   * Whether the drag should be finalized by an immediate drop.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragAction%23DROP">Online Documentation</a>
+   */
+  object DROP: DragAction
+  
+  /**
+   * Whether the drag operation should be canceled.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragAction%23CANCEL">Online Documentation</a>
+   */
+  object CANCEL: DragAction
 }

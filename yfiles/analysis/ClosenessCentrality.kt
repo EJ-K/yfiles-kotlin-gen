@@ -11,55 +11,59 @@
 
 package yfiles.analysis
 
+import yfiles.collections.ItemCollection
+import yfiles.collections.ItemMapping
 import yfiles.graph.IEdge
 import yfiles.graph.IGraph
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
-import yfiles.layout.ItemCollection
-import yfiles.layout.ItemMapping
 
 /**
  * Computes the closeness centrality for the nodes of a graph.
- * @see [Centrality.closenessCentrality][yfiles.algorithms.Centrality.closenessCentrality]
+ * @see [LayoutGraphAlgorithms.closenessCentrality]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality">Online Documentation</a>
  * 
- * @constructor Creates a new [ClosenessCentrality] instance.
+ * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23ClosenessCentrality-constructor-ClosenessCentrality">Online Documentation</a>
  */
-external open class ClosenessCentrality  () : YObject {
-
-/**
- * Gets or sets a value indicating whether edge direction should be considered.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23directed">Online Documentation</a>
- */
-final var directed: Boolean
-/**
- * Gets or sets the collection of [edges][IEdge] which define a subset of the graph for the algorithms to work on.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23subgraphEdges">Online Documentation</a>
- */
-final var subgraphEdges: ItemCollection<IEdge>
-/**
- * Gets or sets the collection of [nodes][INode] which define a subset of the graph for the algorithms to work on.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23subgraphNodes">Online Documentation</a>
- */
-final var subgraphNodes: ItemCollection<INode>
-/**
- * Gets or sets a mapping for edge weights.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23weights">Online Documentation</a>
- */
-final var weights: ItemMapping<IEdge, Double>
-/**
- * Computes the closeness centrality for the nodes of a graph.
- * @param [graph] The input graph to run the algorithm on.
- * @return A [ClosenessCentralityResult] from which the calculated centrality values can be obtained.
- * @throws InvalidOperationError If the algorithm can't create a valid result due to an invalid graph structure or wrongly configured properties.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23ClosenessCentrality-method-run">Online Documentation</a>
- */
- final   fun run( graph: IGraph ):ClosenessCentralityResult
-
-companion object : ClassMetadata<ClosenessCentrality> {
-}
+external class ClosenessCentrality ()  {
+  /**
+   * Gets or sets a value indicating whether edge direction should be considered.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23directed">Online Documentation</a>
+   */
+  final var directed: Boolean
+  
+  /**
+   * Gets or sets the collection of [edges][IEdge] which define a subset of the graph for the algorithms to work on.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23subgraphEdges">Online Documentation</a>
+   */
+  final var subgraphEdges: ItemCollection<IEdge>
+  
+  /**
+   * Gets or sets the collection of [nodes][INode] which define a subset of the graph for the algorithms to work on.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23subgraphNodes">Online Documentation</a>
+   */
+  final var subgraphNodes: ItemCollection<INode>
+  
+  /**
+   * Gets or sets a mapping for edge weights.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23weights">Online Documentation</a>
+   */
+  final var weights: ItemMapping<IEdge, Double>
+  
+  /**
+   * Computes the closeness centrality for the nodes of a graph.
+   * @param [graph] The input graph to run the algorithm on.
+   * @return A [ClosenessCentralityResult] from which the calculated centrality values can be obtained.
+   * @throws InvalidOperationError If the algorithm can't create a valid result due to an invalid graph structure or wrongly configured properties.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ClosenessCentrality%23ClosenessCentrality-method-run">Online Documentation</a>
+   */
+  fun run(
+    graph: IGraph,
+  ): ClosenessCentralityResult
+  
+  companion object : ClassMetadata<ClosenessCentrality> {
+  }
 }
 
 inline fun ClosenessCentrality(

@@ -13,31 +13,30 @@ package yfiles.analysis
 
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents a partitioning of a graph into independent sets of nodes.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSetsResult">Online Documentation</a>
  */
-external  class IndependentSetsResult 
-private constructor () : YObject {
-
-/**
- * Gets a collection of all independent sets in the result.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSetsResult%23independentSets">Online Documentation</a>
- */
-final val independentSets: ResultItemCollection<IndependentSet>
-/**
- * Gets a mapping for each node to its set ID.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSetsResult%23nodeSetIds">Online Documentation</a>
- */
-final val nodeSetIds: ResultItemMapping<INode, Int>
-/**
- * Gets a mapping for each node to its [IndependentSet].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSetsResult%23nodeSets">Online Documentation</a>
- */
-final val nodeSets: ResultItemMapping<INode, IndependentSet>
-
-companion object : ClassMetadata<IndependentSetsResult> {
-}
+external class IndependentSetsResult private constructor()  {
+  /**
+   * Gets a collection of all independent sets in the result.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSetsResult%23independentSets">Online Documentation</a>
+   */
+  final val independentSets: ResultItemCollection<IndependentSet>
+  
+  /**
+   * Gets a mapping for each node to its set ID.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSetsResult%23nodeSetIds">Online Documentation</a>
+   */
+  final val nodeSetIds: ResultItemMapping<INode, Int>
+  
+  /**
+   * Gets a mapping for each node to its [IndependentSet].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSetsResult%23nodeSets">Online Documentation</a>
+   */
+  final val nodeSets: ResultItemMapping<INode, IndependentSet>
+  
+  companion object : ClassMetadata<IndependentSetsResult> {
+  }
 }

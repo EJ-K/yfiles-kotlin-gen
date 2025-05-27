@@ -12,21 +12,18 @@
 package yfiles.analysis
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents the cliques found by [CliqueSubstructures].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CliqueSubstructuresResult">Online Documentation</a>
  */
-external  class CliqueSubstructuresResult 
-private constructor () : YObject {
-
-/**
- * Gets the cliques found by [CliqueSubstructures].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CliqueSubstructuresResult%23cliques">Online Documentation</a>
- */
-final val cliques: ResultItemCollection<SubstructureItems>
-
-companion object : ClassMetadata<CliqueSubstructuresResult> {
-}
+external class CliqueSubstructuresResult private constructor()  {
+  /**
+   * Gets the cliques found by [CliqueSubstructures].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/CliqueSubstructuresResult%23cliques">Online Documentation</a>
+   */
+  final val cliques: ResultItemCollection<SubstructureItems>
+  
+  companion object : ClassMetadata<CliqueSubstructuresResult> {
+  }
 }

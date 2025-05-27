@@ -11,57 +11,35 @@
 
 package yfiles.layout
 
-import yfiles.collections.ICollection
-import yfiles.collections.IList
+import yfiles.collections.List
 import yfiles.lang.ClassMetadata
 
 /**
- * A [SequentialLayout] allows for chaining multiple [layout algorithms][ILayoutAlgorithm].
+ * Represents a [layout][ILayoutAlgorithm] that sequentially executes multiple layout algorithms.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout">Online Documentation</a>
  * 
- * @constructor Creates a new [SequentialLayout] instance with an empty chain of [layout algorithms][ILayoutAlgorithm].
+ * @constructor Initializes a new instance of the [SequentialLayout] class with an optional collection of layout algorithms.
+ * @param [layouts] An optional array of [ILayoutAlgorithm] to be added to the layout chain.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout%23SequentialLayout-constructor-SequentialLayout">Online Documentation</a>
  */
-external open class SequentialLayout  () : ILayoutAlgorithm {
-
-/**
- * Gets or sets the chain of [layout algorithms][ILayoutAlgorithm].
- * @see [appendLayout]
- * @see [appendLayouts]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout%23layouts">Online Documentation</a>
- */
-open var layouts: IList<out ILayoutAlgorithm>
-/**
- * Appends the given [layout algorithm][ILayoutAlgorithm] to the end of the chain.
- * @param [layouter] the [layout algorithm][ILayoutAlgorithm] to append
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout%23SequentialLayout-method-appendLayout">Online Documentation</a>
- */
- open   fun appendLayout( layouter: ILayoutAlgorithm )
-/**
- * Appends the specified list of [layout algorithms][ILayoutAlgorithm] to the end of the chain.
- * @param [layouters] the list of [layout algorithms][ILayoutAlgorithm] to append
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout%23SequentialLayout-method-appendLayouts">Online Documentation</a>
- */
- open   fun appendLayouts( layouters: ICollection<out ILayoutAlgorithm> )
-/**
- * Executes all [layout algorithms][ILayoutAlgorithm] in the chain, one after the other.
- * @param [graph] the input graph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout%23SequentialLayout-method-applyLayout">Online Documentation</a>
- */
- override   fun applyLayout( graph: LayoutGraph )
-/**
- * Clears the current chain of [layout algorithms][ILayoutAlgorithm] and therefore removes all layout algorithms.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout%23SequentialLayout-method-removeAll">Online Documentation</a>
- */
- open   fun removeAll()
-
-companion object : ClassMetadata<SequentialLayout> {
-}
-}
-
-inline fun SequentialLayout(
-    block: SequentialLayout.() -> Unit
-): SequentialLayout {
-    return SequentialLayout()
-        .apply(block)
+open external class SequentialLayout (
+  vararg layouts: ILayoutAlgorithm,
+) : ILayoutAlgorithm {
+  /**
+   * Gets the collection of layout algorithms that are executed sequentially.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout%23layouts">Online Documentation</a>
+   */
+  final val layouts: List<ILayoutAlgorithm>
+  
+  /**
+   * Executes all layout algorithms in the chain sequentially.
+   * @param [graph] The input graph on which the layouts are applied.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SequentialLayout%23SequentialLayout-method-applyLayout">Online Documentation</a>
+   */
+  override fun applyLayout(
+    graph: LayoutGraph,
+  )
+  
+  companion object : ClassMetadata<SequentialLayout> {
+  }
 }

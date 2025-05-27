@@ -28,21 +28,21 @@ import yfiles.lang.ClassMetadata
  * Gets the query location in world coordinates.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryClosestHandleEventArgs%23queryLocation">Online Documentation</a>
  */
-external open class QueryClosestHandleEventArgs  (
- context: IInputModeContext ,
+external class QueryClosestHandleEventArgs (
+context: IInputModeContext,
 final val queryLocation: Point) : InputModeEventArgs {
-
-/**
- * Gets or sets the handle to use.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryClosestHandleEventArgs%23handle">Online Documentation</a>
- */
-final var handle: IHandle?
-/**
- * Gets or sets a value indicating whether this [QueryClosestHandleEventArgs] instance has been handled.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryClosestHandleEventArgs%23handled">Online Documentation</a>
- */
-final var handled: Boolean
-
-companion object : ClassMetadata<QueryClosestHandleEventArgs> {
-}
+  /**
+   * Gets or sets the handle to use.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryClosestHandleEventArgs%23handle">Online Documentation</a>
+   */
+  final var handle: IHandle?
+  
+  /**
+   * Gets or sets a value indicating whether this [QueryClosestHandleEventArgs] instance has been handled.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/QueryClosestHandleEventArgs%23handled">Online Documentation</a>
+   */
+  final var handled: Boolean
+  
+  companion object : ClassMetadata<QueryClosestHandleEventArgs> {
+  }
 }

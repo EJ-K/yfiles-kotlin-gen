@@ -11,45 +11,33 @@
 
 package yfiles.view
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * The type of a [KeyEventArgs].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/KeyEventType">Online Documentation</a>
  */
-external sealed class KeyEventType: YEnum<KeyEventType> {
-   companion object: EnumMetadata<KeyEventType> {
-       /**
- * Neither Pressed, nor Typed, nor Released.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/KeyEventType%23NONE">Online Documentation</a>
- */
-val NONE: KeyEventType
 
-/**
- * The `keydown` event.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/KeyEventType%23DOWN">Online Documentation</a>
- */
-val DOWN: KeyEventType
-
-/**
- * The `keypress` event.
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/KeyEventType%23PRESS">Online Documentation</a>
- */
-val PRESS: KeyEventType
-
-/**
- * The `keyup` event.
- * 
- * Value - `3`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/KeyEventType%23UP">Online Documentation</a>
- */
-val UP: KeyEventType
-   }
+sealed external class KeyEventType {
+  /**
+   * Neither Down, nor Up.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/KeyEventType%23NONE">Online Documentation</a>
+   */
+  object NONE: KeyEventType
+  
+  /**
+   * The `keydown` event.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/KeyEventType%23DOWN">Online Documentation</a>
+   */
+  object DOWN: KeyEventType
+  
+  /**
+   * The `keyup` event.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/KeyEventType%23UP">Online Documentation</a>
+   */
+  object UP: KeyEventType
 }

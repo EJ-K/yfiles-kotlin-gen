@@ -11,31 +11,27 @@
 
 package yfiles.hierarchic
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * @see [HierarchicLayout.componentArrangementPolicy]
+ * Specifies policies for arranging components in a [HierarchicalLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentArrangementPolicy">Online Documentation</a>
  */
-external sealed class ComponentArrangementPolicy: YEnum<ComponentArrangementPolicy> {
-   companion object: EnumMetadata<ComponentArrangementPolicy> {
-       /**
- * A component arrangement policy that achieves a `1:1` aspect ratio for the graph.
- * 
- * Value - `0`
- * @see [HierarchicLayout.componentArrangementPolicy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentArrangementPolicy%23COMPACT">Online Documentation</a>
- */
-val COMPACT: ComponentArrangementPolicy
 
-/**
- * A component arrangement policy that aligns the components with their topmost layer.
- * 
- * Value - `1`
- * @see [HierarchicLayout.componentArrangementPolicy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentArrangementPolicy%23TOPMOST">Online Documentation</a>
- */
-val TOPMOST: ComponentArrangementPolicy
-   }
+sealed external class ComponentArrangementPolicy {
+  /**
+   * A component arrangement policy that achieves a `1:1` aspect ratio for the graph.
+   * 
+   * Value - `0`
+   * @see [HierarchicalLayout.componentArrangementPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentArrangementPolicy%23COMPACT">Online Documentation</a>
+   */
+  object COMPACT: ComponentArrangementPolicy
+  
+  /**
+   * A component arrangement policy that aligns the components with their topmost layer.
+   * 
+   * Value - `1`
+   * @see [HierarchicalLayout.componentArrangementPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentArrangementPolicy%23TOPMOST">Online Documentation</a>
+   */
+  object TOPMOST: ComponentArrangementPolicy
 }

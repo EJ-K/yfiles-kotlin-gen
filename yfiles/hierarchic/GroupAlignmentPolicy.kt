@@ -11,44 +11,39 @@
 
 package yfiles.hierarchic
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * Group layering alignment strategies for the recursive group layering.
- * @see [HierarchicLayout.groupAlignmentPolicy]
+ * Group layering alignment strategies used to compute the layering in grouped graphs.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupAlignmentPolicy">Online Documentation</a>
  */
-external sealed class GroupAlignmentPolicy: YEnum<GroupAlignmentPolicy> {
-   companion object: EnumMetadata<GroupAlignmentPolicy> {
-       /**
- * A group layering alignment strategy which aligns groups and normal nodes that occupy the same layer to the top with respect to their inner layers.
- * 
- * Value - `18`
- * @see [HierarchicLayout.groupAlignmentPolicy]
- * @see [HierarchicLayout.recursiveGroupLayering]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupAlignmentPolicy%23TOP">Online Documentation</a>
- */
-val TOP: GroupAlignmentPolicy
 
-/**
- * A group layering alignment strategy which aligns groups and normal nodes that occupy the same layer to the bottom with respect to their inner layers.
- * 
- * Value - `34`
- * @see [HierarchicLayout.groupAlignmentPolicy]
- * @see [HierarchicLayout.recursiveGroupLayering]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupAlignmentPolicy%23BOTTOM">Online Documentation</a>
- */
-val BOTTOM: GroupAlignmentPolicy
-
-/**
- * A group layering alignment strategy which aligns groups and normal nodes that occupy the same layer to the center with respect to their inner layers.
- * 
- * Value - `66`
- * @see [HierarchicLayout.groupAlignmentPolicy]
- * @see [HierarchicLayout.recursiveGroupLayering]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupAlignmentPolicy%23CENTER">Online Documentation</a>
- */
-val CENTER: GroupAlignmentPolicy
-   }
+sealed external class GroupAlignmentPolicy {
+  /**
+   * A group layering alignment strategy which aligns groups and normal nodes that occupy the same layer to the top with respect to their inner layers.
+   * 
+   * Value - `18`
+   * @see [HierarchicalLayout.groupAlignmentPolicy]
+   * @see [HierarchicalLayout.groupLayeringPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupAlignmentPolicy%23TOP">Online Documentation</a>
+   */
+  object TOP: GroupAlignmentPolicy
+  
+  /**
+   * A group layering alignment strategy which aligns groups and normal nodes that occupy the same layer to the bottom with respect to their inner layers.
+   * 
+   * Value - `34`
+   * @see [HierarchicalLayout.groupAlignmentPolicy]
+   * @see [HierarchicalLayout.groupLayeringPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupAlignmentPolicy%23BOTTOM">Online Documentation</a>
+   */
+  object BOTTOM: GroupAlignmentPolicy
+  
+  /**
+   * A group layering alignment strategy which aligns groups and normal nodes that occupy the same layer to the center with respect to their inner layers.
+   * 
+   * Value - `66`
+   * @see [HierarchicalLayout.groupAlignmentPolicy]
+   * @see [HierarchicalLayout.groupLayeringPolicy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupAlignmentPolicy%23CENTER">Online Documentation</a>
+   */
+  object CENTER: GroupAlignmentPolicy
 }

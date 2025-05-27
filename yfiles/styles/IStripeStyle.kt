@@ -19,12 +19,18 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IStripeStyle">Online Documentation</a>
  */
 external interface IStripeStyle : ICloneable<IStripeStyle> {
-/**
- * Gets the renderer implementation that can be queried for implementations that provide details about the visual appearance and visual behavior for a given stripe and this style instance.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IStripeStyle%23renderer">Online Documentation</a>
- */
-val renderer: IStripeStyleRenderer
+  /**
+   * Gets the renderer implementation that can be queried for implementations that provide details about the visual appearance and visual behavior for a given stripe and this style instance.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IStripeStyle%23renderer">Online Documentation</a>
+   */
+  val renderer: IStripeStyleRenderer
 
-companion object : InterfaceMetadata<IStripeStyle> {
-}
+  
+  companion object : InterfaceMetadata<IStripeStyle> {
+    /**
+     * A void implementation of a stripe style that does nothing and behaves like an invisible style.
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IStripeStyle%23VOID_STRIPE_STYLE">Online Documentation</a>
+     */
+     val VOID_STRIPE_STYLE: IStripeStyle
+  }
 }

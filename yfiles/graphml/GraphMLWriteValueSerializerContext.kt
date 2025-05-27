@@ -12,8 +12,7 @@
 package yfiles.graphml
 
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YClass
-import yfiles.lang.YObject
+import yfiles.lang.IClassMetadata
 
 /**
  * Special implementation of [IValueSerializerContext] that should be used in a GraphML write context.
@@ -23,29 +22,39 @@ import yfiles.lang.YObject
  * @param [context] The current write context
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23GraphMLWriteValueSerializerContext-constructor-GraphMLWriteValueSerializerContext">Online Documentation</a>
  */
-external open class GraphMLWriteValueSerializerContext  ( context: IWriteContext ) : IValueSerializerContext {
-
-/**
- * Gets or sets the parent object if such an object exists currently.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23owner">Online Documentation</a>
- */
-final var owner: Any?
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23GraphMLWriteValueSerializerContext-method-getValueSerializerFor">Online Documentation</a>
- */
- override   fun getValueSerializerFor( type: YClass<*> ):ValueSerializer?
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23GraphMLWriteValueSerializerContext-method-getValueSerializerFor">Online Documentation</a>
- */
- override   fun getValueSerializerFor( property: Property ):ValueSerializer?
-/**
- * Returns the wrapped [IWriteContext] for this serviceType, otherwise `null`
- * @param [type] The serviceType
- * @return the wrapped [IWriteContext] for this serviceType, otherwise `null`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23GraphMLWriteValueSerializerContext-method-lookup">Online Documentation</a>
- */
- override   fun <T : YObject>lookup( type: YClass<T> ):T?
-
-companion object : ClassMetadata<GraphMLWriteValueSerializerContext> {
-}
+open external class GraphMLWriteValueSerializerContext (
+  context: IWriteContext,
+) : IValueSerializerContext {
+  /**
+   * Gets or sets the parent object if such an object currently exists.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23owner">Online Documentation</a>
+   */
+  final var owner: Any?
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23GraphMLWriteValueSerializerContext-method-getValueSerializerFor">Online Documentation</a>
+   */
+  override fun getValueSerializerFor(
+    type: IClassMetadata<*>,
+  ): ValueSerializer?
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23GraphMLWriteValueSerializerContext-method-getValueSerializerFor">Online Documentation</a>
+   */
+  override fun getValueSerializerFor(
+    property: Property,
+  ): ValueSerializer?
+  
+  /**
+   * Returns the wrapped [IWriteContext] for this serviceType, otherwise `null`
+   * @param [type] The serviceType
+   * @return the wrapped [IWriteContext] for this serviceType, otherwise `null`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GraphMLWriteValueSerializerContext%23GraphMLWriteValueSerializerContext-method-lookup">Online Documentation</a>
+   */
+  override fun <T : Any> lookup(
+    type: IClassMetadata<T>,
+  ): T?
+  
+  companion object : ClassMetadata<GraphMLWriteValueSerializerContext> {
+  }
 }

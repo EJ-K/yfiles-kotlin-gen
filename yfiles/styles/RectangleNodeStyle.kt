@@ -16,71 +16,77 @@ import yfiles.view.Fill
 import yfiles.view.Stroke
 
 /**
- * Node style that uses a rectangular shape as basis and supports configurable round or diagonal corners.
+ * Node style that uses a rectangular shape as a basis and supports configurable round or diagonal corners.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle">Online Documentation</a>
  * 
- * @constructor Creates a new instance using the provided renderer.
- * @param [renderer] Custom renderer instance for this style. If none is provided, a new [RectangleNodeStyleRenderer] is used.
+ * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23RectangleNodeStyle-constructor-RectangleNodeStyle">Online Documentation</a>
- * 
- * @property renderer
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23renderer">Online Documentation</a>
  */
-external open class RectangleNodeStyle  (
-final override val renderer: RectangleNodeStyleRenderer = definedExternally) : INodeStyle {
-
-/**
- * Gets or sets the size of the corners.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23cornerSize">Online Documentation</a>
- */
-final var cornerSize: Double
-/**
- * Gets or sets the [RectangleCornerStyle] that defines how the affected [corners] are drawn.
- * 
- * The default value is [RectangleCornerStyle.ROUND].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23cornerStyle">Online Documentation</a>
- */
-final var cornerStyle: RectangleCornerStyle
-/**
- * Gets or sets which corners are drawn with the chosen [cornerStyle].
- * 
- * The default value is [RectangleCorners.ALL].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23corners">Online Documentation</a>
- */
-final var corners: RectangleCorners
-/**
- * Gets or sets a CSS class that will be applied to the visualization.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23cssClass">Online Documentation</a>
- */
-final var cssClass: String
-/**
- * Gets or sets the [Fill] for filling the interior of the shape.
- * 
- * The default value is [Fill.WHITE].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23fill">Online Documentation</a>
- */
-final var fill: Fill?
-/**
- * Gets or sets whether the [cornerSize] property is interpreted absolute or scaled by the node size.
- * 
- * The default value is `false`.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23scaleCornerSize">Online Documentation</a>
- */
-final var scaleCornerSize: Boolean
-/**
- * Gets or sets the [Stroke] used for drawing the outline of the shape.
- * 
- * The default value is [Stroke.BLACK].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23stroke">Online Documentation</a>
- */
-final var stroke: Stroke?
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23RectangleNodeStyle-method-clone">Online Documentation</a>
- */
- override   fun clone():RectangleNodeStyle
-
-companion object : ClassMetadata<RectangleNodeStyle> {
-}
+external class RectangleNodeStyle () : INodeStyle {
+  /**
+   * Gets or sets the size of the corners.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23cornerSize">Online Documentation</a>
+   */
+  final var cornerSize: Double
+  
+  /**
+   * Gets or sets the [RectangleCornerStyle] that defines how the affected [corners][RectangleNodeStyle] are drawn.
+   * 
+   * The default value is [ROUND][RectangleCornerStyle].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23cornerStyle">Online Documentation</a>
+   */
+  final var cornerStyle: RectangleCornerStyle
+  
+  /**
+   * Gets or sets which corners are drawn with the chosen [cornerStyle][RectangleNodeStyle].
+   * 
+   * The default value is [ALL][RectangleCorners].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23corners">Online Documentation</a>
+   */
+  final var corners: RectangleCorners
+  
+  /**
+   * Gets or sets a CSS class that will be applied to the visualization.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23cssClass">Online Documentation</a>
+   */
+  final var cssClass: String
+  
+  /**
+   * Gets or sets the [Fill] for filling the interior of the shape.
+   * 
+   * The default value is [WHITE][yfiles.view.Color].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23fill">Online Documentation</a>
+   */
+  final var fill: Fill?
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23renderer">Online Documentation</a>
+   */
+  final override val renderer: INodeStyleRenderer
+  
+  /**
+   * Gets or sets whether the [cornerSize][RectangleNodeStyle] property is interpreted as absolute or scaled by the node size.
+   * 
+   * The default value is `false`.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23scaleCornerSize">Online Documentation</a>
+   */
+  final var scaleCornerSize: Boolean
+  
+  /**
+   * Gets or sets the [Stroke] used for drawing the outline of the shape.
+   * 
+   * The default value is [BLACK][Stroke].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23stroke">Online Documentation</a>
+   */
+  final var stroke: Stroke?
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/RectangleNodeStyle%23RectangleNodeStyle-method-clone">Online Documentation</a>
+   */
+  override fun clone(): RectangleNodeStyle
+  
+  companion object : ClassMetadata<RectangleNodeStyle> {
+  }
 }
 
 inline fun RectangleNodeStyle(

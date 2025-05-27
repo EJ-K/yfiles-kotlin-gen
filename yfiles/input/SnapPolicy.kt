@@ -11,45 +11,41 @@
 
 package yfiles.input
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * The policy constants used by [IGridConstraintProvider]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy">Online Documentation</a>
  */
-external sealed class SnapPolicy: YEnum<SnapPolicy> {
-   companion object: EnumMetadata<SnapPolicy> {
-       /**
- * Don't perform snapping.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy%23NO_SNAPPING">Online Documentation</a>
- */
-val NO_SNAPPING: SnapPolicy
 
-/**
- * Snap to the nearest grid coordinate.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy%23TO_NEAREST">Online Documentation</a>
- */
-val TO_NEAREST: SnapPolicy
-
-/**
- * Snap to the nearest grid coordinate whose value is not less than the current coordinate.
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy%23TO_GREATER">Online Documentation</a>
- */
-val TO_GREATER: SnapPolicy
-
-/**
- * Snap to the nearest grid coordinate whose value is not greater than the current coordinate.
- * 
- * Value - `3`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy%23TO_SMALLER">Online Documentation</a>
- */
-val TO_SMALLER: SnapPolicy
-   }
+sealed external class SnapPolicy {
+  /**
+   * Don't perform snapping.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy%23NO_SNAPPING">Online Documentation</a>
+   */
+  object NO_SNAPPING: SnapPolicy
+  
+  /**
+   * Snap to the nearest grid coordinate.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy%23TO_NEAREST">Online Documentation</a>
+   */
+  object TO_NEAREST: SnapPolicy
+  
+  /**
+   * Snap to the nearest grid coordinate whose value is not less than the current coordinate.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy%23TO_GREATER">Online Documentation</a>
+   */
+  object TO_GREATER: SnapPolicy
+  
+  /**
+   * Snap to the nearest grid coordinate whose value is not greater than the current coordinate.
+   * 
+   * Value - `3`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SnapPolicy%23TO_SMALLER">Online Documentation</a>
+   */
+  object TO_SMALLER: SnapPolicy
 }

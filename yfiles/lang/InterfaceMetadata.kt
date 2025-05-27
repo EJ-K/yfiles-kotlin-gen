@@ -10,10 +10,7 @@
 package yfiles.lang
 
 @JsName("Object")
-abstract external class InterfaceMetadata<T: YObject>
-internal constructor() : IClassMetadata<T> {
-   override val yclass: YClass<T>
-}
+abstract external class InterfaceMetadata<T> internal constructor() : IClassMetadata<T>
 
 inline fun jsInstanceOf(
    o: Any?, 
@@ -24,14 +21,14 @@ inline fun jsInstanceOf(
 inline infix fun Any?.yIs(type: InterfaceMetadata<*>): Boolean =
     jsInstanceOf(this, type)
 
-inline infix fun <T : YObject> Any?.yOpt(type: InterfaceMetadata<T>): T? =
+inline infix fun <T : Any> Any?.yOpt(type: InterfaceMetadata<T>): T? =
     if (yIs(type)) {
         unsafeCast<T>()
     } else {
         null
     }
 
-inline infix fun <T : YObject> Any?.yAs(type: InterfaceMetadata<T>): T {
+inline infix fun <T : Any> Any?.yAs(type: InterfaceMetadata<T>): T {
    require(this yIs type)
 
    return unsafeCast<T>()

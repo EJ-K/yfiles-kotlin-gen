@@ -19,7 +19,7 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StripeEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [StripeEventArgs] class.
- * @param [stripe] The stripe to assign to the [ItemEventArgs.item] property.
+ * @param [stripe] The stripe to assign to the [item][ItemEventArgs] property.
  * @param [parentStripe] The previous parent of the stripe.
  * @param [table] The table the stripe belonged to previously.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StripeEventArgs%23StripeEventArgs-constructor-StripeEventArgs">Online Documentation</a>
@@ -32,11 +32,11 @@ import yfiles.lang.ClassMetadata
  * Gets the table that owned the stripe before the event happened.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/StripeEventArgs%23table">Online Documentation</a>
  */
-external  class StripeEventArgs  (
- stripe: IStripe ,
+external class StripeEventArgs (
+stripe: IStripe,
 final val parentStripe: IStripe,
 final val table: ITable?) : ItemEventArgs<IStripe> {
-
-companion object : ClassMetadata<StripeEventArgs> {
-}
+  
+  companion object : ClassMetadata<StripeEventArgs> {
+  }
 }

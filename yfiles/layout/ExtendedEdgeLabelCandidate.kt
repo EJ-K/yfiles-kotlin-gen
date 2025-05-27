@@ -11,67 +11,31 @@
 
 package yfiles.layout
 
-import yfiles.algorithms.YDimension
-import yfiles.algorithms.YOrientedRectangle
-import yfiles.algorithms.YPoint
-import yfiles.graph.ILabelCandidateDescriptor
-import yfiles.graph.ILabelModelParameter
+import yfiles.geometry.OrientedRectangle
+import yfiles.labeling.LabelCandidate
 import yfiles.lang.ClassMetadata
 
 /**
- * An [EdgeLabelCandidate] that provides a [candidate descriptor][ILabelCandidateDescriptor].
+ * A [LabelCandidate] that is associated with a label model parameter.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ExtendedEdgeLabelCandidate">Online Documentation</a>
  * 
  * @constructor Returns a new instance of [ExtendedEdgeLabelCandidate].
- * @param [pos] the location of the upper left corner of the candidate.
- * @param [size] the size of the candidate.
- * @param [param] the parameters of the labeling model associated with this candidate.
- * @param [owner] the label associated to the candidate.
- * @param [descriptor] the label candidate descriptor.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ExtendedEdgeLabelCandidate%23ExtendedEdgeLabelCandidate-constructor-ExtendedEdgeLabelCandidate(YPoint,YDimension,Object,IEdgeLabelLayout,ILabelCandidateDescriptor)">Online Documentation</a>
- */
-external open class ExtendedEdgeLabelCandidate  ( pos: YPoint ,
- size: YDimension ,
- param: ILabelModelParameter ,
- owner: IEdgeLabelLayout ,
- descriptor: ILabelCandidateDescriptor? ) : EdgeLabelCandidate {
-/**
- * Returns a new instance of [ExtendedEdgeLabelCandidate].
  * @param [orientedBox] the label size and orientation
- * @param [param] the parameters of the labeling model associated with this candidate.
- * @param [owner] the label associated to the candidate.
- * @param [internal] flag whether the candidate is allowed to overlap the layout of the edge.
- * @param [descriptor] the label candidate descriptor.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ExtendedEdgeLabelCandidate%23ExtendedEdgeLabelCandidate-constructor-ExtendedEdgeLabelCandidate(YOrientedRectangle,Object,IEdgeLabelLayout,boolean,ILabelCandidateDescriptor)">Online Documentation</a>
+ * @param [parameter] the parameters of the labeling model associated with this candidate.
+ * @param [allowOwnerOverlap] flag whether the candidate is allowed to overlap the layout of the edge.
+ * @param [weight] the weight associated with the label candidate
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ExtendedEdgeLabelCandidate%23ExtendedEdgeLabelCandidate-constructor-ExtendedEdgeLabelCandidate">Online Documentation</a>
+ * 
+ * @property parameter
+ * Gets the model parameter that was used by the underlying model to generate this label candidate.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ExtendedEdgeLabelCandidate%23parameter">Online Documentation</a>
  */
- constructor( orientedBox: YOrientedRectangle ,
- param: ILabelModelParameter ,
- owner: IEdgeLabelLayout ,
- internal: Boolean ,
- descriptor: ILabelCandidateDescriptor? )
-/**
- * Returns a new instance of [ExtendedEdgeLabelCandidate].
- * @param [pos] the location of the upper left corner of the candidate.
- * @param [size] the size of the candidate.
- * @param [param] the parameters of the labeling model associated with this candidate.
- * @param [owner] the label associated to the candidate.
- * @param [internal] flag whether the candidate is allowed to overlap the layout of the edge.
- * @param [descriptor] the label candidate descriptor.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ExtendedEdgeLabelCandidate%23ExtendedEdgeLabelCandidate-constructor-ExtendedEdgeLabelCandidate(YPoint,YDimension,Object,IEdgeLabelLayout,boolean,ILabelCandidateDescriptor)">Online Documentation</a>
- */
- constructor( pos: YPoint ,
- size: YDimension ,
- param: ILabelModelParameter ,
- owner: IEdgeLabelLayout ,
- internal: Boolean ,
- descriptor: ILabelCandidateDescriptor? )
-
-/**
- * Gets the label candidate descriptor.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ExtendedEdgeLabelCandidate%23descriptor">Online Documentation</a>
- */
-final val descriptor: ILabelCandidateDescriptor?
-
-companion object : ClassMetadata<ExtendedEdgeLabelCandidate> {
-}
+external class ExtendedEdgeLabelCandidate (
+orientedBox: OrientedRectangle,
+final val parameter: Any,
+allowOwnerOverlap: Boolean,
+weight: Double  = definedExternally) : LabelCandidate {
+  
+  companion object : ClassMetadata<ExtendedEdgeLabelCandidate> {
+  }
 }

@@ -15,7 +15,6 @@ import yfiles.geometry.IRectangle
 import yfiles.geometry.ISize
 import yfiles.geometry.Rect
 import yfiles.geometry.Size
-import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
 
 /**
@@ -23,43 +22,42 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider">Online Documentation</a>
  * 
  * @constructor Creates a new instance using the provided size instances as the initial values.
- * @param [minimumSize] The [minimumSize].
- * @param [maximumSize] The [maximumSize].
- * @param [minimumEnclosedArea] The [minimumEnclosedArea].
+ * @param [minimumSize] The [minimumSize][NodeSizeConstraintProvider].
+ * @param [maximumSize] The [maximumSize][NodeSizeConstraintProvider].
+ * @param [minimumEnclosedArea] The [minimumEnclosedArea][NodeSizeConstraintProvider].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23NodeSizeConstraintProvider-constructor-NodeSizeConstraintProvider">Online Documentation</a>
- */
-external open class NodeSizeConstraintProvider  ( minimumSize: ISize ,
- maximumSize: ISize ,
- minimumEnclosedArea: IRectangle?  = definedExternally) : INodeSizeConstraintProvider {
-
-/**
- * Gets or sets the instance to return by [getMaximumSize].
+ * 
+ * @property minimumSize
+ * Gets or sets the instance to return by [getMinimumSize][NodeSizeConstraintProvider].
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23minimumSize">Online Documentation</a>
+ * 
+ * @property maximumSize
+ * Gets or sets the instance to return by [getMaximumSize][NodeSizeConstraintProvider].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23maximumSize">Online Documentation</a>
- */
-final var maximumSize: ISize
-/**
- * Gets or sets the instance to return by [getMinimumEnclosedArea].
+ * 
+ * @property minimumEnclosedArea
+ * Gets or sets the instance to return by [getMinimumEnclosedArea][NodeSizeConstraintProvider].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23minimumEnclosedArea">Online Documentation</a>
  */
-final var minimumEnclosedArea: IRectangle
-/**
- * Gets or sets the instance to return by [getMinimumSize].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23minimumSize">Online Documentation</a>
- */
-final var minimumSize: ISize
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23NodeSizeConstraintProvider-method-getMaximumSize">Online Documentation</a>
- */
- override   fun getMaximumSize( node: INode ):Size
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23NodeSizeConstraintProvider-method-getMinimumEnclosedArea">Online Documentation</a>
- */
- override   fun getMinimumEnclosedArea( node: INode ):Rect
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23NodeSizeConstraintProvider-method-getMinimumSize">Online Documentation</a>
- */
- override   fun getMinimumSize( node: INode ):Size
-
-companion object : ClassMetadata<NodeSizeConstraintProvider> {
-}
+open external class NodeSizeConstraintProvider (
+final var minimumSize: ISize,
+final var maximumSize: ISize,
+final var minimumEnclosedArea: IRectangle = definedExternally) : INodeSizeConstraintProvider {
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23NodeSizeConstraintProvider-method-getMaximumSize">Online Documentation</a>
+   */
+  override fun getMaximumSize(): Size
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23NodeSizeConstraintProvider-method-getMinimumEnclosedArea">Online Documentation</a>
+   */
+  override fun getMinimumEnclosedArea(): Rect
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeSizeConstraintProvider%23NodeSizeConstraintProvider-method-getMinimumSize">Online Documentation</a>
+   */
+  override fun getMinimumSize(): Size
+  
+  companion object : ClassMetadata<NodeSizeConstraintProvider> {
+  }
 }

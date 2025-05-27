@@ -14,35 +14,48 @@ package yfiles.layout
 import yfiles.lang.ClassMetadata
 
 /**
- * The [PortPlacementStage] assigns edges to the ports specified by [PortConstraint]s or [PortCandidate]s after calling the [core layout algorithm][LayoutStageBase.coreLayout].
- * @see [PortConstraint]
- * @see [PortCandidate]
- * @see [PortCandidateSet]
- * @see [pathCorrection]
+ * The [PortPlacementStage] assigns edges to the ports specified by [LayoutPortCandidate]s or [NodePortCandidates] after calling the [coreLayout][LayoutStageBase].
+ * @see [LayoutPortCandidate]
+ * @see [NodePortCandidates]
+ * @see [routeCorrectionPolicy]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortPlacementStage">Online Documentation</a>
  * 
- * @constructor Creates a new [PortPlacementStage] instance with an optional [core layout algorithm][LayoutStageBase.coreLayout].
+ * @constructor Creates a new [PortPlacementStage] instance with an optional [coreLayout][LayoutStageBase].
  * @param [coreLayout] The core layout algorithm.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortPlacementStage%23PortPlacementStage-constructor-PortPlacementStage">Online Documentation</a>
  */
-external open class PortPlacementStage  ( coreLayout: ILayoutAlgorithm?  = definedExternally) : LayoutStageBase {
-
-/**
- * Gets or sets whether or not this [ILayoutStage] corrects the edge paths after moving the port to the location specified by a [PortConstraint] or [PortCandidate]s.
- * 
- * Default value - `false`. Edge paths are not orthogonally corrected.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortPlacementStage%23pathCorrection">Online Documentation</a>
- */
-open var pathCorrection: Boolean
-/**
- * Corrects the ports of the edges considering [PortConstraint]s and [PortCandidate]s.
- * @param [graph] the input graph
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortPlacementStage%23PortPlacementStage-method-applyLayout">Online Documentation</a>
- */
- override   fun applyLayout( graph: LayoutGraph )
-
-companion object : ClassMetadata<PortPlacementStage> {
-}
+open external class PortPlacementStage (
+  coreLayout: ILayoutAlgorithm?  = definedExternally,
+) : LayoutStageBase {
+  /**
+   * Gets or sets how this [ILayoutStage] corrects the edge paths after moving the ports to the locations specified by the [LayoutPortCandidate]s.
+   * 
+   * Default value - [RouteCorrectionPolicy.MOVE_PORTS_TO_BORDER]. The ports are just moved.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortPlacementStage%23routeCorrectionPolicy">Online Documentation</a>
+   */
+  final var routeCorrectionPolicy: RouteCorrectionPolicy
+  
+  /**
+   * Corrects the ports of the edges considering [LayoutPortCandidate]s, [NodePortCandidates], and port groups.
+   * @param [graph] the input graph
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortPlacementStage%23PortPlacementStage-method-applyLayoutImpl">Online Documentation</a>
+   */
+  override fun applyLayoutImpl(
+    graph: LayoutGraph,
+  )
+  
+  /**
+   * Returns an instance of [LayoutData] that can be used to perform item-specific configurations for the [PortPlacementStage].
+   * @param [graph] the graph that determines the generic type arguments of the created layout data
+   * @return an instance of [layout data][LayoutData] that can be used to perform item-specific configurations for the given [PortPlacementStage].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortPlacementStage%23PortPlacementStage-defaultmethod-createLayoutData">Online Documentation</a>
+   */
+  fun createLayoutData(
+    graph: LayoutGraph,
+  ): BasicPortData<LayoutNode, LayoutEdge, LayoutNodeLabel, LayoutEdgeLabel>
+  
+  companion object : ClassMetadata<PortPlacementStage> {
+  }
 }
 
 inline fun PortPlacementStage(

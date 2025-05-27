@@ -13,7 +13,6 @@ package yfiles.view
 
 import yfiles.geometry.Point
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * This class describes a grid by providing the grid's origin as well as the horizontal and vertical spacing between the grid points.
@@ -24,7 +23,7 @@ import yfiles.lang.YObject
  * @param [horizontalSpacing] The horizontal spacing between the grid points.
  * @param [verticalSpacing] The vertical spacing between the grid points.
  * @param [origin] The canonical origin of the grid.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GridInfo%23GridInfo-constructor-GridInfo(number,number,Point)">Online Documentation</a>
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GridInfo%23GridInfo-constructor-GridInfo">Online Documentation</a>
  * 
  * @property horizontalSpacing
  * Gets or sets the horizontal spacing between grid points in the world coordinate system.
@@ -38,17 +37,18 @@ import yfiles.lang.YObject
  * Gets or sets the canonical origin of the grid.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GridInfo%23origin">Online Documentation</a>
  */
-external open class GridInfo  (
-final var horizontalSpacing: Double,
-final var verticalSpacing: Double,
-final var origin: Point) : YObject {
-/**
- * Creates a new instance using "25" as the grid spacing.
- * @param [spacing] The horizontal and vertical spacing between the grid points.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GridInfo%23GridInfo-constructor-GridInfo(number)">Online Documentation</a>
- */
- constructor( spacing: Double  = definedExternally)
-
-companion object : ClassMetadata<GridInfo> {
+external class GridInfo (
+final var horizontalSpacing: Double = definedExternally,
+final var verticalSpacing: Double = definedExternally,
+final var origin: Point = definedExternally)  {
+  
+  companion object : ClassMetadata<GridInfo> {
+  }
 }
+
+inline fun GridInfo(
+    block: GridInfo.() -> Unit
+): GridInfo {
+    return GridInfo()
+        .apply(block)
 }

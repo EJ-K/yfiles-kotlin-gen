@@ -11,59 +11,54 @@
 
 package yfiles.orthogonal
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * Orientation specifier that defines that the layout orientation of substructures is top to bottom.
- * @see [OrthogonalLayout.treeOrientation]
+ * Specifies the orientation of substructures within an [OrthogonalLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation">Online Documentation</a>
  */
-external sealed class SubstructureOrientation: YEnum<SubstructureOrientation> {
-   companion object: EnumMetadata<SubstructureOrientation> {
-       /**
- * Orientation specifier that defines that the layout orientation of substructures is top to bottom.
- * 
- * Value - `0`
- * @see [OrthogonalLayout.treeOrientation]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23TOP_TO_BOTTOM">Online Documentation</a>
- */
-val TOP_TO_BOTTOM: SubstructureOrientation
 
-/**
- * Orientation specifier that defines that the layout orientation of substructures is left to right.
- * 
- * Value - `1`
- * @see [OrthogonalLayout.treeOrientation]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23LEFT_TO_RIGHT">Online Documentation</a>
- */
-val LEFT_TO_RIGHT: SubstructureOrientation
-
-/**
- * Orientation specifier that defines that the layout orientation of substructures is bottom to top.
- * 
- * Value - `2`
- * @see [OrthogonalLayout.treeOrientation]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23BOTTOM_TO_TOP">Online Documentation</a>
- */
-val BOTTOM_TO_TOP: SubstructureOrientation
-
-/**
- * Orientation specifier that defines that the layout orientation of substructures is right to left.
- * 
- * Value - `3`
- * @see [OrthogonalLayout.treeOrientation]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23RIGHT_TO_LEFT">Online Documentation</a>
- */
-val RIGHT_TO_LEFT: SubstructureOrientation
-
-/**
- * Orientation specifier that defines that the layout orientation of substructures is chosen automatically.
- * 
- * Value - `4`
- * @see [OrthogonalLayout.treeOrientation]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23AUTO_DETECT">Online Documentation</a>
- */
-val AUTO_DETECT: SubstructureOrientation
-   }
+sealed external class SubstructureOrientation {
+  /**
+   * Specifies that substructures are oriented from top to bottom.
+   * 
+   * Value - `0`
+   * @see [OrthogonalLayout.treeSubstructureOrientation]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23TOP_TO_BOTTOM">Online Documentation</a>
+   */
+  object TOP_TO_BOTTOM: SubstructureOrientation
+  
+  /**
+   * Specifies that substructures are oriented from left to right.
+   * 
+   * Value - `1`
+   * @see [OrthogonalLayout.treeSubstructureOrientation]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23LEFT_TO_RIGHT">Online Documentation</a>
+   */
+  object LEFT_TO_RIGHT: SubstructureOrientation
+  
+  /**
+   * Specifies that substructures are oriented from bottom to top.
+   * 
+   * Value - `2`
+   * @see [OrthogonalLayout.treeSubstructureOrientation]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23BOTTOM_TO_TOP">Online Documentation</a>
+   */
+  object BOTTOM_TO_TOP: SubstructureOrientation
+  
+  /**
+   * Specifies that substructures are oriented from right to left.
+   * 
+   * Value - `3`
+   * @see [OrthogonalLayout.treeSubstructureOrientation]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23RIGHT_TO_LEFT">Online Documentation</a>
+   */
+  object RIGHT_TO_LEFT: SubstructureOrientation
+  
+  /**
+   * Automatically determines the orientation of substructures based on the layout context.
+   * 
+   * Value - `4`
+   * @see [OrthogonalLayout.treeSubstructureOrientation]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/SubstructureOrientation%23AUTO_DETECT">Online Documentation</a>
+   */
+  object AUTO_DETECT: SubstructureOrientation
 }

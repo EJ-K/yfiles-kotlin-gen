@@ -26,10 +26,10 @@ import yfiles.lang.ClassMetadata
  * Gets the text that was or will be edited.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TextEventArgs%23text">Online Documentation</a>
  */
-external open class TextEventArgs  (
- context: IInputModeContext ,
+external class TextEventArgs (
+context: IInputModeContext,
 final val text: String) : InputModeEventArgs {
-
-companion object : ClassMetadata<TextEventArgs> {
-}
+  
+  companion object : ClassMetadata<TextEventArgs> {
+  }
 }

@@ -11,42 +11,43 @@
 
 package yfiles.hierarchic
 
-import yfiles.algorithms.Node
-import yfiles.collections.IComparer
 import yfiles.lang.ClassMetadata
+import yfiles.lang.Comparison1
 import yfiles.layout.LayoutGraph
+import yfiles.layout.LayoutNode
 
 /**
- * This class is a [ISequencer] implementation that determines the sequence of nodes of the same [layer][ILayer] based on a given [comparator][IComparer] constraint.
+ * This class is a [ISequencer] implementation that determines the sequence of nodes on the same [layer][HierarchicalLayoutLayer] based on a given comparison function.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GivenSequenceSequencer">Online Documentation</a>
  * 
- * @constructor Creates a new instance of [GivenSequenceSequencer] using a given [IComparer] for the sequencing.
+ * @constructor Creates a new instance of [GivenSequenceSequencer] using a given comparison for the sequencing.
+ * @param [nodeComparator] An optional comparison delegate used to determine the order of the nodes in the sequence.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GivenSequenceSequencer%23GivenSequenceSequencer-constructor-GivenSequenceSequencer">Online Documentation</a>
- * 
- * @property sequenceComparer
- * Gets or sets the [IComparer] used by this [GivenSequenceSequencer] to determine the sequence of the nodes.
- * 
- * Default value - `null`. No [IComparer] is specified.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GivenSequenceSequencer%23sequenceComparer">Online Documentation</a>
  */
-external open class GivenSequenceSequencer  (
-open var sequenceComparer: IComparer<in Node>? = definedExternally) : ISequencer {
-
-/**
- * Calculates the sequence of the nodes within a [ILayers] instance based on the given [IComparer] instance.
- * @param [graph] the input graph
- * @param [layers] the given [ILayers] instance containing the elements of the layers
- * @param [ldp] the [ILayoutDataProvider] containing information about the nodes and edges of the graph
- * @param [itemFactory] the [IItemFactory] used for creating and destroying helper structures
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GivenSequenceSequencer%23GivenSequenceSequencer-method-sequenceNodeLayers">Online Documentation</a>
- */
- override   fun sequenceNodeLayers( graph: LayoutGraph ,
- layers: ILayers ,
- ldp: ILayoutDataProvider ,
- itemFactory: IItemFactory )
-
-companion object : ClassMetadata<GivenSequenceSequencer> {
-}
+open external class GivenSequenceSequencer (
+  nodeComparator: Comparison1<LayoutNode>  = definedExternally,
+) : ISequencer {
+  /**
+   * Gets or sets the comparison function used by this [GivenSequenceSequencer] to determine the sequence of the nodes.
+   * 
+   * Default value - `null`. No comparison function is specified.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GivenSequenceSequencer%23sequenceComparator">Online Documentation</a>
+   */
+  final var sequenceComparator: Comparison1<LayoutNode>?
+  
+  /**
+   * Calculates the sequence of the nodes within the [layers][HierarchicalLayoutContext] in the given `layoutContext` based on the specified [sequenceComparator][GivenSequenceSequencer].
+   * @param [graph] The input graph
+   * @param [layoutContext] The [HierarchicalLayoutContext] providing context information about the nodes and edges of the graph, as well as the [ItemFactory] used for creating and destroying helper structures.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GivenSequenceSequencer%23GivenSequenceSequencer-method-sequenceNodeLayers">Online Documentation</a>
+   */
+  override fun sequenceNodeLayers(
+    graph: LayoutGraph,
+    layoutContext: HierarchicalLayoutContext,
+  )
+  
+  companion object : ClassMetadata<GivenSequenceSequencer> {
+  }
 }
 
 inline fun GivenSequenceSequencer(

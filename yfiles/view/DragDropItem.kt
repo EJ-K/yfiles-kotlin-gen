@@ -13,7 +13,6 @@ package yfiles.view
 
 import js.array.ReadonlyArray
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * The default implementation of a data object for the [DropInputMode][yfiles.input.DropInputMode].
@@ -25,32 +24,39 @@ import yfiles.lang.YObject
  * @see [setData]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragDropItem%23DragDropItem-constructor-DragDropItem">Online Documentation</a>
  */
-external  class DragDropItem  ( format: String?  = definedExternally,
- data: DragDropData?  = definedExternally) : YObject {
-
-/**
- * Gets the types of the data items stored in this instance.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragDropItem%23types">Online Documentation</a>
- */
-final val types: ReadonlyArray<String>?
-/**
- * Gets the data item for the given format.
- * @param [format] The format.
- * @return The data item that is stored for this format, or `null` if no such item exists.
- * @see [setData]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragDropItem%23DragDropItem-method-getData">Online Documentation</a>
- */
- final   fun getData( format: String ):DragDropData?
-/**
- * Sets the data item for the given format.
- * @param [format] The format.
- * @param [data] The data item.
- * @see [getData]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragDropItem%23DragDropItem-method-setData">Online Documentation</a>
- */
- final   fun setData( format: String ,
- data: DragDropData )
-
-companion object : ClassMetadata<DragDropItem> {
-}
+external class DragDropItem (
+  format: String?  = definedExternally,
+  data: DragDropData?  = definedExternally,
+)  {
+  /**
+   * Gets the types of the data items stored in this instance.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragDropItem%23types">Online Documentation</a>
+   */
+  final val types: ReadonlyArray<String>?
+  
+  /**
+   * Gets the data item for the given format.
+   * @param [format] The format.
+   * @return The data item that is stored for this format, or `null` if no such item exists.
+   * @see [setData]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragDropItem%23DragDropItem-method-getData">Online Documentation</a>
+   */
+  fun getData(
+    format: String,
+  ): DragDropData?
+  
+  /**
+   * Sets the data item for the given format.
+   * @param [format] The format.
+   * @param [data] The data item.
+   * @see [getData]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DragDropItem%23DragDropItem-method-setData">Online Documentation</a>
+   */
+  fun setData(
+    format: String,
+    data: DragDropData,
+  )
+  
+  companion object : ClassMetadata<DragDropItem> {
+  }
 }

@@ -13,7 +13,6 @@ package yfiles.input
 
 import yfiles.graph.IModelItem
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
  * An interface that allows input modes to collect [IModelItem]s for various purposes.
@@ -21,22 +20,27 @@ import yfiles.lang.YObject
  * @see [MoveInputMode.affectedItems]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IModelItemCollector">Online Documentation</a>
  */
-external interface IModelItemCollector : YObject {
-/**
- * Adds a model item to this collector instance.
- * @param [item] The model item to add.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IModelItemCollector%23IModelItemCollector-method-add">Online Documentation</a>
- */
-   fun add( item: IModelItem )
+external interface IModelItemCollector  {
+  /**
+   * Adds a model item to this collector instance.
+   * @param [item] The model item to add.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IModelItemCollector%23IModelItemCollector-method-add">Online Documentation</a>
+   */
+  fun add(
+    item: IModelItem,
+  )
+  
+  /**
+   * Adds a model item to this collector instance.
+   * @param [item] The model item to add.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IModelItemCollector%23IModelItemCollector-method-add">Online Documentation</a>
+   */
+  @JsName("add")
+  final operator fun plusAssign(
+    item: IModelItem,
+  ): Unit = definedExternally
 
-/**
- * Adds a model item to this collector instance.
- * @param [item] The model item to add.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IModelItemCollector%23IModelItemCollector-method-add">Online Documentation</a>
- */
-@JsName("add")
-  final operator fun plusAssign( item: IModelItem ):Unit = definedExternally
-
-companion object : InterfaceMetadata<IModelItemCollector> {
-}
+  
+  companion object : InterfaceMetadata<IModelItemCollector> {
+  }
 }

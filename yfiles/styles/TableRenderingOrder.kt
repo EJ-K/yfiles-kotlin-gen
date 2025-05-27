@@ -11,29 +11,25 @@
 
 package yfiles.styles
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * Enumeration that is used to specify the drawing order for rows and columns
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableRenderingOrder">Online Documentation</a>
  */
-external sealed class TableRenderingOrder: YEnum<TableRenderingOrder> {
-   companion object: EnumMetadata<TableRenderingOrder> {
-       /**
- * Draw columns, then rows
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableRenderingOrder%23COLUMNS_FIRST">Online Documentation</a>
- */
-val COLUMNS_FIRST: TableRenderingOrder
 
-/**
- * Draw rows, then columns
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableRenderingOrder%23ROWS_FIRST">Online Documentation</a>
- */
-val ROWS_FIRST: TableRenderingOrder
-   }
+sealed external class TableRenderingOrder {
+  /**
+   * Draw columns, then rows
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableRenderingOrder%23COLUMNS_FIRST">Online Documentation</a>
+   */
+  object COLUMNS_FIRST: TableRenderingOrder
+  
+  /**
+   * Draw rows, then columns
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableRenderingOrder%23ROWS_FIRST">Online Documentation</a>
+   */
+  object ROWS_FIRST: TableRenderingOrder
 }

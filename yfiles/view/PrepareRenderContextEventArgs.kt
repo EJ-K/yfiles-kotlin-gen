@@ -15,12 +15,12 @@ import yfiles.lang.ClassMetadata
 import yfiles.lang.EventArgs
 
 /**
- * The event arguments for the event handler used by [CanvasComponent.raisePrepareRenderContextEvent]
- * @see [CanvasComponent.addPrepareRenderContextListener]
+ * The event arguments for the event handler used by [prepare-render-context][CanvasComponent]
+ * @see [CanvasComponent.prepare-render-context]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PrepareRenderContextEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [PrepareRenderContextEventArgs] class.
- * @param [context] The initial context which can be modified by the event handlers using the [context] property.
+ * @param [context] The initial context which can be modified by the event handlers using the [context][PrepareRenderContextEventArgs] property.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PrepareRenderContextEventArgs%23PrepareRenderContextEventArgs-constructor-PrepareRenderContextEventArgs">Online Documentation</a>
  * 
  * @property context
@@ -28,9 +28,9 @@ import yfiles.lang.EventArgs
  * @throws ArgumentError If the argument is `null`.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PrepareRenderContextEventArgs%23context">Online Documentation</a>
  */
-external open class PrepareRenderContextEventArgs  (
+external class PrepareRenderContextEventArgs (
 final var context: IRenderContext) : EventArgs {
-
-companion object : ClassMetadata<PrepareRenderContextEventArgs> {
-}
+  
+  companion object : ClassMetadata<PrepareRenderContextEventArgs> {
+  }
 }

@@ -11,39 +11,33 @@
 
 package yfiles.input
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * Enumeration defining different policies to enable or disable some aspects of creation or editing of orthogonal edges.
- * @see [CreateEdgeInputMode.orthogonalEdgeCreation]
- * @see [GraphEditorInputMode.orthogonalBendRemoval]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalEdgeEditingPolicy">Online Documentation</a>
  */
-external sealed class OrthogonalEdgeEditingPolicy: YEnum<OrthogonalEdgeEditingPolicy> {
-   companion object: EnumMetadata<OrthogonalEdgeEditingPolicy> {
-       /**
- * Enables orthogonal edge creation or editing for a specific sub-aspect automatically if an [OrthogonalEdgeEditingContext.enabled] [OrthogonalEdgeEditingContext] instance is set in the [parent input mode][GraphEditorInputMode.orthogonalEdgeEditingContext].
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalEdgeEditingPolicy%23AUTO">Online Documentation</a>
- */
-val AUTO: OrthogonalEdgeEditingPolicy
 
-/**
- * Enables orthogonal edge creation or editing for a specific sub-aspect of edge creation.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalEdgeEditingPolicy%23ALWAYS">Online Documentation</a>
- */
-val ALWAYS: OrthogonalEdgeEditingPolicy
-
-/**
- * Disables orthogonal edge creation or editing for a specific sub-aspect of edge creation.
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalEdgeEditingPolicy%23NEVER">Online Documentation</a>
- */
-val NEVER: OrthogonalEdgeEditingPolicy
-   }
+sealed external class OrthogonalEdgeEditingPolicy {
+  /**
+   * Enables orthogonal edge creation or editing for a specific sub-aspect automatically if an [enabled][OrthogonalEdgeEditingContext] [OrthogonalEdgeEditingContext] instance is set in the [parent input mode][GraphEditorInputMode].
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalEdgeEditingPolicy%23AUTO">Online Documentation</a>
+   */
+  object AUTO: OrthogonalEdgeEditingPolicy
+  
+  /**
+   * Enables orthogonal edge creation or editing for a specific sub-aspect of edge creation.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalEdgeEditingPolicy%23ALWAYS">Online Documentation</a>
+   */
+  object ALWAYS: OrthogonalEdgeEditingPolicy
+  
+  /**
+   * Disables orthogonal edge creation or editing for a specific sub-aspect of edge creation.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/OrthogonalEdgeEditingPolicy%23NEVER">Online Documentation</a>
+   */
+  object NEVER: OrthogonalEdgeEditingPolicy
 }

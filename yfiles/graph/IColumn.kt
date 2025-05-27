@@ -20,17 +20,19 @@ import yfiles.lang.InterfaceMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IColumn">Online Documentation</a>
  */
 external interface IColumn : IStripe {
-/**
- * Gets the child columns.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IColumn%23childColumns">Online Documentation</a>
- */
-val childColumns: IEnumerable<IColumn>
-/**
- * Gets the parent of this column.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IColumn%23parentColumn">Online Documentation</a>
- */
-val parentColumn: IColumn?
+  /**
+   * Gets the child columns.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IColumn%23childColumns">Online Documentation</a>
+   */
+  val childColumns: IEnumerable<IColumn>
+  
+  /**
+   * Gets the parent of this column.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IColumn%23parentColumn">Online Documentation</a>
+   */
+  val parentColumn: IColumn?
 
-companion object : InterfaceMetadata<IColumn> {
-}
+  
+  companion object : InterfaceMetadata<IColumn> {
+  }
 }

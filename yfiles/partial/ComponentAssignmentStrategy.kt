@@ -11,59 +11,33 @@
 
 package yfiles.partial
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
- * @see [ClearAreaLayout.componentAssignmentStrategy]
- * @see [FillAreaLayout.componentAssignmentStrategy]
- * @see [PartialLayout.componentAssignmentStrategy]
+ * Enum representing various strategies for assigning nodes to subgraph components.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentAssignmentStrategy">Online Documentation</a>
  */
-external sealed class ComponentAssignmentStrategy: YEnum<ComponentAssignmentStrategy> {
-   companion object: EnumMetadata<ComponentAssignmentStrategy> {
-       /**
- * A component assignment strategy that assigns each node to a separate subgraph component.
- * 
- * Value - `0`
- * @see [PartialLayout.componentAssignmentStrategy]
- * @see [ClearAreaLayout.componentAssignmentStrategy]
- * @see [FillAreaLayout.componentAssignmentStrategy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentAssignmentStrategy%23SINGLE">Online Documentation</a>
- */
-val SINGLE: ComponentAssignmentStrategy
 
-/**
- * A component assignment strategy where the subgraph components correspond to the connected components of the graph.
- * 
- * Value - `1`
- * @see [PartialLayout.componentAssignmentStrategy]
- * @see [ClearAreaLayout.componentAssignmentStrategy]
- * @see [FillAreaLayout.componentAssignmentStrategy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentAssignmentStrategy%23CONNECTED">Online Documentation</a>
- */
-val CONNECTED: ComponentAssignmentStrategy
-
-/**
- * A component assignment strategy where the subgraph components correspond to the clusters computed by a clustering algorithm based on [edge betweenness centrality][yfiles.algorithms.Groups.edgeBetweennessClustering].
- * 
- * Value - `2`
- * @see [PartialLayout.componentAssignmentStrategy]
- * @see [ClearAreaLayout.componentAssignmentStrategy]
- * @see [FillAreaLayout.componentAssignmentStrategy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentAssignmentStrategy%23CLUSTERING">Online Documentation</a>
- */
-val CLUSTERING: ComponentAssignmentStrategy
-
-/**
- * A component assignment strategy where the subgraph components are defined by the user.
- * 
- * Value - `3`
- * @see [PartialLayout.componentAssignmentStrategy]
- * @see [ClearAreaLayout.componentAssignmentStrategy]
- * @see [FillAreaLayout.componentAssignmentStrategy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentAssignmentStrategy%23CUSTOMIZED">Online Documentation</a>
- */
-val CUSTOMIZED: ComponentAssignmentStrategy
-   }
+sealed external class ComponentAssignmentStrategy {
+  /**
+   * A strategy that assigns each node to a distinct subgraph component.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentAssignmentStrategy%23SINGLE">Online Documentation</a>
+   */
+  object SINGLE: ComponentAssignmentStrategy
+  
+  /**
+   * A strategy where subgraph components correspond to the graph's connected components.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentAssignmentStrategy%23CONNECTED">Online Documentation</a>
+   */
+  object CONNECTED: ComponentAssignmentStrategy
+  
+  /**
+   * A strategy where subgraph components are defined by clusters determined by a clustering algorithm based on edge betweenness centrality.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ComponentAssignmentStrategy%23CLUSTERING">Online Documentation</a>
+   */
+  object CLUSTERING: ComponentAssignmentStrategy
 }

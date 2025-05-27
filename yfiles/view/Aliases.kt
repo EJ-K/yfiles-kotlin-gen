@@ -18,13 +18,11 @@ package yfiles.view
 typealias AnimationCallback = (time: Double) -> Unit
 
 /**
- * A callback which will be called to free the resources which are occupied by the given `removedVisual` when the visual will be removed.
+ * A callback which will be called to free the resources that are occupied by the given `removedVisual` when the visual will be removed.
  * @param [context] A valid render context.
  * @param [removedVisual] The visual whose resources need to be freed.
- * @param [dispose] Indicates that the visual is not going to be used again in any case and can be disposed for good. In the case that this parameter is set to `true` clients should take this as a signal to free the resources used by the `removedVisual`. If this parameter is set to false, the visual is eventually made visible in the scene graph of the [CanvasComponent] again and may therefore be reused.
+ * @param [dispose] Indicates that the visual is not going to be used again in any case and can be disposed for good. In the case that this parameter is set to `true`, clients should take this as a signal to free the resources used by the `removedVisual`. If this parameter is set to false, the visual is eventually made visible in the scene graph of the [CanvasComponent] again and may therefore be reused.
  * @return The removed visual if it should be cached, `null` otherwise.
  * @see [IRenderContext.setDisposeCallback]
  */
-typealias DisposeVisualCallback<TVisual> = (context: IRenderContext,
-removedVisual: TVisual,
-dispose: Boolean) -> TVisual
+typealias DisposeVisualCallback<TVisual> = (context: IRenderContext, removedVisual: TVisual, dispose: Boolean) -> TVisual

@@ -11,105 +11,64 @@
 
 package yfiles.partial
 
-import yfiles.algorithms.AbortHandler
-import yfiles.collections.ICollection
-import yfiles.graph.IEdge
-import yfiles.graph.INode
+import yfiles.collections.ItemMapping
+import yfiles.geometry.Insets
 import yfiles.lang.ClassMetadata
 import yfiles.lang.Id
-import yfiles.layout.ItemCollection
-import yfiles.layout.ItemMapping
+import yfiles.layout.BasicPortData
 import yfiles.layout.LayoutData
-import yfiles.layout.NodeHalo
-import yfiles.layout.PartitionGridData
-import yfiles.layout.PortCandidate
-import yfiles.layout.PortConstraint
+import yfiles.layout.LayoutGridData
 
 /**
  * Specifies custom data for the [PartialLayout].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData">Online Documentation</a>
  * 
- * @constructor Creates a new instance of [PartialLayoutData] which helps configuring [PartialLayout].
+ * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23PartialLayoutData-constructor-PartialLayoutData">Online Documentation</a>
  */
-external open class PartialLayoutData  () : LayoutData {
-
-/**
- * Gets or sets the [AbortHandler] used during the layout.
- * @see [LayoutExecutor.abortHandler][yfiles.layout.LayoutExecutor.abortHandler]
- * @see [AbortHandler.ABORT_HANDLER_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23abortHandler">Online Documentation</a>
- */
-final var abortHandler: AbortHandler?
-/**
- * Gets or sets the collection of edges placed by the layout.
- * @see [PartialLayout.AFFECTED_EDGES_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23affectedEdges">Online Documentation</a>
- */
-final var affectedEdges: ItemCollection<IEdge>
-/**
- * Gets or sets the collection of nodes placed by the layout.
- * @see [PartialLayout.AFFECTED_NODES_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23affectedNodes">Online Documentation</a>
- */
-final var affectedNodes: ItemCollection<INode>
-/**
- * Gets or sets the mapping from partial nodes to an object defining their component assignment.
- * @see [PartialLayout.COMPONENT_ID_DP_KEY]
- * @see [ComponentAssignmentStrategy.CUSTOMIZED]
- * @see [PartialLayout.componentAssignmentStrategy]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23componentIds">Online Documentation</a>
- */
-final var componentIds: ItemMapping<INode, Id>
-/**
- * Gets or sets the collection of edges that are considered as directed by the layout.
- * @see [PartialLayout.DIRECTED_EDGES_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23directedEdges">Online Documentation</a>
- */
-final var directedEdges: ItemCollection<IEdge>
-/**
- * Gets or sets the mapping from nodes to their [NodeHalo].
- * @see [NodeHalo.NODE_HALO_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23nodeHalos">Online Documentation</a>
- */
-final var nodeHalos: ItemMapping<INode, NodeHalo>
-/**
- * Gets or sets the [partition grid][yfiles.layout.PartitionGrid] layout data.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23partitionGridData">Online Documentation</a>
- */
-final var partitionGridData: PartitionGridData
-/**
- * Gets or sets a mapping from edges to a collection of their source port [candidates][PortCandidate].
- * @see [PortCandidate.SOURCE_PORT_CANDIDATE_COLLECTION_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23sourcePortCandidates">Online Documentation</a>
- */
-final var sourcePortCandidates: ItemMapping<IEdge, ICollection<out PortCandidate>>
-/**
- * Gets or sets a mapping from edges to their source [PortConstraint].
- * @see [PortConstraintKeys.SOURCE_PORT_CONSTRAINT_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23sourcePortConstraints">Online Documentation</a>
- */
-final var sourcePortConstraints: ItemMapping<IEdge, PortConstraint>
-/**
- * Gets or sets a mapping from edges to a collection of their target port [candidates][PortCandidate].
- * @see [PortCandidate.TARGET_PORT_CANDIDATE_COLLECTION_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23targetPortCandidates">Online Documentation</a>
- */
-final var targetPortCandidates: ItemMapping<IEdge, ICollection<out PortCandidate>>
-/**
- * Gets or sets a mapping from edges to their target [PortConstraint].
- * @see [PortConstraintKeys.TARGET_PORT_CONSTRAINT_DP_KEY]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23targetPortConstraints">Online Documentation</a>
- */
-final var targetPortConstraints: ItemMapping<IEdge, PortConstraint>
-
-companion object : ClassMetadata<PartialLayoutData> {
-}
-}
-
-inline fun PartialLayoutData(
-    block: PartialLayoutData.() -> Unit
-): PartialLayoutData {
-    return PartialLayoutData()
-        .apply(block)
+external class PartialLayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> () : LayoutData<TNode, TEdge, TNodeLabel, TEdgeLabel> {
+  /**
+   * Gets or sets the mapping from partial nodes to an object defining their component assignment.
+   * @see [PartialLayout.COMPONENT_ID_DATA_KEY]
+   * @see [PartialLayout.componentAssignmentStrategy]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23componentIds">Online Documentation</a>
+   */
+  final var componentIds: ItemMapping<TNode, Id>
+  
+  /**
+   * Gets or sets the mapping from edges to their orientation, specifying how they should be routed with respect to the main layout direction.
+   * @see [PartialLayout.EDGE_ORIENTATION_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23edgeOrientation">Online Documentation</a>
+   */
+  final var edgeOrientation: ItemMapping<TEdge, Double>
+  
+  /**
+   * Gets or sets the [LayoutGrid][yfiles.layout.LayoutGrid] layout data.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23layoutGridData">Online Documentation</a>
+   */
+  final var layoutGridData: LayoutGridData<TNode, TEdge, TNodeLabel, TEdgeLabel>
+  
+  /**
+   * Gets or sets the mapping from nodes to their margins.
+   * @see [LayoutKeys.NODE_MARGIN_DATA_KEY][yfiles.layout.LayoutKeys.NODE_MARGIN_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23nodeMargins">Online Documentation</a>
+   */
+  final var nodeMargins: ItemMapping<TNode, Insets>
+  
+  /**
+   * Gets or sets the sub-data that provides a way of influencing the placement of the ports.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23ports">Online Documentation</a>
+   */
+  final var ports: BasicPortData<TNode, TEdge, TNodeLabel, TEdgeLabel>
+  
+  /**
+   * Gets or sets the collection of nodes and edges that are considered as partial (movable) by the layout.
+   * @see [PartialLayout.NODE_SCOPE_DATA_KEY]
+   * @see [PartialLayout.EDGE_SCOPE_DATA_KEY]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PartialLayoutData%23scope">Online Documentation</a>
+   */
+  final val scope: PartialLayoutScopeData<TNode, TEdge>
+  
+  companion object : ClassMetadata<PartialLayoutData<*, *, *, *>> {
+  }
 }

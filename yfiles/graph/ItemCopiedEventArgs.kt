@@ -20,22 +20,22 @@ import yfiles.lang.EventArgs
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemCopiedEventArgs">Online Documentation</a>
  * 
  * @constructor Creates a new argument for the given item and its original.
- * @param [original] The [original] of the copied item.
- * @param [copy] The [copied item][copy].
+ * @param [original] The [original][ItemCopiedEventArgs] of the copied item.
+ * @param [copy] The [copied item][ItemCopiedEventArgs].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemCopiedEventArgs%23ItemCopiedEventArgs-constructor-ItemCopiedEventArgs">Online Documentation</a>
  * 
  * @property original
- * Gets the original of the [copied item][copy].
+ * Gets the original of the [copied item][ItemCopiedEventArgs].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemCopiedEventArgs%23original">Online Documentation</a>
  * 
  * @property copy
  * Gets the copied item.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ItemCopiedEventArgs%23copy">Online Documentation</a>
  */
-external open class ItemCopiedEventArgs<T : Any>  (
+external class ItemCopiedEventArgs<T : Any> (
 final val original: T,
 final val copy: T) : EventArgs {
-
-companion object : ClassMetadata<ItemCopiedEventArgs<*>> {
-}
+  
+  companion object : ClassMetadata<ItemCopiedEventArgs<*>> {
+  }
 }

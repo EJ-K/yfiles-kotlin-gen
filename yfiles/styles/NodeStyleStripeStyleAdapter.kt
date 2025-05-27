@@ -25,20 +25,20 @@ import yfiles.lang.ClassMetadata
  * Gets the [INodeStyle] that is used for rendering the stripe.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleStripeStyleAdapter%23nodeStyle">Online Documentation</a>
  */
-external open class NodeStyleStripeStyleAdapter  (
+open external class NodeStyleStripeStyleAdapter (
 final var nodeStyle: INodeStyle = definedExternally) : IStripeStyle {
-
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleStripeStyleAdapter%23renderer">Online Documentation</a>
- */
-final override val renderer: IStripeStyleRenderer
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleStripeStyleAdapter%23NodeStyleStripeStyleAdapter-method-clone">Online Documentation</a>
- */
- override   fun clone():NodeStyleStripeStyleAdapter
-
-companion object : ClassMetadata<NodeStyleStripeStyleAdapter> {
-}
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleStripeStyleAdapter%23renderer">Online Documentation</a>
+   */
+  final override val renderer: IStripeStyleRenderer
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleStripeStyleAdapter%23NodeStyleStripeStyleAdapter-method-clone">Online Documentation</a>
+   */
+  override fun clone(): NodeStyleStripeStyleAdapter
+  
+  companion object : ClassMetadata<NodeStyleStripeStyleAdapter> {
+  }
 }
 
 inline fun NodeStyleStripeStyleAdapter(

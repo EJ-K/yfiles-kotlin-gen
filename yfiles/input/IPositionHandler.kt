@@ -15,7 +15,7 @@ import yfiles.collections.IEnumerable
 import yfiles.lang.InterfaceMetadata
 
 /**
- * Interface for an object that can handle the position of an item displayed in a [CanvasComponent][yfiles.view.CanvasComponent]
+ * Interface for an object that can handle the position of an item displayed in a [CanvasComponent][yfiles.view.CanvasComponent].
  * @see [IDragHandler]
  * @see [IHandle]
  * @see [MoveInputMode]
@@ -23,20 +23,28 @@ import yfiles.lang.InterfaceMetadata
  */
 external interface IPositionHandler : IDragHandler {
 
-companion object : InterfaceMetadata<IPositionHandler> {
-/**
- * Creates a generic composite implementation for the [IPositionHandler] interface.
- * @param [handlers] The handlers to create the composite from.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPositionHandler%23IPositionHandler-defaultmethod-combine(IEnumerable)">Online Documentation</a>
- */
-@JsName("combine")
-  operator fun invoke( handlers: IEnumerable<IPositionHandler> ):IPositionHandler
-/**
- * Creates a generic composite implementation for the [IPositionHandler] interface.
- * @param [handlers] The handlers to create the composite from.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPositionHandler%23IPositionHandler-defaultmethod-combine(IPositionHandler[])">Online Documentation</a>
- */
-@JsName("combine")
-  operator fun invoke(vararg  handlers: IPositionHandler ):IPositionHandler
-}
+  
+  companion object : InterfaceMetadata<IPositionHandler> {
+    /**
+     * Creates a generic composite implementation for the [IPositionHandler] interface.
+     * @param [handlers] The handlers to create the composite from.
+     * @return An [IPositionHandler] instance that combines all the provided handlers.
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPositionHandler%23IPositionHandler-defaultmethod-combine(IEnumerable)">Online Documentation</a>
+     */
+    @JsName("combine")
+    operator fun invoke(
+      handlers: IEnumerable<IPositionHandler>,
+    ): IPositionHandler
+    
+    /**
+     * Creates a generic composite implementation for the [IPositionHandler] interface.
+     * @param [handlers] The handlers to create the composite from.
+     * @return An [IPositionHandler] instance that combines all the provided handlers.
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IPositionHandler%23IPositionHandler-defaultmethod-combine(IPositionHandler[])">Online Documentation</a>
+     */
+    @JsName("combine")
+    operator fun invoke(
+      vararg handlers: IPositionHandler,
+    ): IPositionHandler
+  }
 }

@@ -12,12 +12,12 @@
 package yfiles.input
 
 import yfiles.geometry.Point
-import yfiles.graph.IModelItem
 import yfiles.lang.ClassMetadata
+import yfiles.view.PopulateContextMenuEventArgs
 
 /**
- * A specialized subclass of [PopulateMenuEventArgs] that carries the [item] for which the context menu should be populated.
- * @param [TModelItem] The type of the [model item][item].
+ * A specialized subclass of [PopulateContextMenuEventArgs] that carries the [item][PopulateItemContextMenuEventArgs] for which the context menu should be populated.
+ * @param [TModelItem] The type of the model [item][PopulateItemContextMenuEventArgs].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PopulateItemContextMenuEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [PopulateItemContextMenuEventArgs] class.
@@ -27,14 +27,14 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PopulateItemContextMenuEventArgs%23PopulateItemContextMenuEventArgs-constructor-PopulateItemContextMenuEventArgs">Online Documentation</a>
  * 
  * @property item
- * Gets the item for which the tool tip is queried.
+ * Gets the item for which the context menu is queried.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PopulateItemContextMenuEventArgs%23item">Online Documentation</a>
  */
-external open class PopulateItemContextMenuEventArgs<TModelItem : IModelItem>  (
- context: IInputModeContext ,
- queryLocation: Point ,
-final val item: TModelItem?) : PopulateMenuEventArgs {
-
-companion object : ClassMetadata<PopulateItemContextMenuEventArgs<*>> {
-}
+external class PopulateItemContextMenuEventArgs<TModelItem> (
+context: IInputModeContext,
+queryLocation: Point,
+final val item: TModelItem?) : PopulateContextMenuEventArgs {
+  
+  companion object : ClassMetadata<PopulateItemContextMenuEventArgs<*>> {
+  }
 }

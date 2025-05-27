@@ -13,21 +13,18 @@ package yfiles.analysis
 
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents a partition in a bipartite graph.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BipartitionPartition">Online Documentation</a>
  */
-external  class BipartitionPartition 
-private constructor () : YObject {
-
-/**
- * Gets a collection of nodes belonging to this partition.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BipartitionPartition%23nodes">Online Documentation</a>
- */
-final val nodes: ResultItemCollection<INode>
-
-companion object : ClassMetadata<BipartitionPartition> {
-}
+external class BipartitionPartition private constructor()  {
+  /**
+   * Gets a collection of nodes belonging to this partition.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/BipartitionPartition%23nodes">Online Documentation</a>
+   */
+  final val nodes: ResultItemCollection<INode>
+  
+  companion object : ClassMetadata<BipartitionPartition> {
+  }
 }

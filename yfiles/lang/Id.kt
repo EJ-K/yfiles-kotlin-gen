@@ -9,7 +9,7 @@
 
 package yfiles.lang
 
-external interface Id: YObject
+external interface Id
 
 inline fun Id(source:Any):Id = 
     source.unsafeCast<Id>()

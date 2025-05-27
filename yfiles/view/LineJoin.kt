@@ -11,37 +11,33 @@
 
 package yfiles.view
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * Possible values for the line join of a [Stroke].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LineJoin">Online Documentation</a>
  */
-external sealed class LineJoin: YEnum<LineJoin> {
-   companion object: EnumMetadata<LineJoin> {
-       /**
- * Indicates that the line joins of a [Stroke] should be beveled.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LineJoin%23BEVEL">Online Documentation</a>
- */
-val BEVEL: LineJoin
 
-/**
- * Indicates that the line joins of a [Stroke] should be rounded.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LineJoin%23ROUND">Online Documentation</a>
- */
-val ROUND: LineJoin
-
-/**
- * Indicates that the line joins of a [Stroke] should be sharp.
- * 
- * Value - `2`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LineJoin%23MITER">Online Documentation</a>
- */
-val MITER: LineJoin
-   }
+sealed external class LineJoin {
+  /**
+   * Indicates that the line joins of a [Stroke] should be beveled.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LineJoin%23BEVEL">Online Documentation</a>
+   */
+  object BEVEL: LineJoin
+  
+  /**
+   * Indicates that the line joins of a [Stroke] should be rounded.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LineJoin%23ROUND">Online Documentation</a>
+   */
+  object ROUND: LineJoin
+  
+  /**
+   * Indicates that the line joins of a [Stroke] should be sharp.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/LineJoin%23MITER">Online Documentation</a>
+   */
+  object MITER: LineJoin
 }

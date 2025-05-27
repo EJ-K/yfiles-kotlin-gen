@@ -12,30 +12,27 @@
 package yfiles.hierarchic
 
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 import yfiles.layout.LayoutGraph
 
 /**
- * This interface is used by [HierarchicLayoutCore] to calculate the order of the nodes within each [layer][ILayers].
- * @see [HierarchicLayoutCore.sequencer]
- * @see [HierarchicLayout.fixedElementsSequencer]
- * @see [HierarchicLayout.fromScratchSequencer]
+ * This interface is used by [HierarchicalLayoutCore] to calculate the order of the nodes within each [layer][HierarchicalLayoutLayer].
+ * @see [HierarchicalLayoutCore.fixedElementsSequencer]
+ * @see [HierarchicalLayoutCore.fromScratchSequencer]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ISequencer">Online Documentation</a>
  */
-external interface ISequencer : YObject {
-/**
- * Calculates the sequence of the nodes within each [layer][ILayers].
- * @param [graph] the input graph
- * @param [layers] the given [ILayers] instance containing the elements in the layering
- * @param [ldp] the [ILayoutDataProvider] implementation which provides access to the [INodeData] and [IEdgeData] instances
- * @param [itemFactory] the [IItemFactory] used temporarily for modifying the graph instance
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ISequencer%23ISequencer-method-sequenceNodeLayers">Online Documentation</a>
- */
-   fun sequenceNodeLayers( graph: LayoutGraph ,
- layers: ILayers ,
- ldp: ILayoutDataProvider ,
- itemFactory: IItemFactory )
+external interface ISequencer  {
+  /**
+   * Calculates the sequence of the nodes within each layer of the [layers][HierarchicalLayoutContext] list in the given `layoutContext`.
+   * @param [graph] the input graph
+   * @param [layoutContext] The [HierarchicalLayoutContext] instance which provides access to context information about the nodes and edges of the graph, as well as the [ItemFactory] used temporarily for modifying the graph instance.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ISequencer%23ISequencer-method-sequenceNodeLayers">Online Documentation</a>
+   */
+  fun sequenceNodeLayers(
+    graph: LayoutGraph,
+    layoutContext: HierarchicalLayoutContext,
+  )
 
-companion object : InterfaceMetadata<ISequencer> {
-}
+  
+  companion object : InterfaceMetadata<ISequencer> {
+  }
 }

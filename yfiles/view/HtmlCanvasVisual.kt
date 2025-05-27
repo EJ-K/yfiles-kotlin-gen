@@ -15,24 +15,25 @@ import web.canvas.CanvasRenderingContext2D
 import yfiles.lang.ClassMetadata
 
 /**
- * Base class for [Visual]s that use HTML5's Canvas for the visualization.
- * @see [paint]
+ * Base class for [Visual]s that use an `HTMLCanvasElement` for the visualization to render into a [CanvasRenderingContext2D].
+ * @see [render]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HtmlCanvasVisual">Online Documentation</a>
  * 
  * @constructor
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HtmlCanvasVisual%23HtmlCanvasVisual-constructor-HtmlCanvasVisual">Online Documentation</a>
  */
-external abstract class HtmlCanvasVisual  () : Visual {
-
-/**
- * Paints onto the context using HTML5 Canvas operations.
- * @param [renderContext] The render context of the [CanvasComponent]
- * @param [ctx] The HTML5 Canvas context to use for rendering.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HtmlCanvasVisual%23HtmlCanvasVisual-method-paint">Online Documentation</a>
- */
- abstract   fun paint( renderContext: IRenderContext ,
- ctx: CanvasRenderingContext2D )
-
-companion object : ClassMetadata<HtmlCanvasVisual> {
-}
+abstract external class HtmlCanvasVisual () : Visual {
+  /**
+   * Paints onto the context using HTML Canvas operations.
+   * @param [renderContext] The render context of the [CanvasComponent]
+   * @param [ctx] The HTML Canvas context to use for rendering.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/HtmlCanvasVisual%23HtmlCanvasVisual-method-render">Online Documentation</a>
+   */
+  abstract fun render(
+    renderContext: IRenderContext,
+    ctx: CanvasRenderingContext2D,
+  )
+  
+  companion object : ClassMetadata<HtmlCanvasVisual> {
+  }
 }

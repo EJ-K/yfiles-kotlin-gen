@@ -22,42 +22,49 @@ import yfiles.lang.ClassMetadata
  * @param [nodeStyle] The style to use for rendering the background of the label.
  * @param [labelStyle] The style to use for rendering the foreground of the label.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23NodeStyleLabelStyleAdapter-constructor-NodeStyleLabelStyleAdapter">Online Documentation</a>
- * 
- * @property nodeStyle
- * Gets the [INodeStyle] that is used for rendering the background of the label.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23nodeStyle">Online Documentation</a>
- * 
- * @property labelStyle
- * Gets the [ILabelStyle] that is used for rendering the foreground of the label.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23labelStyle">Online Documentation</a>
  */
-external open class NodeStyleLabelStyleAdapter  (
-final var nodeStyle: INodeStyle = definedExternally,
-final var labelStyle: ILabelStyle = definedExternally) : ILabelStyle {
-
-/**
- * Gets a value indicating whether the label should be flipped 180 degrees automatically, if it would be oriented downwards, otherwise.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23autoFlip">Online Documentation</a>
- */
-final var autoFlip: Boolean
-/**
- * Gets or sets the insets to apply for the [labelStyle] as margins.
- * 
- * The default is `(0,0,0,0)`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23labelStyleInsets">Online Documentation</a>
- */
-final var labelStyleInsets: Insets
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23renderer">Online Documentation</a>
- */
-final override val renderer: ILabelStyleRenderer
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23NodeStyleLabelStyleAdapter-method-clone">Online Documentation</a>
- */
- override   fun clone():NodeStyleLabelStyleAdapter
-
-companion object : ClassMetadata<NodeStyleLabelStyleAdapter> {
-}
+open external class NodeStyleLabelStyleAdapter (
+  nodeStyle: INodeStyle?  = definedExternally,
+  labelStyle: ILabelStyle?  = definedExternally,
+) : ILabelStyle {
+  /**
+   * Gets a value indicating whether the label should be flipped 180 degrees automatically, if it would be oriented downwards, otherwise.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23autoFlip">Online Documentation</a>
+   */
+  final var autoFlip: Boolean
+  
+  /**
+   * Gets the [ILabelStyle] that is used for rendering the foreground of the label.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23labelStyle">Online Documentation</a>
+   */
+  final var labelStyle: ILabelStyle
+  
+  /**
+   * Gets or sets the padding to apply for the [labelStyle][NodeStyleLabelStyleAdapter].
+   * 
+   * The default is `(0,0,0,0)`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23labelStylePadding">Online Documentation</a>
+   */
+  final var labelStylePadding: Insets
+  
+  /**
+   * Gets the [INodeStyle] that is used for rendering the background of the label.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23nodeStyle">Online Documentation</a>
+   */
+  final var nodeStyle: INodeStyle
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23renderer">Online Documentation</a>
+   */
+  final override val renderer: ILabelStyleRenderer
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/NodeStyleLabelStyleAdapter%23NodeStyleLabelStyleAdapter-method-clone">Online Documentation</a>
+   */
+  override fun clone(): NodeStyleLabelStyleAdapter
+  
+  companion object : ClassMetadata<NodeStyleLabelStyleAdapter> {
+  }
 }
 
 inline fun NodeStyleLabelStyleAdapter(

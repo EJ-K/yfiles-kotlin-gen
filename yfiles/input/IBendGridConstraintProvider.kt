@@ -20,6 +20,7 @@ import yfiles.lang.InterfaceMetadata
  */
 external interface IBendGridConstraintProvider : IGridConstraintProvider<IBend> {
 
-companion object : InterfaceMetadata<IBendGridConstraintProvider> {
-}
+  
+  companion object : InterfaceMetadata<IBendGridConstraintProvider> {
+  }
 }

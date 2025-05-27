@@ -15,10 +15,9 @@ import web.dom.Element
 import yfiles.lang.ClassMetadata
 import yfiles.lang.EventHandler1
 import yfiles.lang.IEventDispatcher
-import yfiles.lang.YObject
 
 /**
- * Helper class that plays the role of the target during a drag and drop operation that is initiated using [DragSource.startDrag] in a [DragSource].
+ * Helper class that plays the role of the target during a drag and drop operation that is initiated using [startDrag][DragSource] in a [DragSource].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [DropTarget] class.
@@ -26,64 +25,40 @@ import yfiles.lang.YObject
  * @see [getDropTarget]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DropTarget-constructor-DropTarget">Online Documentation</a>
  */
-external open class DropTarget  () : YObject, IEventDispatcher {
-
-/**
- * Gets or sets a value indicating whether dropping to this target is currently allowed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23allowDrop">Online Documentation</a>
- */
-final var allowDrop: Boolean
-/**
- * The element that is registered for this drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23element">Online Documentation</a>
- */
-final val element: Element?
-/**
- * Occurs when a drag enters the drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DragEnter">Online Documentation</a>
- */
-fun addDragEnterListener(listener: EventHandler1<DragEventArgs>)
-fun removeDragEnterListener(listener: EventHandler1<DragEventArgs>)
-
-/**
- * Occurs when a drag leaves the drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DragLeave">Online Documentation</a>
- */
-fun addDragLeaveListener(listener: EventHandler1<DragEventArgs>)
-fun removeDragLeaveListener(listener: EventHandler1<DragEventArgs>)
-
-/**
- * Occurs when a drag is being performed over the drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DragOver">Online Documentation</a>
- */
-fun addDragOverListener(listener: EventHandler1<DragEventArgs>)
-fun removeDragOverListener(listener: EventHandler1<DragEventArgs>)
-
-/**
- * Occurs when the drop operation is performed on the drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23Drop">Online Documentation</a>
- */
-fun addDropListener(listener: EventHandler1<DragEventArgs>)
-fun removeDropListener(listener: EventHandler1<DragEventArgs>)
-
-companion object : ClassMetadata<DropTarget> {
-/**
- * Gets the [DropTarget] instance associated with the given element.
- * @receiver The element to get the drop target instance of.
- * @return The associated instance or `null`.
- * @see [setDropTarget]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DropTarget-method-getDropTarget">Online Documentation</a>
- */
- final   fun Element.getDropTarget():DropTarget?
-/**
- * Sets the drop target for the given element.
- * @receiver The element to register the drop target instance with.
- * @param [dropTarget] The instance to attach to the element or `null` to remove the association from the element.
- * @see [getDropTarget]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DropTarget-method-setDropTarget">Online Documentation</a>
- */
- final   fun Element.setDropTarget( dropTarget: DropTarget? )
-}
+external class DropTarget () : IEventDispatcher {
+  /**
+   * Gets or sets a value indicating whether dropping to this target is currently allowed.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23allowDrop">Online Documentation</a>
+   */
+  final var allowDrop: Boolean
+  
+  /**
+   * The element that is registered for this drop target.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23element">Online Documentation</a>
+   */
+  final val element: Element?
+  
+  companion object : ClassMetadata<DropTarget> {
+    /**
+     * Gets the [DropTarget] instance associated with the given element.
+     * @receiver The element to get the drop target instance of.
+     * @return The associated instance or `null`.
+     * @see [setDropTarget]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DropTarget-method-getDropTarget">Online Documentation</a>
+     */
+    fun Element.getDropTarget(): DropTarget?
+    
+    /**
+     * Sets the drop target for the given element.
+     * @receiver The element to register the drop target instance with.
+     * @param [dropTarget] The instance to attach to the element or `null` to remove the association from the element.
+     * @see [getDropTarget]
+     * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DropTarget-method-setDropTarget">Online Documentation</a>
+     */
+    fun Element.setDropTarget(
+      dropTarget: DropTarget?,
+    )
+  }
 }
 
 inline fun DropTarget(
@@ -94,46 +69,49 @@ inline fun DropTarget(
 }
 
 /**
- * Occurs when a drag enters the drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DragEnter">Online Documentation</a>
+ * `drag-enter`: Occurs when a drag enters the drop target.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23drag-enter">Online Documentation</a>
  */
 inline fun  DropTarget.addDragEnterHandler(
-    crossinline handler: (event:DragEventArgs) -> Unit
+  crossinline handler: (event:DragEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<DragEventArgs> = { _, event -> handler(event) }
-    addDragEnterListener(listener)
-    return { removeDragEnterListener(listener) }
+  val listener: EventHandler1<DragEventArgs> = { event, _ -> handler(event) }
+  addEventListener("drag-enter", listener)
+  return { removeEventListener("drag-enter", listener) }
 }
+
 /**
- * Occurs when a drag leaves the drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DragLeave">Online Documentation</a>
+ * `drag-leave`: Occurs when a drag leaves the drop target.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23drag-leave">Online Documentation</a>
  */
 inline fun  DropTarget.addDragLeaveHandler(
-    crossinline handler: (event:DragEventArgs) -> Unit
+  crossinline handler: (event:DragEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<DragEventArgs> = { _, event -> handler(event) }
-    addDragLeaveListener(listener)
-    return { removeDragLeaveListener(listener) }
+  val listener: EventHandler1<DragEventArgs> = { event, _ -> handler(event) }
+  addEventListener("drag-leave", listener)
+  return { removeEventListener("drag-leave", listener) }
 }
+
 /**
- * Occurs when a drag is being performed over the drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23DragOver">Online Documentation</a>
+ * `drag-over`: Occurs when a drag is being performed over the drop target.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23drag-over">Online Documentation</a>
  */
 inline fun  DropTarget.addDragOverHandler(
-    crossinline handler: (event:DragEventArgs) -> Unit
+  crossinline handler: (event:DragEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<DragEventArgs> = { _, event -> handler(event) }
-    addDragOverListener(listener)
-    return { removeDragOverListener(listener) }
+  val listener: EventHandler1<DragEventArgs> = { event, _ -> handler(event) }
+  addEventListener("drag-over", listener)
+  return { removeEventListener("drag-over", listener) }
 }
+
 /**
- * Occurs when the drop operation is performed on the drop target.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23Drop">Online Documentation</a>
+ * `drop`: Occurs when the drop operation is performed on the drop target.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/DropTarget%23drop">Online Documentation</a>
  */
 inline fun  DropTarget.addDropHandler(
-    crossinline handler: (event:DragEventArgs) -> Unit
+  crossinline handler: (event:DragEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<DragEventArgs> = { _, event -> handler(event) }
-    addDropListener(listener)
-    return { removeDropListener(listener) }
+  val listener: EventHandler1<DragEventArgs> = { event, _ -> handler(event) }
+  addEventListener("drop", listener)
+  return { removeEventListener("drop", listener) }
 }

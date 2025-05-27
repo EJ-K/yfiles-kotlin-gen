@@ -13,33 +13,39 @@ package yfiles.graphml
 
 import web.dom.Node
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
  * This class defines a handler for key/data elements.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IInputHandler">Online Documentation</a>
  */
-external interface IInputHandler : YObject {
-/**
- * Gets the parse precedence that is associated with this instance.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IInputHandler%23precedence">Online Documentation</a>
- */
-val precedence: ParsePrecedence
-/**
- * This method is invoked when no data tag is defined, and the default value should be applied.
- * @param [context] the current parse context.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IInputHandler%23IInputHandler-method-applyDefault">Online Documentation</a>
- */
-   fun applyDefault( context: IParseContext )
-/**
- * This method is invoked each time a data element with matching key is processed.
- * @param [context] the current parse context.
- * @param [node] the DOM node representing the data element.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IInputHandler%23IInputHandler-method-parseData">Online Documentation</a>
- */
-   fun parseData( context: IParseContext ,
- node: Node )
+external interface IInputHandler  {
+  /**
+   * Gets the parse precedence that is associated with this instance.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IInputHandler%23precedence">Online Documentation</a>
+   */
+  val precedence: ParsePrecedence
+  
+  /**
+   * This method is invoked when no data tag is defined, and the default value should be applied.
+   * @param [context] The current parse context.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IInputHandler%23IInputHandler-method-applyDefault">Online Documentation</a>
+   */
+  fun applyDefault(
+    context: IParseContext,
+  )
+  
+  /**
+   * This method is invoked each time a data element with a matching key is processed.
+   * @param [context] The current parse context.
+   * @param [node] The DOM node representing the data element.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IInputHandler%23IInputHandler-method-parseData">Online Documentation</a>
+   */
+  fun parseData(
+    context: IParseContext,
+    node: Node,
+  )
 
-companion object : InterfaceMetadata<IInputHandler> {
-}
+  
+  companion object : InterfaceMetadata<IInputHandler> {
+  }
 }

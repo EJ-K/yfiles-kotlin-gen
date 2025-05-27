@@ -20,6 +20,7 @@ import yfiles.lang.InterfaceMetadata
  */
 external interface ILabelGridConstraintProvider : IGridConstraintProvider<ILabel> {
 
-companion object : InterfaceMetadata<ILabelGridConstraintProvider> {
-}
+  
+  companion object : InterfaceMetadata<ILabelGridConstraintProvider> {
+  }
 }

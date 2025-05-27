@@ -12,7 +12,6 @@
 package yfiles.graph
 
 import yfiles.lang.InterfaceMetadata
-import yfiles.lang.YObject
 
 /**
  * This interface is a means to bracket several [IUndoUnit]s, that is a collection of units that are treated as one (for example they are always undone or redone as a single unit).
@@ -20,18 +19,20 @@ import yfiles.lang.YObject
  * @see [IUndoUnit]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICompoundEdit">Online Documentation</a>
  */
-external interface ICompoundEdit : YObject {
-/**
- * This method cancels the compound editing process.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICompoundEdit%23ICompoundEdit-method-cancel">Online Documentation</a>
- */
-   fun cancel()
-/**
- * This method commits the compound editing process.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICompoundEdit%23ICompoundEdit-method-commit">Online Documentation</a>
- */
-   fun commit()
+external interface ICompoundEdit  {
+  /**
+   * This method cancels the compound editing process.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICompoundEdit%23ICompoundEdit-method-cancel">Online Documentation</a>
+   */
+  fun cancel()
+  
+  /**
+   * This method commits the compound editing process.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ICompoundEdit%23ICompoundEdit-method-commit">Online Documentation</a>
+   */
+  fun commit()
 
-companion object : InterfaceMetadata<ICompoundEdit> {
-}
+  
+  companion object : InterfaceMetadata<ICompoundEdit> {
+  }
 }

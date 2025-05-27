@@ -19,18 +19,18 @@ import yfiles.lang.ClassMetadata
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [PortEventArgs] class.
- * @param [port] The port to assign to the [ItemEventArgs.item] property.
- * @param [owner] The owner of the port the port was attached to.
+ * @param [port] The port to assign to the [item][ItemEventArgs] property.
+ * @param [owner] The owner to which the port was attached to before.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortEventArgs%23PortEventArgs-constructor-PortEventArgs">Online Documentation</a>
  * 
  * @property owner
- * Gets the owner the port the was connected to before the event happened.
+ * Gets the owner of the port that was connected to before the event happened.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/PortEventArgs%23owner">Online Documentation</a>
  */
-external  class PortEventArgs  (
- port: IPort ,
+external class PortEventArgs (
+port: IPort,
 final val owner: IPortOwner) : ItemEventArgs<IPort> {
-
-companion object : ClassMetadata<PortEventArgs> {
-}
+  
+  companion object : ClassMetadata<PortEventArgs> {
+  }
 }

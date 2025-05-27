@@ -11,30 +11,33 @@
 
 package yfiles.view
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * The enumeration that describes the possible different policies for displaying the focus of items managed by the [FocusIndicatorManager]
- * @see [FocusIndicatorManager]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ShowFocusPolicy">Online Documentation</a>
  */
-external sealed class ShowFocusPolicy: YEnum<ShowFocusPolicy> {
-   companion object: EnumMetadata<ShowFocusPolicy> {
-       /**
- * Indicates that irrespectively of the keyboard focus, the focus should always be rendered for the [FocusIndicatorManager.focusedItem].
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ShowFocusPolicy%23ALWAYS">Online Documentation</a>
- */
-val ALWAYS: ShowFocusPolicy
 
-/**
- * Indicates that depending on the value of [FocusIndicatorManager.focused] the focus should only be rendered if this property is set to `true`.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ShowFocusPolicy%23ONLY_WHEN_FOCUSED">Online Documentation</a>
- */
-val ONLY_WHEN_FOCUSED: ShowFocusPolicy
-   }
+sealed external class ShowFocusPolicy {
+  /**
+   * Indicates that irrespective of the keyboard focus and usage, the focus indicator should always be rendered for the [focusedItem][FocusIndicatorManager].
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ShowFocusPolicy%23ALWAYS">Online Documentation</a>
+   */
+  object ALWAYS: ShowFocusPolicy
+  
+  /**
+   * Indicates that the focus indicator should be shown depending on the value of [focused][FocusIndicatorManager].
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ShowFocusPolicy%23WHEN_FOCUSED">Online Documentation</a>
+   */
+  object WHEN_FOCUSED: ShowFocusPolicy
+  
+  /**
+   * Indicates that the focus indicator will only be shown when triggered via keyboard gestures and will automatically hide again when a pointing device is used.
+   * 
+   * Value - `2`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ShowFocusPolicy%23WHEN_USING_KEYBOARD">Online Documentation</a>
+   */
+  object WHEN_USING_KEYBOARD: ShowFocusPolicy
 }

@@ -13,26 +13,24 @@ package yfiles.analysis
 
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents a placeholder for an edge that does not yet exist in a graph.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TransitiveEdge">Online Documentation</a>
  */
-external  class TransitiveEdge 
-private constructor () : YObject {
-
-/**
- * The source node of the edge.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TransitiveEdge%23source">Online Documentation</a>
- */
-final val source: INode
-/**
- * The target node of the edge.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TransitiveEdge%23target">Online Documentation</a>
- */
-final val target: INode
-
-companion object : ClassMetadata<TransitiveEdge> {
-}
+external class TransitiveEdge private constructor()  {
+  /**
+   * The source node of the edge.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TransitiveEdge%23source">Online Documentation</a>
+   */
+  final val source: INode
+  
+  /**
+   * The target node of the edge.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TransitiveEdge%23target">Online Documentation</a>
+   */
+  final val target: INode
+  
+  companion object : ClassMetadata<TransitiveEdge> {
+  }
 }

@@ -16,12 +16,12 @@ import yfiles.lang.ClassMetadata
 import yfiles.lang.EventArgs
 
 /**
- * This is the event argument that is used by the [IParseEvents] interface that can be queried from the [IParseContext.parseEvents] property.
+ * This is the event argument that is used by the [IParseEvents] interface that can be queried from the [parseEvents][IParseContext] property.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParseEventArgs">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [ParseEventArgs] class.
- * @param [context] The context to assign to [context].
- * @param [element] The XML element to assign to [element].
+ * @param [context] The context to assign to [context][ParseEventArgs].
+ * @param [element] The XML element to assign to [element][ParseEventArgs].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParseEventArgs%23ParseEventArgs-constructor-ParseEventArgs">Online Documentation</a>
  * 
  * @property context
@@ -32,10 +32,10 @@ import yfiles.lang.EventArgs
  * Gets the XML element that is currently parsed.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ParseEventArgs%23element">Online Documentation</a>
  */
-external open class ParseEventArgs  (
+external class ParseEventArgs (
 final val context: IParseContext,
 final val element: Element?) : EventArgs {
-
-companion object : ClassMetadata<ParseEventArgs> {
-}
+  
+  companion object : ClassMetadata<ParseEventArgs> {
+  }
 }

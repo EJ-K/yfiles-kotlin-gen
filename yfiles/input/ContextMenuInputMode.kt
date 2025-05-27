@@ -11,161 +11,182 @@
 
 package yfiles.input
 
+import web.html.HTMLElement
 import yfiles.geometry.Point
 import yfiles.lang.ClassMetadata
 import yfiles.lang.EventArgs
 import yfiles.lang.EventHandler1
 import yfiles.lang.IEventDispatcher
 import yfiles.view.Cursor
+import yfiles.view.PopulateContextMenuEventArgs
 
 /**
- * An implementation of the [IInputMode] interface that handles the display of a custom context menu when the user right clicks on the [CanvasComponent][yfiles.view.CanvasComponent].
+ * An implementation of the [IInputMode] interface that handles the display of a custom context menu when the user right-clicks on the [CanvasComponent][yfiles.view.CanvasComponent].
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode">Online Documentation</a>
  * 
  * @constructor Initializes a new instance of the [ContextMenuInputMode] class.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-constructor-ContextMenuInputMode">Online Documentation</a>
  */
-external open class ContextMenuInputMode  () : IInputMode, IEventDispatcher {
-
-/**
- * Gets the installed [ConcurrencyController].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23controller">Online Documentation</a>
- */
-protected final val controller: ConcurrencyController?
-/**
- * Gets or sets the enabled state of this input mode.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23enabled">Online Documentation</a>
- */
-open var enabled: Boolean
-/**
- * Gets or sets a value indicating whether this mode will be the only one running when it has the mutex.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23exclusive">Online Documentation</a>
- */
-final var exclusive: Boolean
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23inputModeContext">Online Documentation</a>
- */
-final override val inputModeContext: IInputModeContext?
-/**
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23priority">Online Documentation</a>
- */
-final override var priority: Int
-/**
- * Gets or sets a value that determines whether clicks are swallowed if they happen within a short amount of time after a context menu was closed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23swallowCloseClick">Online Documentation</a>
- */
-final var swallowCloseClick: Boolean
-/**
- * Gets or sets the cursor to use when the mouse is at a [valid menu location][validMenuLocationHitTestable].
- * 
- * The default is `null`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23validMenuLocationCursor">Online Documentation</a>
- */
-final var validMenuLocationCursor: Cursor?
-/**
- * Gets or sets an [IHitTestable] that determines whether it is valid to open a context menu at the queried position.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23validMenuLocationHitTestable">Online Documentation</a>
- */
-final var validMenuLocationHitTestable: IHitTestable?
-/**
- * Cancels the display of the context menu and requests that the context menu is closed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-cancel">Online Documentation</a>
- */
- override   fun cancel()
-/**
- * Creates an [IInputModeContext] for use with the [PopulateMenu] call in the upcoming query.
- * @return An instance of [IInputModeContext].
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-createPopulateMenuContext">Online Documentation</a>
- */
- open protected   fun createPopulateMenuContext():IInputModeContext
-/**
- * Installs this mode in the canvas.
- * @param [context] The context to install this mode into.
- * @param [controller] The [controller] for this mode.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-install">Online Documentation</a>
- */
- override   fun install( context: IInputModeContext ,
- controller: ConcurrencyController )
-/**
- * This method must be called by custom code to indicate that the menu has been closed.
- * @see [addCloseMenuListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-menuClosed">Online Documentation</a>
- */
- final   fun menuClosed()
-/**
- * Called after [cancel] has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onCanceled">Online Documentation</a>
- */
- open protected   fun onCanceled()
-/**
- * Called when the menu is closed and triggers the [CloseMenu] event.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onCloseMenu">Online Documentation</a>
- */
- open protected   fun onCloseMenu()
-/**
- * Called after the [ConcurrencyController.active] property of the installed [ConcurrencyController] has been set to `true`.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onConcurrencyControllerActivated">Online Documentation</a>
- */
- open protected   fun onConcurrencyControllerActivated()
-/**
- * Called after the [ConcurrencyController.active] property of the installed [ConcurrencyController] has been set to `false`.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onConcurrencyControllerDeactivated">Online Documentation</a>
- */
- open protected   fun onConcurrencyControllerDeactivated()
-/**
- * This will populate the context menu for the given world coordinate.
- * @param [location] The location in the world coordinate system for which the context menu has been invoked.
- * @return Whether to show the context menu.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onMenuOpening">Online Documentation</a>
- */
- open protected   fun onMenuOpening( location: Point ):Boolean
-/**
- * Raises the [PopulateMenu] event.
- * @param [event] The [PopulateMenuEventArgs] instance containing the event data.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onPopulateMenu">Online Documentation</a>
- */
- open protected   fun onPopulateMenu( event: PopulateMenuEventArgs )
-/**
- * Called after [tryStop] has been called.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onStopped">Online Documentation</a>
- */
- open protected   fun onStopped()
-/**
- * This method must be called by custom code to inform this input mode that a context menu is about to be opened by a user gesture.
- * @param [queryLocation] The optional location for which the context menu content should be queried. This value will be passed to [onPopulateMenu] and will ultimately be available in [PopulateMenuEventArgs.queryLocation]. If not specified, the last known mouse location will be used.
- * @see [menuClosed]
- * @see [addCloseMenuListener]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-shouldOpenMenu">Online Documentation</a>
- */
- open   fun shouldOpenMenu( queryLocation: Point?  = definedExternally):Boolean
-/**
- * Stops the display of the context menu and requests that the context menu is closed.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-tryStop">Online Documentation</a>
- */
- override   fun tryStop():Boolean
-/**
- * Removes the menu from the context and replaces it with the old instance.
- * @param [context] The context to uninstall this mode from.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-uninstall">Online Documentation</a>
- */
- override   fun uninstall( context: IInputModeContext )
-/**
- * Occurs when the context menu is about to be shown.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23PopulateMenu">Online Documentation</a>
- */
-fun addPopulateMenuListener(listener: EventHandler1<PopulateMenuEventArgs>)
-fun removePopulateMenuListener(listener: EventHandler1<PopulateMenuEventArgs>)
-
-/**
- * Occurs when this instance requests closing an open context menu.
- * @see [menuClosed]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23CloseMenu">Online Documentation</a>
- */
-fun addCloseMenuListener(listener: EventHandler1<EventArgs>)
-fun removeCloseMenuListener(listener: EventHandler1<EventArgs>)
-
-companion object : ClassMetadata<ContextMenuInputMode> {
-}
+open external class ContextMenuInputMode () : IInputMode, IEventDispatcher {
+  /**
+   * Gets or sets a custom parent element to which the context menu is added as a child in the DOM.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23contextMenuParentElement">Online Documentation</a>
+   */
+  final var contextMenuParentElement: HTMLElement?
+  
+  /**
+   * Gets the installed [ConcurrencyController].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23controller">Online Documentation</a>
+   */
+  protected final val controller: ConcurrencyController?
+  
+  /**
+   * Gets or sets the enabled state of this input mode.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23enabled">Online Documentation</a>
+   */
+  open var enabled: Boolean
+  
+  /**
+   * Gets or sets a value indicating whether this mode will be the only one running when it has the mutex.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23exclusive">Online Documentation</a>
+   */
+  final var exclusive: Boolean
+  
+  /**
+   * Retrieves the [IInputModeContext] this mode has been installed in.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23parentInputModeContext">Online Documentation</a>
+   */
+  protected final val parentInputModeContext: IInputModeContext?
+  
+  /**
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23priority">Online Documentation</a>
+   */
+  final override var priority: Int
+  
+  /**
+   * Gets or sets a value that determines whether clicks are swallowed if they happen within a short amount of time after a context menu was closed.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23swallowCloseClick">Online Documentation</a>
+   */
+  final var swallowCloseClick: Boolean
+  
+  /**
+   * Gets or sets the cursor to use when the mouse is at a [valid menu location][ContextMenuInputMode].
+   * 
+   * The default is `null`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23validMenuLocationCursor">Online Documentation</a>
+   */
+  final var validMenuLocationCursor: Cursor?
+  
+  /**
+   * Gets or sets an [IHitTestable] that determines whether it is valid to open a context menu at the queried position.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23validMenuLocationHitTestable">Online Documentation</a>
+   */
+  final var validMenuLocationHitTestable: IHitTestable?
+  
+  /**
+   * Cancels the display of the context menu and requests that the context menu is closed.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-cancel">Online Documentation</a>
+   */
+  override fun cancel()
+  
+  /**
+   * This method must be called by custom event listeners on [HTMLElement]s added in [contextMenu][PopulateContextMenuEventArgs] to indicate that the menu has been closed.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-closeMenu">Online Documentation</a>
+   */
+  fun closeMenu()
+  
+  /**
+   * Creates an input mode context that uses this instance as the [inputMode][IInputModeContext] and delegates to [parentInputModeContext][ContextMenuInputMode] otherwise.
+   * @return An instance that has this [IInputMode] set as the [inputMode][IInputModeContext]
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-createInputModeContext">Online Documentation</a>
+   */
+  protected open fun createInputModeContext(): IInputModeContext
+  
+  /**
+   * Creates an [IInputModeContext] for use with the [populate-menu][ContextMenuInputMode] call in the upcoming query.
+   * @return An instance of [IInputModeContext].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-createPopulateMenuContext">Online Documentation</a>
+   */
+  protected open fun createPopulateMenuContext(): IInputModeContext
+  
+  /**
+   * Installs this mode in the canvas.
+   * @param [context] The context to install this mode into.
+   * @param [controller] The [controller][ContextMenuInputMode] for this mode.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-install">Online Documentation</a>
+   */
+  override fun install(
+    context: IInputModeContext,
+    controller: ConcurrencyController,
+  )
+  
+  /**
+   * Called after [cancel][ContextMenuInputMode] has been called.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onCanceled">Online Documentation</a>
+   */
+  protected open fun onCanceled()
+  
+  /**
+   * Called after the [active][ConcurrencyController] property of the installed [ConcurrencyController] has been set to `true`.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onConcurrencyControllerActivated">Online Documentation</a>
+   */
+  protected open fun onConcurrencyControllerActivated()
+  
+  /**
+   * Called after the [active][ConcurrencyController] property of the installed [ConcurrencyController] has been set to `false`.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onConcurrencyControllerDeactivated">Online Documentation</a>
+   */
+  protected open fun onConcurrencyControllerDeactivated()
+  
+  /**
+   * Called when the menu is closed and triggers the [menu-closed][ContextMenuInputMode] event.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onMenuClosed">Online Documentation</a>
+   */
+  protected open fun onMenuClosed()
+  
+  /**
+   * Populates the context menu for the given world coordinate.
+   * @param [location] The location in the world coordinate system for which the context menu has been invoked.
+   * @return The [PopulateContextMenuEventArgs].
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onMenuOpening">Online Documentation</a>
+   */
+  protected open fun onMenuOpening(
+    location: Point,
+  ): PopulateContextMenuEventArgs
+  
+  /**
+   * Raises the [populate-menu][ContextMenuInputMode] event.
+   * @param [event] The [PopulateContextMenuEventArgs] instance containing the event data.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onPopulateMenu">Online Documentation</a>
+   */
+  protected open fun onPopulateMenu(
+    event: PopulateContextMenuEventArgs,
+  )
+  
+  /**
+   * Called after [tryStop][ContextMenuInputMode] has been called.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-onStopped">Online Documentation</a>
+   */
+  protected open fun onStopped()
+  
+  /**
+   * Stops the display of the context menu and requests that the context menu is closed.
+   * @return `true` if successful, otherwise `false`.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-tryStop">Online Documentation</a>
+   */
+  override fun tryStop(): Boolean
+  
+  /**
+   * Removes the menu from the context and replaces it with the old instance.
+   * @param [context] The context to uninstall this mode from.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23ContextMenuInputMode-method-uninstall">Online Documentation</a>
+   */
+  override fun uninstall(
+    context: IInputModeContext,
+  )
+  
+  companion object : ClassMetadata<ContextMenuInputMode> {
+  }
 }
 
 inline fun ContextMenuInputMode(
@@ -176,25 +197,25 @@ inline fun ContextMenuInputMode(
 }
 
 /**
- * Occurs when the context menu is about to be shown.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23PopulateMenu">Online Documentation</a>
+ * `populate-menu`: Occurs when the context menu is about to be shown.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23populate-menu">Online Documentation</a>
  */
 inline fun  ContextMenuInputMode.addPopulateMenuHandler(
-    crossinline handler: (event:PopulateMenuEventArgs) -> Unit
+  crossinline handler: (event:PopulateContextMenuEventArgs) -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<PopulateMenuEventArgs> = { _, event -> handler(event) }
-    addPopulateMenuListener(listener)
-    return { removePopulateMenuListener(listener) }
+  val listener: EventHandler1<PopulateContextMenuEventArgs> = { event, _ -> handler(event) }
+  addEventListener("populate-menu", listener)
+  return { removeEventListener("populate-menu", listener) }
 }
+
 /**
- * Occurs when this instance requests closing an open context menu.
- * @see [menuClosed]
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23CloseMenu">Online Documentation</a>
+ * `menu-closed`: Occurs when this instance requests closing an open context menu.
+ * @see <a href="https://docs.yworks.com/yfileshtml/#/api/ContextMenuInputMode%23menu-closed">Online Documentation</a>
  */
-inline fun  ContextMenuInputMode.addCloseMenuHandler(
-    crossinline handler: () -> Unit
+inline fun  ContextMenuInputMode.addMenuClosedHandler(
+  crossinline handler: () -> Unit
 ): () -> Unit {
-    val listener: EventHandler1<EventArgs> = { _, _ -> handler() }
-    addCloseMenuListener(listener)
-    return { removeCloseMenuListener(listener) }
+  val listener: EventHandler1<EventArgs> = { _, _ -> handler() }
+  addEventListener("menu-closed", listener)
+  return { removeEventListener("menu-closed", listener) }
 }

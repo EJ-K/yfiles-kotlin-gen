@@ -11,31 +11,27 @@
 
 package yfiles.styles
 
-import yfiles.lang.EnumMetadata
-import yfiles.lang.YEnum
-
 /**
  * The possible icon positions for the collapse/expand icon of a [GroupNodeStyle] instance.
  * @see [GroupNodeStyle.iconPosition]
  * @see [GroupNodeStyle.tabPosition]
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupNodeStyleIconPosition">Online Documentation</a>
  */
-external sealed class GroupNodeStyleIconPosition: YEnum<GroupNodeStyleIconPosition> {
-   companion object: EnumMetadata<GroupNodeStyleIconPosition> {
-       /**
- * Indicates a leading position.
- * 
- * Value - `0`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupNodeStyleIconPosition%23LEADING">Online Documentation</a>
- */
-val LEADING: GroupNodeStyleIconPosition
 
-/**
- * Indicates a trailing position.
- * 
- * Value - `1`
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupNodeStyleIconPosition%23TRAILING">Online Documentation</a>
- */
-val TRAILING: GroupNodeStyleIconPosition
-   }
+sealed external class GroupNodeStyleIconPosition {
+  /**
+   * Indicates a leading position.
+   * 
+   * Value - `0`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupNodeStyleIconPosition%23LEADING">Online Documentation</a>
+   */
+  object LEADING: GroupNodeStyleIconPosition
+  
+  /**
+   * Indicates a trailing position.
+   * 
+   * Value - `1`
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/GroupNodeStyleIconPosition%23TRAILING">Online Documentation</a>
+   */
+  object TRAILING: GroupNodeStyleIconPosition
 }

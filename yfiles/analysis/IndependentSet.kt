@@ -13,21 +13,18 @@ package yfiles.analysis
 
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.lang.YObject
 
 /**
  * Represents a single independent set of nodes in a graph.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSet">Online Documentation</a>
  */
-external  class IndependentSet 
-private constructor () : YObject {
-
-/**
- * Gets a collection of nodes in this set.
- * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSet%23nodes">Online Documentation</a>
- */
-final val nodes: ResultItemCollection<INode>
-
-companion object : ClassMetadata<IndependentSet> {
-}
+external class IndependentSet private constructor()  {
+  /**
+   * Gets a collection of nodes in this set.
+   * @see <a href="https://docs.yworks.com/yfileshtml/#/api/IndependentSet%23nodes">Online Documentation</a>
+   */
+  final val nodes: ResultItemCollection<INode>
+  
+  companion object : ClassMetadata<IndependentSet> {
+  }
 }

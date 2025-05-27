@@ -15,11 +15,11 @@ import yfiles.geometry.Point
 import yfiles.graph.IModelItem
 import yfiles.graph.INode
 import yfiles.lang.ClassMetadata
-import yfiles.view.ModifierKeys
-import yfiles.view.MouseButtons
+import yfiles.view.PointerButtons
+import yfiles.view.PointerEventArgs
 
 /**
- * Provides data for the [TableEditorInputMode.ItemClicked], [TableEditorInputMode.ItemDoubleClicked], [TableEditorInputMode.ItemLeftClicked], [TableEditorInputMode.ItemLeftDoubleClicked], [TableEditorInputMode.ItemRightClicked] and [TableEditorInputMode.ItemRightDoubleClicked] events.
+ * Provides data for the [item-clicked][TableEditorInputMode], [item-double-clicked][TableEditorInputMode], [item-left-clicked][TableEditorInputMode], [item-left-double-clicked][TableEditorInputMode], [item-right-clicked][TableEditorInputMode] and [item-right-double-clicked][TableEditorInputMode] events.
  * @param [T] The type of the item this event carries.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableItemClickedEventArgs">Online Documentation</a>
  * 
@@ -29,9 +29,9 @@ import yfiles.view.MouseButtons
  * @param [tableNode] The table node where `item` is associated.
  * @param [context] The context in which the click or tap occurred.
  * @param [location] The location.
- * @param [modifiers] State of the modifiers.
- * @param [mouseButtons] The mouse button(s) that have changed.
+ * @param [buttons] The pointer button(s) that have changed.
  * @param [clickCount] The number of clicks.
+ * @param [event] The original event args.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableItemClickedEventArgs%23TableItemClickedEventArgs-constructor-TableItemClickedEventArgs">Online Documentation</a>
  * 
  * @property region
@@ -39,19 +39,19 @@ import yfiles.view.MouseButtons
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableItemClickedEventArgs%23region">Online Documentation</a>
  * 
  * @property tableNode
- * The table node where [ItemClickedEventArgs.item] is associated.
+ * The table node where [item][ItemClickedEventArgs] is associated.
  * @see <a href="https://docs.yworks.com/yfileshtml/#/api/TableItemClickedEventArgs%23tableNode">Online Documentation</a>
  */
-external open class TableItemClickedEventArgs<T : IModelItem>  (
- item: T ,
+external class TableItemClickedEventArgs<T : IModelItem> (
+item: T,
 final val region: StripeSubregion?,
 final val tableNode: INode?,
- context: IInputModeContext ,
- location: Point ,
- modifiers: ModifierKeys ,
- mouseButtons: MouseButtons ,
- clickCount: Int ) : ItemClickedEventArgs<T> {
-
-companion object : ClassMetadata<TableItemClickedEventArgs<*>> {
-}
+context: IInputModeContext,
+location: Point,
+buttons: PointerButtons,
+clickCount: Int,
+event: PointerEventArgs) : ItemClickedEventArgs<T> {
+  
+  companion object : ClassMetadata<TableItemClickedEventArgs<*>> {
+  }
 }
